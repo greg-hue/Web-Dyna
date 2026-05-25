@@ -1,0 +1,124 @@
+Table utilisateurs {
+  id_utilisateur integer [primary key, increment]
+  prenom varchar
+  nom varchar
+  email varchar [unique]
+  mot_de_passe varchar
+  role varchar
+  telephone varchar
+  date_creation timestamp
+}
+
+Table etudiants {
+  id_etudiant integer [primary key, increment]
+  utilisateur_id integer [not null, unique]
+  numero_etudiant varchar [unique]
+  promotion varchar
+  niveau integer
+  date_naissance date
+  adresse text
+  contact_urgence varchar
+}
+
+Table enseignants {
+  id_enseignant integer [primary key, increment]
+  utilisateur_id integer [not null, unique]
+  specialisation varchar
+  date_embauche date
+}
+
+Table administrateurs {
+  id_admin integer [primary key, increment]
+  utilisateur_id integer [not null, unique]
+}
+
+Table cours {
+  id_cours integer [primary key, increment]
+  titre varchar
+  description text
+  semestre integer
+  niveau integer
+  capacite_max integer
+  enseignant_id integer [not null]
+}
+
+Table inscriptions {
+  id_inscription integer [primary key, increment]
+  etudiant_id integer [not null]
+  cours_id integer [not null]
+  date_inscription date
+  statut varchar
+
+  indexes { //un étudiant ne peut apparaître qu'une seule fois dans le même cours
+    (etudiant_id, cours_id) [unique]
+  }
+}
+
+Table notes {
+  id_note integer [primary key, increment]
+  etudiant_id integer [not null]
+  cours_id integer [not null]
+  type_evaluation varchar
+  note float
+  coefficient integer
+  date_creation timestamp
+  validee boolean
+}
+
+Table emplois_du_temps {
+  id_emploi integer [primary key, increment]
+  cours_id integer [not null]
+  salle varchar
+  jour_semaine varchar
+  heure_debut time
+  heure_fin time
+}
+
+Table absences {
+  id_absence integer [primary key, increment]
+  etudiant_id integer [not null]
+  cours_id integer [not null]
+  date_absence date
+  justifiee boolean
+  commentaire text
+}
+
+Table notifications {
+  id_notification integer [primary key, increment]
+  utilisateur_id integer [not null]
+  titre varchar
+  message text
+  est_lue boolean
+  date_creation timestamp
+}
+
+Table messages {
+  id_message integer [primary key, increment]
+  expediteur_id integer [not null]
+  destinataire_id integer [not null]
+  contenu text
+  date_envoi timestamp
+}
+
+//Relations
+Ref: etudiants.utilisateur_id > utilisateurs.id_utilisateur
+Ref: enseignants.utilisateur_id > utilisateurs.id_utilisateur
+Ref: administrateurs.utilisateur_id > utilisateurs.id_utilisateur
+
+Ref: cours.enseignant_id > enseignants.id_enseignant
+
+Ref: inscriptions.etudiant_id > etudiants.id_etudiant
+Ref: inscriptions.cours_id > cours.id_cours
+
+Ref: notes.etudiant_id > etudiants.id_etudiant
+Ref: notes.cours_id > cours.id_cours
+
+Ref: emplois_du_temps.cours_id > cours.id_cours
+
+Ref: absences.etudiant_id > etudiants.id_etudiant
+Ref: absences.cours_id > cours.id_cours
+
+Ref: notifications.utilisateur_id > utilisateurs.id_utilisateur
+
+Ref: messages.expediteur_id > utilisateurs.id_utilisateur
+Ref: messages.destinataire_id > utilisateurs.id_utilisateur
