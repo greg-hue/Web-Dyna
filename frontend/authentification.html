@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentification - SmartCampus</title>
+  <link rel="stylesheet" href="authentification.css">
+</head>
+
+<body>
+  <header class="barre-haut">
+    <div class="bloc-logo">
+      <div class="logo">
+        ✚
+      </div>
+      <h1>IFSI Florence Nightingale</h1>
+    </div>
+    <div class="ville">
+      [Nom de la ville]
+    </div>
+  </header>
+
+  <main class="conteneur-principal">
+
+    <section class="partie-gauche">
+      <div class="image-temporaire">
+        🖼️
+      </div>
+    </section>
+
+    <section class="partie-droite">
+
+      <div class="bloc-ecole">
+        <div class="icone-ecole">
+          🏫
+        </div>
+        <h2>
+          Florence <br>
+          Nightingale
+        </h2>
+        <p>
+          rigueur | engagement | humanité
+        </p>
+      </div>
+
+      <div class="bloc-authentification">
+        <h2>Service d'Authentification</h2>
+
+        <form>
+          <label>Identifiant</label>
+          <input type="text" placeholder="Identifiant">
+          <a href="#">
+            Identifiant oublié ?
+          </a>
+          <label>Mot de passe</label>
+          <input type="password" placeholder="Mot de passe">
+          <a href="#">
+            Mot de passe oublié ?
+          </a>
+
+          <div class="roles-utilisateur">
+            <label>
+              <input type="radio" name="role">
+              Etudiant(e)
+            </label>
+            <label>
+              <input type="radio" name="role">
+              Professeur(e)
+            </label>
+            <label>
+              <input type="radio" name="role">
+              Admin
+            </label>
+          </div>
+          
+          <button type="submit">
+            Se connecter
+          </button>
+        </form>
+
+        <p class="texte-securite">
+          Pour des raisons de sécurité,
+          veuillez vous déconnecter et fermer
+          votre navigateur lorsque vous avez fini
+          d'accéder aux services authentifiés.
+        </p>
+      </div>
+
+      <footer class="pied-page">
+        <p>Mentions légales</p>
+        <p>Aide & Support</p>
+        <p>Contact</p>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="authentification.js"></script>
+</body>
+</html>
