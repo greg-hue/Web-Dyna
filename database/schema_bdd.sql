@@ -15,6 +15,7 @@ CREATE TABLE `etudiants` (
   `numero_etudiant` varchar(255) UNIQUE,
   `promotion` varchar(255),
   `niveau` integer,
+  `groupe` varchar(255),
   `date_naissance` date,
   `adresse` text,
   `contact_urgence` varchar(255)
@@ -35,7 +36,9 @@ CREATE TABLE `administrateurs` (
 CREATE TABLE `cours` (
   `id_cours` integer PRIMARY KEY AUTO_INCREMENT,
   `titre` varchar(255),
+  `code` varchar(255),
   `description` text,
+  `credits` integer,
   `semestre` integer,
   `niveau` integer,
   `capacite_max` integer,
@@ -61,20 +64,21 @@ CREATE TABLE `notes` (
   `validee` boolean
 );
 
-CREATE TABLE `emplois_du_temps` (
-  `id_emploi` integer PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE `seances` (
+  `id_seance` integer PRIMARY KEY AUTO_INCREMENT,
   `cours_id` integer NOT NULL,
-  `salle` varchar(255),
-  `jour_semaine` varchar(255),
+  `date_seance` date,
   `heure_debut` time,
-  `heure_fin` time
+  `heure_fin` time,
+  `salle` varchar(255),
+  `type_seance` varchar(255)
 );
 
 CREATE TABLE `absences` (
   `id_absence` integer PRIMARY KEY AUTO_INCREMENT,
   `etudiant_id` integer NOT NULL,
-  `cours_id` integer NOT NULL,
-  `date_absence` date,
+  `seance_id` integer NOT NULL,
+  `statut` varchar(255),
   `justifiee` boolean,
   `commentaire` text
 );
@@ -92,8 +96,19 @@ CREATE TABLE `messages` (
   `id_message` integer PRIMARY KEY AUTO_INCREMENT,
   `expediteur_id` integer NOT NULL,
   `destinataire_id` integer NOT NULL,
+  `sujet` varchar(255),
   `contenu` text,
+  `lu` boolean,
   `date_envoi` timestamp
+);
+
+CREATE TABLE `news` (
+  `id_news` integer PRIMARY KEY AUTO_INCREMENT,
+  `auteur_id` integer NOT NULL,
+  `titre` varchar(255),
+  `contenu` text,
+  `categorie` varchar(255),
+  `date_publication` timestamp
 );
 
 CREATE UNIQUE INDEX `inscriptions_index_0` ON `inscriptions` (`etudiant_id`, `cours_id`);
@@ -114,14 +129,16 @@ ALTER TABLE `notes` ADD FOREIGN KEY (`etudiant_id`) REFERENCES `etudiants` (`id_
 
 ALTER TABLE `notes` ADD FOREIGN KEY (`cours_id`) REFERENCES `cours` (`id_cours`);
 
-ALTER TABLE `emplois_du_temps` ADD FOREIGN KEY (`cours_id`) REFERENCES `cours` (`id_cours`);
+ALTER TABLE `seances` ADD FOREIGN KEY (`cours_id`) REFERENCES `cours` (`id_cours`);
 
 ALTER TABLE `absences` ADD FOREIGN KEY (`etudiant_id`) REFERENCES `etudiants` (`id_etudiant`);
 
-ALTER TABLE `absences` ADD FOREIGN KEY (`cours_id`) REFERENCES `cours` (`id_cours`);
+ALTER TABLE `absences` ADD FOREIGN KEY (`seance_id`) REFERENCES `seances` (`id_seance`);
 
 ALTER TABLE `notifications` ADD FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id_utilisateur`);
 
 ALTER TABLE `messages` ADD FOREIGN KEY (`expediteur_id`) REFERENCES `utilisateurs` (`id_utilisateur`);
 
 ALTER TABLE `messages` ADD FOREIGN KEY (`destinataire_id`) REFERENCES `utilisateurs` (`id_utilisateur`);
+
+ALTER TABLE `news` ADD FOREIGN KEY (`auteur_id`) REFERENCES `utilisateurs` (`id_utilisateur`);
