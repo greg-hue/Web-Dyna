@@ -15,6 +15,7 @@ Table etudiants {
   numero_etudiant varchar [unique]
   promotion varchar
   niveau integer
+  groupe varchar
   date_naissance date
   adresse text
   contact_urgence varchar
@@ -35,7 +36,9 @@ Table administrateurs {
 Table cours {
   id_cours integer [primary key, increment]
   titre varchar
+  code varchar
   description text
+  credits integer
   semestre integer
   niveau integer
   capacite_max integer
@@ -49,7 +52,7 @@ Table inscriptions {
   date_inscription date
   statut varchar
 
-  indexes { //un étudiant ne peut apparaître qu'une seule fois dans le même cours
+  indexes { // un étudiant ne peut apparaître qu'une seule fois dans le même cours
     (etudiant_id, cours_id) [unique]
   }
 }
@@ -65,20 +68,21 @@ Table notes {
   validee boolean
 }
 
-Table emplois_du_temps {
-  id_emploi integer [primary key, increment]
+Table seances {
+  id_seance integer [primary key, increment]
   cours_id integer [not null]
-  salle varchar
-  jour_semaine varchar
+  date_seance date
   heure_debut time
   heure_fin time
+  salle varchar
+  type_seance varchar
 }
 
 Table absences {
   id_absence integer [primary key, increment]
   etudiant_id integer [not null]
-  cours_id integer [not null]
-  date_absence date
+  seance_id integer [not null]
+  statut varchar
   justifiee boolean
   commentaire text
 }
@@ -96,11 +100,22 @@ Table messages {
   id_message integer [primary key, increment]
   expediteur_id integer [not null]
   destinataire_id integer [not null]
+  sujet varchar
   contenu text
+  lu boolean
   date_envoi timestamp
 }
 
-//Relations
+Table news {
+  id_news integer [primary key, increment]
+  auteur_id integer [not null]
+  titre varchar
+  contenu text
+  categorie varchar
+  date_publication timestamp
+}
+
+// Relations
 Ref: etudiants.utilisateur_id > utilisateurs.id_utilisateur
 Ref: enseignants.utilisateur_id > utilisateurs.id_utilisateur
 Ref: administrateurs.utilisateur_id > utilisateurs.id_utilisateur
@@ -113,12 +128,14 @@ Ref: inscriptions.cours_id > cours.id_cours
 Ref: notes.etudiant_id > etudiants.id_etudiant
 Ref: notes.cours_id > cours.id_cours
 
-Ref: emplois_du_temps.cours_id > cours.id_cours
+Ref: seances.cours_id > cours.id_cours
 
 Ref: absences.etudiant_id > etudiants.id_etudiant
-Ref: absences.cours_id > cours.id_cours
+Ref: absences.seance_id > seances.id_seance
 
 Ref: notifications.utilisateur_id > utilisateurs.id_utilisateur
 
 Ref: messages.expediteur_id > utilisateurs.id_utilisateur
 Ref: messages.destinataire_id > utilisateurs.id_utilisateur
+
+Ref: news.auteur_id > utilisateurs.id_utilisateur
