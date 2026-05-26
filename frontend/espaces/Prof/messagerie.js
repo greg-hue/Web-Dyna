@@ -18,20 +18,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const reponse = await fetch(
-        "../../../backend/getProfNotes.php?id_utilisateur=" + utilisateur.id
+        "../../../backend/getProfMessages.php?id_utilisateur=" + utilisateur.id
     );
 
     const resultat = await reponse.json();
 
-    const listeNotes = document.getElementById("listeNotes");
+    const listeMessages = document.getElementById("listeMessages");
 
     if (resultat.success) {
-        resultat.notes.forEach(note => {
-            listeNotes.innerHTML += `
+        resultat.messages.forEach(message => {
+            listeMessages.innerHTML += `
                 <tr>
-                    <td>${note.prenom} ${note.nom}(${note.groupe})</td>
-                    <td>${note.matiere}</td>
-                    <td>${note.note}/20</td>
+                    <td>${message.expediteur_prenom} ${message.expediteur_nom}</td>
+                    <td>${message.sujet}</td>
+                    <td>${message.date_envoi}</td>
                 </tr>
             `;
         });
