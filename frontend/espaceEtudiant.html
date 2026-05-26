@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Espace étudiant - SmartCampus</title>
+  <link rel="stylesheet" href="espaceEtudiant.css">
+</head>
+
+<body>
+
+  <header class="barre-haut">
+    <div class="bloc-logo">
+      <div class="logo">✚</div>
+      <h1>IFSI Florence Nightingale</h1>
+    </div>
+
+    <div class="bloc-utilisateur">
+      <span>[prénom nom]</span>
+      <span class="statut">statut</span>
+      <span class="deconnexion">↪</span>
+    </div>
+  </header>
+
+  <main class="conteneur-etudiant">
+
+    <aside class="menu-lateral">
+      <a class="element-menu actif" href="#">
+        <span>▦</span>
+        Tableau de bord
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>▣</span>
+        Emploi du temps
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>/20</span>
+        Mes notes
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>✉</span>
+        Messagerie
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>🔔</span>
+        Notifications
+      </a>
+    </aside>
+
+    <section class="contenu-principal">
+
+      <section class="cartes-statistiques">
+        <div class="carte-stat">
+          <strong>&lt; semaine 3 &gt;</strong>
+          <p>[nombre de contrôle]</p>
+          <span>évaluations</span>
+        </div>
+
+        <div class="carte-stat">
+          <strong>[Moyenne]</strong>
+          <span>moyenne / 20</span>
+        </div>
+
+        <div class="carte-stat">
+          <strong>[nombre d'absence]</strong>
+          <span>absences</span>
+        </div>
+      </section>
+
+      <section class="bloc-section">
+        <h2>EMPLOI DU TEMPS - SEMAINE</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Horaire</th>
+              <th>Type</th>
+              <th>Cours</th>
+              <th>Salle</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Lun 25/05</td>
+              <td>08:15 - 10:15</td>
+              <td>TP</td>
+              <td>Biologie</td>
+              <td>CA-307</td>
+            </tr>
+
+            <tr>
+              <td>Lun 25/05</td>
+              <td>10:30 - 12:30</td>
+              <td>CM</td>
+              <td>Hygiène</td>
+              <td>CA-104.5</td>
+            </tr>
+
+            <tr>
+              <td>Lun 25/05</td>
+              <td>14:00 - 18:15</td>
+              <td>Exam</td>
+              <td>Anatomie</td>
+              <td>CB-067</td>
+            </tr>
+
+            <tr>
+              <td>Mar 26/05</td>
+              <td>10:30 - 12:30</td>
+              <td>TD</td>
+              <td>Pharmacologie</td>
+              <td>CE-604</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="zone-bas">
+
+        <div class="bloc-section notes">
+          <h2>MES DERNIÈRES NOTES</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Cours</th>
+                <th>Note</th>
+                <th>Coef.</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Soins</td>
+                <td>16.5</td>
+                <td>1</td>
+              </tr>
+
+              <tr>
+                <td>Anatomie</td>
+                <td>4.5</td>
+                <td>4</td>
+              </tr>
+
+              <tr>
+                <td>Hygiène</td>
+                <td>11.25</td>
+                <td>5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bloc-section absences">
+          <h2>MES ABSENCES</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Séance</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Anatomie - 10 mai</td>
+                <td>Absent</td>
+              </tr>
+
+              <tr>
+                <td>Soins - 6 mai</td>
+                <td>Justifiée</td>
+              </tr>
+
+              <tr>
+                <td>Éthique - 20 mars</td>
+                <td>Absent</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+  <footer class="barre-actualites">
+    <div class="icone-actualites">▰</div>
+    <strong>Actualités :</strong>
+    <span>Note publiée - Soins</span>
+    <span>Changement emploi du temps</span>
+  </footer>
+
+</body>
+</html>
