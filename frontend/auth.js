@@ -1,88 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-    // Base utilisateurs temporaire
-    const utilisateurs = [
-    {
-        identifiant: "etudiant1",
-        motdepasse: "1234",
-        role: "etudiant",
-        prenom: "Marie",
-        nom: "Dupont"
-    },
-    {
-        identifiant: "prof1",
-        motdepasse: "abcd",
-        role: "professeur",
-        prenom: "Jean",
-        nom: "Martin"
-    },
-    {
-        identifiant: "admin",
-        motdepasse: "admin123",
-        role: "admin",
-        prenom: "Claire",
-        nom: "Bernard"
-    }
-];
-
-    // Récupération du formulaire
     const formulaire = document.getElementById("loginForm");
+    const messageErreur = document.getElementById("messageErreur");
 
-    formulaire.addEventListener("submit", (event) => {
-
-        // Empêche le rechargement de la page
+    formulaire.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        // Récupération des valeurs
-        const identifiant = document.getElementById("identifiant").value;
-        const motdepasse = document.getElementById("motdepasse").value;
-        const role = document.querySelector('input[name="role"]:checked')?.value;
+        const donnees = new FormData();
 
-        const messageErreur = document.getElementById("messageErreur");
+        donnees.append("identifiant", document.getElementById("identifiant").value);
+        donnees.append("motdepasse", document.getElementById("motdepasse").value);
 
-        // Recherche utilisateur
-        const utilisateurTrouve = utilisateurs.find(utilisateur =>
-            utilisateur.identifiant === identifiant &&
-            utilisateur.motdepasse === motdepasse &&
-            utilisateur.role === role
-        );
+        const roleSelectionne = document.querySelector('input[name="role"]:checked');
+        donnees.append("role", roleSelectionne.value);
 
-        // Vérification
-        if (utilisateurTrouve) {
+        const reponse = await fetch("../backend/connexion.php", {
+            method: "POST",
+            body: donnees
+        });
 
-            messageErreur.style.color = "green";
-            messageErreur.textContent = "Connexion réussie !";
+        const resultat = await reponse.json();
 
-            // Sauvegarde des infos utilisateur
+        if (resultat.success) {
             localStorage.setItem(
-            "utilisateurConnecte",
-            JSON.stringify(utilisateurTrouve)
-        );
+                "utilisateurConnecte",
+                JSON.stringify(resultat.utilisateur)
+            );
 
-        // Redirection selon le rôle
-        if (utilisateurTrouve.role === "etudiant") {
-            window.location.href = "espaces/espaceEtudiant.html";
-        }
-        else if (utilisateurTrouve.role === "professeur") {
-            window.location.href = "espaces/espaceProfesseur.html";
-        }
-        else if (utilisateurTrouve.role === "admin") {
-            window.location.href = "espaces/espaceAdmin.html";
-        }
-
-            // Exemple de redirection
-            // window.location.href = "dashboard.html";
-
-            console.log("Utilisateur connecté :", utilisateurTrouve);
-
+            if (resultat.utilisateur.role === "etudiant") {
+                window.location.href = "espaces/espaceEtudiant.html";
+            } else if (resultat.utilisateur.role === "enseignant") {
+                window.location.href = "espaces/espaceProfesseur.html";
+            } else if (resultat.utilisateur.role === "admin") {
+                window.location.href = "espaces/espaceAdmin.html";
+            }
         } else {
-
             messageErreur.style.color = "red";
-            messageErreur.textContent =
-                "Identifiant, mot de passe ou rôle incorrect.";
-
+            messageErreur.textContent = resultat.message;
         }
-
     });
-
 });
