@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     // Sécurité
-    if (!utilisateur || utilisateur.role !== "professeur") {
+    if (!utilisateur || utilisateur.role !== "enseignant") {
         window.location.href = "../authentification.html";
         return;
     }
