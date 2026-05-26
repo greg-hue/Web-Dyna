@@ -9,6 +9,7 @@ body{
    background:#dfe5ea;
    padding:20px;
    color:#44515f;
+   min-height:100vh;
 }
 
 .barre-haut{
@@ -52,7 +53,7 @@ body{
    margin-top:15px;
    display:grid;
    grid-template-columns:1fr 1fr;
-   min-height:780px;
+   height:calc(100vh - 130px);
    border:8px solid #7b858c;
 }
 
@@ -101,14 +102,14 @@ body{
 .bloc-authentification{
    width:85%;
    background:#cbd8e2;
-   padding:35px;
+   padding:100px;
    border-radius:5px;
 }
 
 .bloc-authentification h2{
    text-align:center;
    margin-bottom:35px;
-   font-size:40px;
+   font-size:50px;
 }
 
 form{
@@ -141,17 +142,24 @@ form a{
    display:flex;
    justify-content:space-between;
    margin:15px 0 25px;
+   font-size:30px;
+}
+
+.roles-utilisateur input[type="radio"]{
+   transform:scale(1.5);
+   margin-right:8px;
+   cursor:pointer;
 }
 
 button{
-   width:250px;
+   width:270px;
    margin:auto;
    padding:15px;
    border:none;
    border-radius:5px;
    background:#44515f;
    color:white;
-   font-size:20px;
+   font-size:25px;
    font-weight:bold;
    cursor:pointer;
    transition:0.3s;
@@ -163,7 +171,7 @@ button:hover{
 
 .texte-securite{
    margin-top:35px;
-   font-size:13px;
+   font-size:16px;
 }
 
 .pied-page{
