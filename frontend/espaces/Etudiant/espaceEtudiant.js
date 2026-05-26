@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         localStorage.removeItem("utilisateurConnecte");
 
-        window.location.href = "../authentification.html";
+        window.location.href = "../../authentification.html";
     });
 });
 
