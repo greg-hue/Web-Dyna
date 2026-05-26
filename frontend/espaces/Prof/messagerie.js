@@ -28,7 +28,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (resultat.success) {
         resultat.messages.forEach(message => {
             listeMessages.innerHTML += `
-                <tr>
+                <tr 
+                    onclick="window.location.href='message.html?id=${message.id_message}'"
+                    style="cursor:pointer;"
+                >
                     <td>${message.expediteur_prenom} ${message.expediteur_nom}</td>
                     <td>${message.sujet}</td>
                     <td>${message.date_envoi}</td>
