@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "ifsi_smartcampus";
 $username = "root";
-$password = "root";
+$password = "";
 $port = "3306"
 
 try {
