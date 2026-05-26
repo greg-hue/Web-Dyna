@@ -2,7 +2,7 @@ INSERT INTO utilisateurs
 (prenom, nom, email, mot_de_passe, role, telephone, date_creation)
 VALUES
 
---TD1
+-- TD1
 ('Emma','Martin','emma.martin@ifsi.fr','password123','etudiant','0601000001',NOW()),
 ('Lucas','Bernard','lucas.bernard@ifsi.fr','password123','etudiant','0601000002',NOW()),
 ('Chloe','Petit','chloe.petit@ifsi.fr','password123','etudiant','0601000003',NOW()),
@@ -34,7 +34,7 @@ VALUES
 ('Nina','Boyer','nina.boyer@ifsi.fr','password123','etudiant','0601000029',NOW()),
 ('Enzo','Morin','enzo.morin@ifsi.fr','password123','etudiant','0601000030',NOW()),
 
---TD2
+-- TD2
 ('Clara','Roussel','clara.roussel@ifsi.fr','password123','etudiant','0602000001',NOW()),
 ('Leo','Perrin','leo.perrin@ifsi.fr','password123','etudiant','0602000002',NOW()),
 ('Mia','Robin','mia.robin@ifsi.fr','password123','etudiant','0602000003',NOW()),
@@ -66,7 +66,7 @@ VALUES
 ('Florian','Dumas','florian.dumas@ifsi.fr','password123','etudiant','0602000029',NOW()),
 ('Celia','Marchand','celia.marchand@ifsi.fr','password123','etudiant','0602000030',NOW()),
 
---TD3
+-- TD3
 ('Amandine','Texier','amandine.texier@ifsi.fr','password123','etudiant','0603000001',NOW()),
 ('Quentin','Besson','quentin.besson@ifsi.fr','password123','etudiant','0603000002',NOW()),
 ('Helene','Navarro','helene.navarro@ifsi.fr','password123','etudiant','0603000003',NOW()),
@@ -102,7 +102,7 @@ INSERT INTO etudiants
 (utilisateur_id, numero_etudiant, promotion, niveau, groupe, date_naissance, adresse, contact_urgence)
 VALUES
 
---TD1
+-- TD1
 (1,'ETU2026001','Promotion 2026',1,'TD1','2005-01-01','Bordeaux','0611111101'),
 (2,'ETU2026002','Promotion 2026',1,'TD1','2005-01-02','Bordeaux','0611111102'),
 (3,'ETU2026003','Promotion 2026',1,'TD1','2005-01-03','Bordeaux','0611111103'),
@@ -134,7 +134,7 @@ VALUES
 (29,'ETU2026029','Promotion 2026',1,'TD1','2005-01-29','Bordeaux','0611111129'),
 (30,'ETU2026030','Promotion 2026',1,'TD1','2005-01-30','Bordeaux','0611111130'),
 
---TD2
+-- TD2
 (31,'ETU2026031','Promotion 2026',1,'TD2','2005-02-01','Bordeaux','0622222201'),
 (32,'ETU2026032','Promotion 2026',1,'TD2','2005-02-02','Bordeaux','0622222202'),
 (33,'ETU2026033','Promotion 2026',1,'TD2','2005-02-03','Bordeaux','0622222203'),
@@ -166,7 +166,7 @@ VALUES
 (59,'ETU2026059','Promotion 2026',1,'TD2','2005-02-01','Bordeaux','0622222229'),
 (60,'ETU2026060','Promotion 2026',1,'TD2','2005-02-02','Bordeaux','0622222230'),
 
---TD3
+-- TD3
 (61,'ETU2026061','Promotion 2026',1,'TD3','2005-03-01','Bordeaux','0633333301'),
 (62,'ETU2026062','Promotion 2026',1,'TD3','2005-03-02','Bordeaux','0633333302'),
 (63,'ETU2026063','Promotion 2026',1,'TD3','2005-03-03','Bordeaux','0633333303'),
