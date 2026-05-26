@@ -71,7 +71,7 @@ CREATE TABLE `seances` (
   `heure_debut` time,
   `heure_fin` time,
   `salle` varchar(255),
-  `type_seance` varchar(255)
+  `type_seance` varchar(255),
   `groupe` varchar(255)
 );
 
