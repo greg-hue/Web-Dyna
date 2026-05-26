@@ -18,23 +18,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const reponse = await fetch(
-        "../../../backend/getProfMessages.php?id_utilisateur=" + utilisateur.id
+        "../../../backend/getProfEvaluations.php?id_utilisateur=" + utilisateur.id
     );
 
     const resultat = await reponse.json();
 
-    const listeMessages = document.getElementById("listeMessages");
+    const listeEvaluations = document.getElementById("listeEvaluations");
 
     if (resultat.success) {
-        resultat.messages.forEach(message => {
-            listeMessages.innerHTML += `
-                <tr 
-                    onclick="window.location.href='message.html?id=${message.id_message}'"
-                    style="cursor:pointer;"
-                >
-                    <td>${message.expediteur_prenom} ${message.expediteur_nom}</td>
-                    <td>${message.sujet}</td>
-                    <td>${message.date_envoi}</td>
+        resultat.evaluations.forEach(evaluation => {
+            listeEvaluations.innerHTML += `
+                <tr>
+                    <td>${evaluation.matiere}</td>
+                    <td>${evaluation.type_evaluation}</td>
+                    <td>${evaluation.date_evaluation}</td>
                 </tr>
             `;
         });
