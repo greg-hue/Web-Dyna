@@ -18,20 +18,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const reponse = await fetch(
-        "../../../backend/getProfCours.php?id_utilisateur=" + utilisateur.id
+        "../../../backend/getProfNotes.php?id_utilisateur=" + utilisateur.id
     );
 
     const resultat = await reponse.json();
 
-    const listeCours = document.getElementById("listeCours");
+    const listeNotes = document.getElementById("listeNotes");
 
     if (resultat.success) {
-        resultat.cours.forEach(cours => {
-            listeCours.innerHTML += `
+        resultat.notes.forEach(note => {
+            listeNotes.innerHTML += `
                 <tr>
-                    <td>${cours.titre}</td>
-                    <td>Niveau ${cours.niveau} - Semestre ${cours.semestre}</td>
-                    <td>${cours.salle}</td>
+                    <td>${note.prenom} ${note.nom}</td>
+                    <td>${note.matiere}</td>
+                    <td>${note.note}/20</td>
                 </tr>
             `;
         });
