@@ -1,41 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     const formulaire = document.getElementById("loginForm");
-    const messageErreur = document.getElementById("messageErreur");
 
     formulaire.addEventListener("submit", async (event) => {
+
         event.preventDefault();
 
+        const identifiant = document.getElementById("identifiant").value;
+        const motdepasse = document.getElementById("motdepasse").value;
+        const role = document.querySelector('input[name="role"]:checked')?.value;
+
+        const messageErreur = document.getElementById("messageErreur");
+
         const donnees = new FormData();
+        donnees.append("identifiant", identifiant);
+        donnees.append("motdepasse", motdepasse);
+        donnees.append("role", role);
 
-        donnees.append("identifiant", document.getElementById("identifiant").value);
-        donnees.append("motdepasse", document.getElementById("motdepasse").value);
+        try {
+            const reponse = await fetch("../backend/authentification.php", {
+                method: "POST",
+                body: donnees
+            });
 
-        const roleSelectionne = document.querySelector('input[name="role"]:checked');
-        donnees.append("role", roleSelectionne.value);
+            const resultat = await reponse.json();
 
-        const reponse = await fetch("../backend/connexion.php", {
-            method: "POST",
-            body: donnees
-        });
+            if (resultat.success) {
 
-        const resultat = await reponse.json();
+                messageErreur.style.color = "green";
+                messageErreur.textContent = "Connexion réussie !";
 
-        if (resultat.success) {
-            localStorage.setItem(
-                "utilisateurConnecte",
-                JSON.stringify(resultat.utilisateur)
-            );
+                localStorage.setItem(
+                    "utilisateurConnecte",
+                    JSON.stringify(resultat.utilisateur)
+                );
 
-            if (resultat.utilisateur.role === "etudiant") {
-                window.location.href = "espaces/espaceEtudiant.html";
-            } else if (resultat.utilisateur.role === "enseignant") {
-                window.location.href = "espaces/espaceProfesseur.html";
-            } else if (resultat.utilisateur.role === "admin") {
-                window.location.href = "espaces/espaceAdmin.html";
+                if (resultat.utilisateur.role === "etudiant") {
+                    window.location.href = "espaces/espaceEtudiant.html";
+                }
+                else if (resultat.utilisateur.role === "enseignant") {
+                    window.location.href = "espaces/espaceProfesseur.html";
+                }
+                else if (resultat.utilisateur.role === "admin") {
+                    window.location.href = "espaces/espaceAdmin.html";
+                }
+
+                console.log("Utilisateur connecté :", resultat.utilisateur);
+
+            } else {
+                messageErreur.style.color = "red";
+                messageErreur.textContent = resultat.message;
             }
-        } else {
+
+        } catch (erreur) {
+            console.error("Erreur :", erreur);
+
             messageErreur.style.color = "red";
-            messageErreur.textContent = resultat.message;
+            messageErreur.textContent =
+                "Erreur de connexion au serveur PHP.";
         }
+
     });
+
 });
