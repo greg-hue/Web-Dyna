@@ -2,22 +2,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Base utilisateurs temporaire
     const utilisateurs = [
-        {
-            identifiant: "etudiant1",
-            motdepasse: "1234",
-            role: "etudiant"
-        },
-        {
-            identifiant: "prof1",
-            motdepasse: "abcd",
-            role: "professeur"
-        },
-        {
-            identifiant: "admin",
-            motdepasse: "admin123",
-            role: "admin"
-        }
-    ];
+    {
+        identifiant: "etudiant1",
+        motdepasse: "1234",
+        role: "etudiant",
+        prenom: "Marie",
+        nom: "Dupont"
+    },
+    {
+        identifiant: "prof1",
+        motdepasse: "abcd",
+        role: "professeur",
+        prenom: "Jean",
+        nom: "Martin"
+    },
+    {
+        identifiant: "admin",
+        motdepasse: "admin123",
+        role: "admin",
+        prenom: "Claire",
+        nom: "Bernard"
+    }
+];
 
     // Récupération du formulaire
     const formulaire = document.getElementById("loginForm");
@@ -46,6 +52,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
             messageErreur.style.color = "green";
             messageErreur.textContent = "Connexion réussie !";
+
+            // Sauvegarde des infos utilisateur
+            localStorage.setItem(
+            "utilisateurConnecte",
+            JSON.stringify(utilisateurTrouve)
+        );
+
+        // Redirection selon le rôle
+        if (utilisateurTrouve.role === "etudiant") {
+            window.location.href = "espaces/espaceEtudiant.html";
+        }
+        else if (utilisateurTrouve.role === "professeur") {
+            window.location.href = "espaces/espaceProfesseur.html";
+        }
+        else if (utilisateurTrouve.role === "admin") {
+            window.location.href = "espaces/espaceAdmin.html";
+        }
 
             // Exemple de redirection
             // window.location.href = "dashboard.html";
