@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             if (resultat.utilisateur.role === "etudiant") {
-                window.location.href = "espaces/espaceEtudiant.html";
+                window.location.href = "espaces/Etudiant/espaceEtudiant.html";
             } else if (resultat.utilisateur.role === "enseignant") {
-                window.location.href = "espaces/espaceProfesseur.html";
+                window.location.href = "espaces/Prof/espaceProfesseur.html";
             } else if (resultat.utilisateur.role === "admin") {
-                window.location.href = "espaces/espaceAdmin.html";
+                window.location.href = "espaces/Admin/espaceAdmin.html";
             }
         } else {
             messageErreur.style.color = "red";
