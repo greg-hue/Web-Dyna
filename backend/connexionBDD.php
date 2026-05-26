@@ -3,6 +3,7 @@ $host = "localhost";
 $dbname = "ifsi_smartcampus";
 $username = "root";
 $password = "";
+$port = "3306"
 
 try {
     $bdd = new PDO(
