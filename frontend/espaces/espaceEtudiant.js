@@ -21,13 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("roleUtilisateur").textContent =
         utilisateur.role;
 
+    
+        // Bouton déconnexion
+    document.getElementById("btnDeconnexion")
+    .addEventListener("click", () => {
+
+        localStorage.removeItem("utilisateurConnecte");
+
+        window.location.href = "../authentification.html";
+    });
 });
 
-// Bouton déconnexion
-document.getElementById("btnDeconnexion")
-.addEventListener("click", () => {
-
-    localStorage.removeItem("utilisateurConnecte");
-
-    window.location.href = "../authentification.html";
-});
