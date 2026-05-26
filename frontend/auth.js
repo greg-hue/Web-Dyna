@@ -2,10 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formulaire = document.getElementById("loginForm");
 
-    // =================================================
-    // Comptes locaux temporaires
-    // =================================================
-
+    //Comptes locaux temporaires
     const utilisateursLocaux = [
 
         {
@@ -51,10 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const messageErreur =
             document.getElementById("messageErreur");
 
-        // =================================================
-        // Vérification comptes locaux
-        // =================================================
-
+        //Vérification comptes locaux
         const utilisateurLocal = utilisateursLocaux.find(
             utilisateur =>
 
@@ -69,10 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // =================================================
         // Vérification via PHP / MySQL
-        // =================================================
-
         const donnees = new FormData();
 
         donnees.append("identifiant", identifiant);
@@ -113,10 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // =================================================
-    // Fonction connexion réussie
-    // =================================================
-
+    //Fonction connexion réussie
     function connexionReussie(utilisateur) {
 
         const messageErreur =
@@ -126,13 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
         messageErreur.textContent =
             "Connexion réussie !";
 
-        // Sauvegarde session
+        //sauvegarde session
         localStorage.setItem(
             "utilisateurConnecte",
             JSON.stringify(utilisateur)
         );
 
-        // Redirections selon rôle
+        //Redirections selon rôle
 
         if (utilisateur.role === "etudiant") {
 
