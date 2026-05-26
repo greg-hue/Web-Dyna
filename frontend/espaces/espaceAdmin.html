@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Espace administration - SmartCampus</title>
+  <link rel="stylesheet" href="espaceEtudiant.css">
+  <script type="text/javascript" src="espaceAdmin.js"></script>
+</head>
+
+<body>
+
+  <header class="barre-haut">
+    <div class="bloc-logo">
+      <div class="logo">✚</div>
+      <h1>IFSI Florence Nightingale</h1>
+    </div>
+
+    <div class="bloc-utilisateur">
+      <span id="nomUtilisateur"></span>
+      <span class="statut" id="roleUtilisateur"></span>
+      <span class="deconnexion" id="btnDeconnexion">↪</span>
+    </div>
+  </header>
+
+  <main class="conteneur-admin">
+
+    <aside class="menu-lateral">
+
+      <a class="element-menu actif" href="#">
+        <span>⚙</span>
+        Administration
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>👥</span>
+        Utilisateurs
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>🏫</span>
+        Classes
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>📊</span>
+        Statistiques
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>🔔</span>
+        Alertes
+      </a>
+
+    </aside>
+
+    <section class="contenu-principal">
+
+      <section class="cartes-statistiques">
+
+        <div class="carte-stat">
+          <strong>523</strong>
+          <span>étudiants</span>
+        </div>
+
+        <div class="carte-stat">
+          <strong>48</strong>
+          <span>professeurs</span>
+        </div>
+
+        <div class="carte-stat">
+          <strong>16</strong>
+          <span>classes</span>
+        </div>
+
+      </section>
+
+      <section class="bloc-section">
+
+        <h2>GESTION DES UTILISATEURS</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Rôle</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Marie Dupont</td>
+              <td>Étudiant</td>
+              <td>Actif</td>
+            </tr>
+
+            <tr>
+              <td>Jean Martin</td>
+              <td>Professeur</td>
+              <td>Actif</td>
+            </tr>
+
+            <tr>
+              <td>Claire Bernard</td>
+              <td>Admin</td>
+              <td>Actif</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <section class="bloc-section">
+
+        <h2>JOURNAL SYSTÈME</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Événement</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>26/05</td>
+              <td>Nouvel utilisateur ajouté</td>
+            </tr>
+
+            <tr>
+              <td>25/05</td>
+              <td>Mise à jour des emplois du temps</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

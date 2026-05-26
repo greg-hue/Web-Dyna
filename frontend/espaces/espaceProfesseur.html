@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Espace professeur - SmartCampus</title>
+  <link rel="stylesheet" href="espaceEtudiant.css">
+  <script type="text/javascript" src="espaceProfesseur.js"></script>
+</head>
+
+<body>
+
+  <header class="barre-haut">
+    <div class="bloc-logo">
+      <div class="logo">✚</div>
+      <h1>IFSI Florence Nightingale</h1>
+    </div>
+
+    <div class="bloc-utilisateur">
+      <span id="nomUtilisateur"></span>
+      <span class="statut" id="roleUtilisateur"></span>
+      <span class="deconnexion" id="btnDeconnexion">↪</span>
+    </div>
+  </header>
+
+  <main class="conteneur-professeur">
+
+    <aside class="menu-lateral">
+      <a class="element-menu actif" href="#">
+        <span>▦</span>
+        Tableau de bord
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>📚</span>
+        Mes cours
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>/20</span>
+        Notes étudiants
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>📝</span>
+        Évaluations
+      </a>
+
+      <a class="element-menu" href="#">
+        <span>✉</span>
+        Messagerie
+      </a>
+    </aside>
+
+    <section class="contenu-principal">
+
+      <section class="cartes-statistiques">
+
+        <div class="carte-stat">
+          <strong>12</strong>
+          <span>cours cette semaine</span>
+        </div>
+
+        <div class="carte-stat">
+          <strong>145</strong>
+          <span>étudiants suivis</span>
+        </div>
+
+        <div class="carte-stat">
+          <strong>8</strong>
+          <span>copies à corriger</span>
+        </div>
+
+      </section>
+
+      <section class="bloc-section">
+        <h2>PLANNING DES COURS</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Horaire</th>
+              <th>Matière</th>
+              <th>Salle</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Lun 25/05</td>
+              <td>08:15 - 10:15</td>
+              <td>Biologie</td>
+              <td>CA-307</td>
+            </tr>
+
+            <tr>
+              <td>Mar 26/05</td>
+              <td>10:30 - 12:30</td>
+              <td>Anatomie</td>
+              <td>CB-067</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="bloc-section">
+        <h2>TRAVAUX À CORRIGER</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Classe</th>
+              <th>Matière</th>
+              <th>Échéance</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>1A</td>
+              <td>Soins</td>
+              <td>28/05</td>
+            </tr>
+
+            <tr>
+              <td>2B</td>
+              <td>Hygiène</td>
+              <td>30/05</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
