@@ -35,17 +35,31 @@ document.addEventListener("DOMContentLoaded", () => {
                     JSON.stringify(resultat.utilisateur)
                 );
 
-            if (resultat.utilisateur.role === "etudiant") {
-                window.location.href = "espaces/espaceEtudiant.html";
-            } else if (resultat.utilisateur.role === "enseignant") {
-                window.location.href = "espaces/espaceProfesseur.html";
-            } else if (resultat.utilisateur.role === "admin") {
-                window.location.href = "espaces/espaceAdmin.html";
+                if (resultat.utilisateur.role === "etudiant") {
+                    window.location.href = "espaces/espaceEtudiant.html";
+                } 
+                else if (resultat.utilisateur.role === "enseignant") {
+                    window.location.href = "espaces/espaceProfesseur.html";
+                } 
+                else if (resultat.utilisateur.role === "admin") {
+                    window.location.href = "espaces/espaceAdmin.html";
+                }
+
+                console.log("Utilisateur connecté :", resultat.utilisateur);
+
+            } else {
+                messageErreur.style.color = "red";
+                messageErreur.textContent = resultat.message;
             }
-        } else {
+
+        } catch (erreur) {
+
+            console.error("Erreur :", erreur);
+
             messageErreur.style.color = "red";
-            messageErreur.textContent = resultat.message;
+            messageErreur.textContent = "Erreur de connexion au serveur PHP.";
         }
+
     });
 
 });
