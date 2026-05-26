@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Authentification - SmartCampus</title>
   <link rel="stylesheet" href="authentification.css">
+  <script type="text/javascript" src="auth.js"></script>
 </head>
 
 <body>
@@ -47,37 +48,58 @@
       <div class="bloc-authentification">
         <h2>Service d'Authentification</h2>
 
-        <form>
-          <label>Identifiant</label>
-          <input type="text" placeholder="Identifiant">
-          <a href="#">
-            Identifiant oublié ?
-          </a>
-          <label>Mot de passe</label>
-          <input type="password" placeholder="Mot de passe">
-          <a href="#">
-            Mot de passe oublié ?
-          </a>
+        <form id="loginForm">
 
-          <div class="roles-utilisateur">
-            <label>
-              <input type="radio" name="role">
-              Etudiant(e)
-            </label>
-            <label>
-              <input type="radio" name="role">
-              Professeur(e)
-            </label>
-            <label>
-              <input type="radio" name="role">
-              Admin
-            </label>
-          </div>
-          
-          <button type="submit">
-            Se connecter
-          </button>
-        </form>
+      <label for="identifiant">Identifiant</label>
+        <input
+          type="text"
+          id="identifiant"
+          placeholder="Identifiant"
+          required
+        >
+
+      <a href="#">
+        Identifiant oublié ?
+      </a>
+
+      <label for="motdepasse">Mot de passe</label>
+      <input
+        type="password"
+        id="motdepasse"
+        placeholder="Mot de passe"
+        required
+      >
+
+      <a href="#">
+        Mot de passe oublié ?
+      </a>
+
+      <div class="roles-utilisateur">
+
+      <label>
+        <input type="radio" name="role" value="etudiant" required>
+          Etudiant(e)
+      </label>
+
+      <label>
+        <input type="radio" name="role" value="professeur">
+          Professeur(e)
+      </label>
+
+      <label>
+        <input type="radio" name="role" value="admin">
+          Admin
+        </label>
+
+  </div>
+
+    <button type="submit">
+      Se connecter
+    </button>
+
+</form>
+
+<p id="messageErreur"></p>
 
         <p class="texte-securite">
           Pour des raisons de sécurité,
@@ -95,7 +117,5 @@
     </section>
 
   </main>
-
-  <script src="authentification.js"></script>
 </body>
 </html>
