@@ -76,6 +76,7 @@ Table seances {
   heure_fin time
   salle varchar
   type_seance varchar
+  groupe varchar
 }
 
 Table absences {

@@ -12,7 +12,7 @@ INSCRIPTIONS(id_inscription, etudiant_id#, cours_id#, date_inscription, statut)
 
 NOTES(id_note, etudiant_id#, cours_id#, type_evaluation, note, coefficient, date_creation, validee)
 
-SEANCES(id_seance, cours_id#, date_seance, heure_debut, heure_fin, salle, type_seance)
+SEANCES(id_seance, cours_id#, date_seance, heure_debut, heure_fin, salle, type_seance, groupe)
 
 ABSENCES(id_absence, etudiant_id#, seance_id#, statut, justifiee, commentaire)
 
