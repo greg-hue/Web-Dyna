@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Dashboard étudiant</title>
+
+  <link rel="stylesheet" href="../espaceEtudiant.css">
+
+  <script src="espaceEtudiant.js"></script>
+</head>
+
+<body>
+
+<header class="barre-haut">
+
+  <div class="bloc-logo">
+    <div class="logo">✚</div>
+    <h1>IFSI Florence Nightingale</h1>
+  </div>
+
+  <div class="bloc-utilisateur">
+    <span id="nomUtilisateur"></span>
+    <span class="statut" id="roleUtilisateur"></span>
+    <span class="deconnexion" id="btnDeconnexion">↪</span>
+  </div>
+
+</header>
+
+<main class="conteneur-etudiant">
+
+  <aside class="menu-lateral">
+
+    <a class="element-menu" href="espaceEtudiant.html">
+      <span>▦</span>
+      Tableau de bord
+    </a>
+
+    <a class="element-menu" href="edt.html">
+      <span>▣</span>
+      Emploi du temps
+    </a>
+
+    <a class="element-menu" href="notes.html">
+      <span>/20</span>
+      Mes notes
+    </a>
+
+    <a class="element-menu actif" href="#">
+      <span>✉</span>
+      Messagerie
+    </a>
+
+    <a class="element-menu" href="notifications.html">
+      <span>🔔</span>
+      Notifications
+    </a>
+
+  </aside>
+
+  <section class="contenu-principal">
+
+    <section class="bloc-section">
+
+  <h2>MESSAGERIE</h2>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Expéditeur</th>
+        <th>Sujet</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Mme Martin</td>
+        <td>Changement de salle</td>
+        <td>26/05</td>
+      </tr>
+
+      <tr>
+        <td>Administration</td>
+        <td>Réunion pédagogique</td>
+        <td>24/05</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</section>
+
+</section>
+
+</main>
+
+</body>
+</html>

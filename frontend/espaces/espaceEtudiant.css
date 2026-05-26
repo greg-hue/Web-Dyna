@@ -10,6 +10,10 @@ body{
    padding:20px;
    color:#44515f;
    min-height:100vh;
+   
+   min-height:100vh;
+   display:flex;
+   flex-direction:column;
 }
 
 .barre-haut{
@@ -72,6 +76,8 @@ body{
    height:calc(100vh - 210px);
    border:8px solid #7b858c;
    background:#cbd8e2;
+
+   flex:1;
 }
 
 .menu-lateral{
