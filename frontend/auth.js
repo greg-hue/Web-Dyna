@@ -2,34 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formulaire = document.getElementById("loginForm");
 
-    //Comptes locaux temporaires
-    const utilisateursLocaux = [
-
-        {
-            identifiant: "etudiant1",
-            motdepasse: "1234",
-            role: "etudiant",
-            prenom: "Marie",
-            nom: "Dupont"
-        },
-
-        {
-            identifiant: "prof1",
-            motdepasse: "abcd",
-            role: "enseignant",
-            prenom: "Jean",
-            nom: "Martin"
-        },
-
-        {
-            identifiant: "admin",
-            motdepasse: "admin123",
-            role: "admin",
-            prenom: "Claire",
-            nom: "Bernard"
-        },
-    ];
-
     formulaire.addEventListener("submit", async (event) => {
 
         event.preventDefault();
@@ -48,22 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const messageErreur =
             document.getElementById("messageErreur");
 
-        //Vérification comptes locaux
-        const utilisateurLocal = utilisateursLocaux.find(
-            utilisateur =>
-
-                utilisateur.identifiant === identifiant &&
-                utilisateur.motdepasse === motdepasse &&
-                utilisateur.role === role
-        );
-
-        // Si trouvé localement
-        if (utilisateurLocal) {
-            connexionReussie(utilisateurLocal);
-            return;
-        }
-
-        // Vérification via PHP / MySQL
         const donnees = new FormData();
 
         donnees.append("identifiant", identifiant);
@@ -104,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    //Fonction connexion réussie
     function connexionReussie(utilisateur) {
 
         const messageErreur =
@@ -114,29 +69,22 @@ document.addEventListener("DOMContentLoaded", () => {
         messageErreur.textContent =
             "Connexion réussie !";
 
-        //sauvegarde session
         localStorage.setItem(
             "utilisateurConnecte",
             JSON.stringify(utilisateur)
         );
-
-        //Redirections selon rôle
 
         if (utilisateur.role === "etudiant") {
 
             window.location.href =
                 "espaces/Etudiant/espaceEtudiant.html";
 
-        } else if (
-            utilisateur.role === "enseignant"
-        ) {
+        } else if (utilisateur.role === "enseignant") {
 
             window.location.href =
                 "espaces/Prof/espaceProfesseur.html";
 
-        } else if (
-            utilisateur.role === "admin"
-        ) {
+        } else if (utilisateur.role === "admin") {
 
             window.location.href =
                 "espaces/Admin/espaceAdmin.html";
