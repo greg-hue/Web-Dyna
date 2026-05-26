@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Notes étudiants - SmartCampus</title>
+
+  <link rel="stylesheet" href="../espaceEtudiant.css">
+
+  <script src="espaceProfesseur.js"></script>
+</head>
+
+<body>
+
+<header class="barre-haut">
+
+  <div class="bloc-logo">
+    <div class="logo">✚</div>
+    <h1>IFSI Florence Nightingale</h1>
+  </div>
+
+  <div class="bloc-utilisateur">
+    <span id="nomUtilisateur"></span>
+    <span class="statut" id="roleUtilisateur"></span>
+    <span class="deconnexion" id="btnDeconnexion">↪</span>
+  </div>
+
+</header>
+
+<main class="conteneur-professeur">
+
+  <aside class="menu-lateral">
+      <a class="element-menu" href="espaceProfesseur.html">
+        <span>▦</span>
+        Tableau de bord
+      </a>
+
+      <a class="element-menu" href="cours.html">
+        <span>📚</span>
+        Mes cours
+      </a>
+
+      <a class="element-menu actif" href="#">
+        <span>/20</span>
+        Notes étudiants
+      </a>
+
+      <a class="element-menu" href="eval.html">
+        <span>📝</span>
+        Évaluations
+      </a>
+
+      <a class="element-menu" href="messagerie.html">
+        <span>✉</span>
+        Messagerie
+      </a>
+    </aside>
+
+  <section class="contenu-principal">
+
+    <section class="bloc-section">
+
+  <h2>NOTES DES ÉTUDIANTS</h2>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Étudiant</th>
+        <th>Matière</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Marie Dupont</td>
+        <td>Biologie</td>
+        <td>15</td>
+      </tr>
+
+      <tr>
+        <td>Lucas Moreau</td>
+        <td>Anatomie</td>
+        <td>12</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</section>
+
+  </section>
+
+</main>
+
+</body>
+</html>

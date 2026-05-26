@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Messagerie - SmartCampus</title>
+
+  <link rel="stylesheet" href="../espaceEtudiant.css">
+
+  <script src="espaceProfesseur.js"></script>
+</head>
+
+<body>
+
+<header class="barre-haut">
+
+  <div class="bloc-logo">
+    <div class="logo">✚</div>
+    <h1>IFSI Florence Nightingale</h1>
+  </div>
+
+  <div class="bloc-utilisateur">
+    <span id="nomUtilisateur"></span>
+    <span class="statut" id="roleUtilisateur"></span>
+    <span class="deconnexion" id="btnDeconnexion">↪</span>
+  </div>
+
+</header>
+
+<main class="conteneur-professeur">
+
+  <aside class="menu-lateral">
+      <a class="element-menu" href="espaceProfesseur.html">
+        <span>▦</span>
+        Tableau de bord
+      </a>
+
+      <a class="element-menu" href="cours.html">
+        <span>📚</span>
+        Mes cours
+      </a>
+
+      <a class="element-menu" href="notes.html">
+        <span>/20</span>
+        Notes étudiants
+      </a>
+
+      <a class="element-menu" href="eval.html">
+        <span>📝</span>
+        Évaluations
+      </a>
+
+      <a class="element-menu actif" href="#">
+        <span>✉</span>
+        Messagerie
+      </a>
+    </aside>
+
+  <section class="contenu-principal">
+
+    <section class="bloc-section">
+
+  <h2>MESSAGERIE</h2>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Expéditeur</th>
+        <th>Sujet</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Administration</td>
+        <td>Réunion pédagogique</td>
+        <td>26/05</td>
+      </tr>
+
+      <tr>
+        <td>Étudiant - Dupont</td>
+        <td>Question sur le cours</td>
+        <td>25/05</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</section>
+
+  </section>
+
+</main>
+
+</body>
+</html>
