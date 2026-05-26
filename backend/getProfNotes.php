@@ -17,6 +17,7 @@ $requete = $bdd->prepare("
     SELECT
         utilisateurs.prenom,
         utilisateurs.nom,
+        etudiants.groupe,
         cours.titre AS matiere,
         notes.type_evaluation,
         notes.note,
