@@ -12,10 +12,12 @@ try {
     );
 
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 } catch (PDOException $e) {
     echo json_encode([
         "success" => false,
-        "message" => "Erreur de connexion à la base de données"
+        "message" => "Erreur de connexion à la base de données",
+        "details" => $e->getMessage()
     ]);
     exit;
 }
