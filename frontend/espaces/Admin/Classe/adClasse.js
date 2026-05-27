@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
     if (!utilisateur || utilisateur.role !== "admin") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -15,21 +15,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
     });
 
-    const reponse = await fetch("../../../backend/Admin/getAdminAlertes.php");
+    const reponse = await fetch("../../../../backend/Admin/getAdminClasses.php");
     const resultat = await reponse.json();
 
-    const liste = document.getElementById("listeAlertes");
+    const liste = document.getElementById("listeClasses");
 
     if (resultat.success) {
-        resultat.alertes.forEach(alerte => {
+        resultat.classes.forEach(classe => {
             liste.innerHTML += `
                 <tr>
-                    <td>${alerte.date_creation}</td>
-                    <td>${alerte.titre}</td>
-                    <td>${alerte.message}</td>
+                    <td>${classe.groupe}</td>
+                    <td>${classe.nombre_etudiants}</td>
+                    <td>Promotion 2026</td>
                 </tr>
             `;
         });

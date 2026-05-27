@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
     if (!utilisateur || utilisateur.role !== "admin") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
     });
 
     const formulaire = document.getElementById("formNews");
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         donnees.append("contenu", document.getElementById("contenuNews").value);
 
         const reponse = await fetch(
-            "../../../backend/Admin/addAdminNews.php",
+            "../../../../backend/Admin/addAdminNews.php",
             {
                 method: "POST",
                 body: donnees

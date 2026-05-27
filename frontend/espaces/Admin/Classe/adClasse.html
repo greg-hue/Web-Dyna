@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <title>Espace administration - SmartCampus</title>
-  <link rel="stylesheet" href="../espaceEtudiant.css">
-  <script type="text/javascript" src="stat.js"></script>
+  <link rel="stylesheet" href="../../espaceEtudiant.css">
+  <script type="text/javascript" src="adClasse.js"></script>
 </head>
 
 <body>
@@ -28,47 +28,47 @@
 
     <aside class="menu-lateral">
 
-      <a class="element-menu" href="espaceAdmin.html">
+      <a class="element-menu" href="../espaceAdmin.html">
         <span>⚙</span>
         Administration
       </a>
 
-      <a class="element-menu" href="utilisateurs.html">
+      <a class="element-menu" href="../Utilisateurs/utilisateurs.html">
         <span>👥</span>
         Utilisateurs
       </a>
 
-      <a class="element-menu" href="adClasse.html">
+      <a class="element-menu actif" href="#">
         <span>🏫</span>
         Classes
       </a>
 
-      <a class="element-menu" href="cours.html">
+      <a class="element-menu" href="../Cours/cours.html">
         <span>📚</span>
         Cours
       </a>
 
-      <a class="element-menu" href="inscriptions.html">
+      <a class="element-menu" href="../Inscriptions/inscriptions.html">
         <span>📝</span>
         Inscriptions
       </a>
 
-      <a class="element-menu" href="news.html">
+      <a class="element-menu" href="../News/news.html">
         <span>📰</span>
         News
       </a>
 
-      <a class="element-menu actif" href="#">
+      <a class="element-menu" href="../Stats/stat.html">
         <span>📊</span>
         Statistiques
       </a>
 
-      <a class="element-menu" href="alertes.html">
+      <a class="element-menu" href="../Alertes/alertes.html">
         <span>🔔</span>
         Alertes
       </a>
 
-      <a class="element-menu" href="messagerie.html">
+      <a class="element-menu" href="../Message/messagerie.html">
         <span>✉</span>
         Messagerie
       </a>
@@ -79,32 +79,20 @@
 
       <section class="bloc-section">
 
-  <h2>STATISTIQUES</h2>
+  <h2>GESTION DES CLASSES</h2>
 
   <table>
 
     <thead>
       <tr>
-        <th>Indicateur</th>
-        <th>Valeur</th>
+        <th>Classe</th>
+        <th>Nombre étudiants</th>
+        <th>Promo</th>
       </tr>
     </thead>
 
-    <tbody>
-      <tr>
-        <td>Moyenne générale</td>
-        <td id="moyenneGenerale">0</td>
-      </tr>
-
-      <tr>
-        <td>Taux d’absence</td>
-        <td id="tauxAbsence">0%</td>
-      </tr>
-
-      <tr>
-        <td>Utilisateurs actifs</td>
-        <td id="totalUtilisateurs">0</td>
-      </tr>
+    <tbody id="listeClasses">
+      
     </tbody>
 
   </table>
