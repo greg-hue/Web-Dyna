@@ -11,119 +11,93 @@
 
 <body>
 
-  <header class="barre-haut">
-    <div class="bloc-logo">
-      <div class="logo">✚</div>
-      <h1>IFSI Florence Nightingale</h1>
-    </div>
+<header class="barre-haut">
+  <div class="bloc-logo">
+    <div class="logo">✚</div>
+    <h1>IFSI Florence Nightingale</h1>
+  </div>
 
-    <div class="bloc-utilisateur">
-      <span id="nomUtilisateur"></span>
-      <span class="statut" id="roleUtilisateur"></span>
-      <span class="deconnexion" id="btnDeconnexion">↪</span>
-    </div>
-  </header>
+  <div class="bloc-utilisateur">
+    <span id="nomUtilisateur"></span>
+    <span class="statut" id="roleUtilisateur"></span>
+    <span class="deconnexion" id="btnDeconnexion">↪</span>
+  </div>
+</header>
 
-  <main class="conteneur-admin">
+<main class="conteneur-admin">
 
-    <aside class="menu-lateral">
+  <aside class="menu-lateral">
 
-      <a class="element-menu actif" href="#">
-        <span>⚙</span>
-        Administration
-      </a>
+    <a class="element-menu actif" href="#">
+      <span>⚙</span>
+      Administration
+    </a>
 
-      <a class="element-menu" href="utilisateurs.html">
-        <span>👥</span>
-        Utilisateurs
-      </a>
+    <a class="element-menu" href="utilisateurs.html">
+      <span>👥</span>
+      Utilisateurs
+    </a>
 
-      <a class="element-menu" href="adClasse.html">
-        <span>🏫</span>
-        Classes
-      </a>
+    <a class="element-menu" href="adClasse.html">
+      <span>🏫</span>
+      Classes
+    </a>
 
-      <a class="element-menu" href="stat.html">
-        <span>📊</span>
-        Statistiques
-      </a>
+    <a class="element-menu" href="stat.html">
+      <span>📊</span>
+      Statistiques
+    </a>
 
-      <a class="element-menu" href="alertes.html">
-        <span>🔔</span>
-        Alertes
-      </a>
+    <a class="element-menu" href="alertes.html">
+      <span>🔔</span>
+      Alertes
+    </a>
 
-    </aside>
+  </aside>
 
-    <section class="contenu-principal">
+  <section class="contenu-principal">
 
-      <section class="cartes-statistiques">
-        <div class="carte-stat">
-          <strong id="totalEtudiants">0</strong>
-          <span>étudiants</span>
-        </div>
+    <section class="cartes-statistiques">
 
-        <div class="carte-stat">
-          <strong id="totalProfs">0</strong>
-          <span>professeurs</span>
-        </div>
+      <div class="carte-stat">
+        <strong id="totalEtudiants">0</strong>
+        <span>étudiants</span>
+      </div>
 
-        <div class="carte-stat">
-          <strong id="totalGroupes">0</strong>
-          <span>groupes TD</span>
-        </div>
-      </section>
+      <div class="carte-stat">
+        <strong id="totalProfs">0</strong>
+        <span>professeurs</span>
+      </div>
 
-      <section class="bloc-section">
-
-        <h2>GESTION DES UTILISATEURS</h2>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Rôle</th>
-              <th>Date création</th>
-            </tr>
-          </thead>
-
-          <tbody id="listeDerniersUtilisateurs">
-          
-          </tbody>
-        </table>
-
-      </section>
-
-      <section class="bloc-section">
-
-        <h2>JOURNAL SYSTÈME</h2>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Événement</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>26/05</td>
-              <td>Nouvel utilisateur ajouté</td>
-            </tr>
-
-            <tr>
-              <td>25/05</td>
-              <td>Mise à jour des emplois du temps</td>
-            </tr>
-          </tbody>
-        </table>
-
-      </section>
+      <div class="carte-stat">
+        <strong id="totalGroupes">0</strong>
+        <span>groupes TD</span>
+      </div>
 
     </section>
 
-  </main>
+    <section class="bloc-section">
+
+      <h2>DERNIERS UTILISATEURS CRÉÉS</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Rôle</th>
+            <th>Date création</th>
+          </tr>
+        </thead>
+
+        <tbody id="listeDerniersUtilisateurs">
+        </tbody>
+      </table>
+
+    </section>
+
+  </section>
+
+</main>
 
 </body>
 </html>
