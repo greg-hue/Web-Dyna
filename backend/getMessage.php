@@ -16,16 +16,19 @@ if (!$idMessage || !$idUtilisateur) {
 
 $requete = $bdd->prepare("
     SELECT
-        messages.id_message,
-        messages.expediteur_id,
-        messages.destinataire_id,
-        messages.sujet,
-        messages.contenu,
-        messages.lu,
-        messages.date_envoi,
-        utilisateurs.prenom AS expediteur_prenom,
-        utilisateurs.nom AS expediteur_nom,
-        utilisateurs.role AS expediteur_role
+    messages.id_message,
+    messages.expediteur_id,
+    messages.destinataire_id,
+    messages.sujet,
+    messages.contenu,
+    messages.lu,
+    messages.date_envoi,
+
+    utilisateurs.prenom AS expediteur_prenom,
+    utilisateurs.nom AS expediteur_nom,
+    utilisateurs.role AS expediteur_role,
+    utilisateurs.email AS expediteur_email
+    
     FROM messages
 
     INNER JOIN utilisateurs

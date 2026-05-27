@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
         donnees.append(
-            "destinataire_id",
-            message.expediteur_id
+            "destinataire_email",
+            message.expediteur_email
         );
 
         donnees.append(

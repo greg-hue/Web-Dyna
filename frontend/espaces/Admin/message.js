@@ -96,8 +96,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         const donnees = new FormData();
 
         donnees.append(
-            "expediteur_id",
-            utilisateur.id
+            "destinataire_email",
+            message.expediteur_email
         );
 
         donnees.append(

@@ -25,10 +25,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const donnees = new FormData();
 
-        donnees.append("expediteur_id", utilisateur.id);
-        donnees.append("destinataire_id", document.getElementById("destinataire").value);
-        donnees.append("sujet", document.getElementById("sujet").value);
-        donnees.append("contenu", document.getElementById("contenu").value);
+        donnees.append(
+            "expediteur_id", 
+            utilisateur.id
+        );
+
+        donnees.append(
+            "destinataire_email",
+        document.getElementById("destinataire").value
+        );
+
+        donnees.append(
+            "sujet", 
+            document.getElementById("sujet").value
+        );
+
+        donnees.append(
+            "contenu", 
+            document.getElementById("contenu").value
+        );
 
         const reponse = await fetch("../../../backend/sendMessage.php", {
             method: "POST",

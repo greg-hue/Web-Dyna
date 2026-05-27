@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         donnees.append(
-            "destinataire_id",
-            document.getElementById("destinataire").value
+            "destinataire_email",
+        document.getElementById("destinataire").value
         );
 
         donnees.append(
