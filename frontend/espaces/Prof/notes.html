@@ -61,6 +61,21 @@
   <section class="contenu-principal">
 
     <section class="bloc-section">
+      <h2>AJOUTER UNE NOTE</h2>
+
+      <form id="formAjoutNote">
+        <select id="etudiantId" required></select>
+        <select id="coursId" required></select>
+        <input type="text" id="typeEvaluation" placeholder="Évaluation" required>
+        <input type="number" id="note" placeholder="Note /20" min="0" max="20" step="0.1" required>
+        <input type="number" id="coefficient" placeholder="Coefficient" value="1" min="1" required>
+        <button type="submit">Ajouter</button>
+      </form>
+
+      <p id="messageNote"></p>
+    </section>
+
+    <section class="bloc-section">
 
   <h2>NOTES DES ÉTUDIANTS</h2>
 
@@ -70,7 +85,10 @@
       <tr>
         <th>Étudiant</th>
         <th>Matière</th>
+        <th>Évaluation</th>
         <th>Note</th>
+        <th>Coefficient</th>
+        <th>Action</th>
       </tr>
     </thead>
 
