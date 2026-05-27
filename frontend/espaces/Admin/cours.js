@@ -56,6 +56,17 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <td>${cours.niveau}</td>
                         <td>${cours.capacite_max}</td>
                         <td>${cours.prenom} ${cours.nom}</td>
+                        <td>
+
+                        <button onclick="modifierCours(
+                            ${cours.id_cours},
+                            '${cours.titre}',
+                            '${cours.description}',
+                            '${cours.id_enseignant}'
+                        )">
+                            Modifier
+                        </button>
+                        </td>
                     </tr>
                 `;
             });
@@ -98,6 +109,50 @@ document.addEventListener("DOMContentLoaded", async () => {
             messageCours.textContent = resultat.message;
         }
     });
+    window.modifierCours = async function(
+    id,
+    nom,
+    description,
+    enseignant
+    ) {
+    const nouveauNom =
+        prompt("Nom du cours :", nom);
 
+    if (nouveauNom === null) return;
+
+    const nouvelleDescription =
+        prompt("Description :", description);
+
+    if (nouvelleDescription === null) return;
+
+    const nouvelEnseignant =
+        prompt("Enseignant :", enseignant);
+
+    if (nouvelEnseignant === null) return;
+
+    const donnees = new FormData();
+
+    donnees.append("id", id);
+    donnees.append("nom", nouveauNom);
+    donnees.append("description", nouvelleDescription);
+    donnees.append("enseignant", nouvelEnseignant);
+
+    const reponse = await fetch(
+        "../../../backend/Admin/updateAdminCours.php",
+        {
+            method: "POST",
+            body: donnees
+        }
+    );
+
+    const resultat = await reponse.json();
+
+    alert(resultat.message);
+
+    if (resultat.success) {
+        chargerCours();
+    }
+    };
+    
     chargerCours();
 });
