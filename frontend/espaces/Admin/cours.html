@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <title>Utilisateurs - SmartCampus</title>
+  <title>Cours - SmartCampus</title>
   <link rel="stylesheet" href="../espaceEtudiant.css">
-  <script type="text/javascript" src="utilisateurs.js"></script>
+  <script type="text/javascript" src="cours.js"></script>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
       Administration
     </a>
 
-    <a class="element-menu actif" href="#">
+    <a class="element-menu" href="utilisateurs.html">
       <span>👥</span>
       Utilisateurs
     </a>
@@ -43,7 +43,7 @@
       Classes
     </a>
 
-    <a class="element-menu" href="cours.html">
+    <a class="element-menu actif" href="#">
       <span>📚</span>
       Cours
     </a>
@@ -64,48 +64,49 @@
 
     <section class="bloc-section">
 
-      <h2>AJOUTER UN UTILISATEUR</h2>
+      <h2>AJOUTER UN COURS</h2>
 
-      <form id="formAjoutUtilisateur">
+      <form id="formAjoutCours">
 
-        <input type="text" id="prenom" placeholder="Prénom" required>
-        <input type="text" id="nom" placeholder="Nom" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="text" id="motDePasse" placeholder="Mot de passe" required>
+        <input type="text" id="titre" placeholder="Titre du cours" required>
+        <input type="text" id="code" placeholder="Code" required>
+        <input type="text" id="description" placeholder="Description">
 
-        <select id="role" required>
-          <option value="">Choisir un rôle</option>
-          <option value="etudiant">Étudiant</option>
-          <option value="enseignant">Enseignant</option>
-          <option value="admin">Administrateur</option>
+        <input type="number" id="credits" placeholder="Crédits" required>
+        <input type="number" id="semestre" placeholder="Semestre" required>
+        <input type="number" id="niveau" placeholder="Niveau" required>
+        <input type="number" id="capaciteMax" placeholder="Capacité max" required>
+
+        <select id="enseignantId" required>
+          <option value="">Choisir un enseignant</option>
         </select>
 
-        <button type="submit">
-          Ajouter
-        </button>
+        <button type="submit">Ajouter</button>
 
       </form>
 
-      <p id="messageUtilisateur"></p>
+      <p id="messageCours"></p>
 
     </section>
 
     <section class="bloc-section">
 
-      <h2>UTILISATEURS</h2>
+      <h2>LISTE DES COURS</h2>
 
       <table>
         <thead>
           <tr>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Rôle</th>
-            <th>Date création</th>
-            <th>Action</th>
+            <th>Titre</th>
+            <th>Code</th>
+            <th>Crédits</th>
+            <th>Semestre</th>
+            <th>Niveau</th>
+            <th>Capacité</th>
+            <th>Enseignant</th>
           </tr>
         </thead>
 
-        <tbody id="listeUtilisateurs">
+        <tbody id="listeCours">
         </tbody>
       </table>
 
