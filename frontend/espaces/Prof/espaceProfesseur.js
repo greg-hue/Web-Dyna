@@ -24,14 +24,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resultat = await reponse.json();
 
     if (resultat.success) {
-        document.getElementById("totalCours").textContent =
-            resultat.stats.total_cours;
+        document.getElementById("totalCoursSemaine").textContent =
+            resultat.stats.total_cours_semaine;
 
         document.getElementById("totalEtudiants").textContent =
             resultat.stats.total_etudiants;
-
-        document.getElementById("totalNotes").textContent =
-            resultat.stats.total_notes;
 
         const planningProf = document.getElementById("planningProf");
 

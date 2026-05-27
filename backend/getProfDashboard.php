@@ -35,17 +35,21 @@ if (!$enseignant) {
 
 $idEnseignant = $enseignant["id_enseignant"];
 
-$requeteCours = $bdd->prepare("
-    SELECT COUNT(*) AS total_cours
-    FROM cours
-    WHERE enseignant_id = :id_enseignant
+$requeteCoursSemaine = $bdd->prepare("
+    SELECT COUNT(*) AS total_cours_semaine
+    FROM seances
+    INNER JOIN cours
+        ON seances.cours_id = cours.id_cours
+    WHERE cours.enseignant_id = :id_enseignant
+    AND seances.date_seance BETWEEN '2026-09-01' AND '2026-09-05'
 ");
 
-$requeteCours->execute([
+$requeteCoursSemaine->execute([
     "id_enseignant" => $idEnseignant
 ]);
 
-$totalCours = $requeteCours->fetch(PDO::FETCH_ASSOC)["total_cours"];
+$totalCoursSemaine =
+    $requeteCoursSemaine->fetch(PDO::FETCH_ASSOC)["total_cours_semaine"];
 
 $requeteEtudiants = $bdd->prepare("
     SELECT COUNT(DISTINCT inscriptions.etudiant_id) AS total_etudiants
@@ -59,21 +63,8 @@ $requeteEtudiants->execute([
     "id_enseignant" => $idEnseignant
 ]);
 
-$totalEtudiants = $requeteEtudiants->fetch(PDO::FETCH_ASSOC)["total_etudiants"];
-
-$requeteNotes = $bdd->prepare("
-    SELECT COUNT(*) AS total_notes
-    FROM notes
-    INNER JOIN cours
-        ON notes.cours_id = cours.id_cours
-    WHERE cours.enseignant_id = :id_enseignant
-");
-
-$requeteNotes->execute([
-    "id_enseignant" => $idEnseignant
-]);
-
-$totalNotes = $requeteNotes->fetch(PDO::FETCH_ASSOC)["total_notes"];
+$totalEtudiants =
+    $requeteEtudiants->fetch(PDO::FETCH_ASSOC)["total_etudiants"];
 
 $requetePlanning = $bdd->prepare("
     SELECT
@@ -88,8 +79,8 @@ $requetePlanning = $bdd->prepare("
     INNER JOIN cours
         ON seances.cours_id = cours.id_cours
     WHERE cours.enseignant_id = :id_enseignant
+    AND seances.date_seance BETWEEN '2026-09-01' AND '2026-09-05'
     ORDER BY seances.date_seance, seances.heure_debut
-    LIMIT 10
 ");
 
 $requetePlanning->execute([
@@ -99,9 +90,8 @@ $requetePlanning->execute([
 echo json_encode([
     "success" => true,
     "stats" => [
-        "total_cours" => $totalCours,
-        "total_etudiants" => $totalEtudiants,
-        "total_notes" => $totalNotes
+        "total_cours_semaine" => $totalCoursSemaine,
+        "total_etudiants" => $totalEtudiants
     ],
     "planning" => $requetePlanning->fetchAll(PDO::FETCH_ASSOC)
 ]);
