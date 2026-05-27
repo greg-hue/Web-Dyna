@@ -18,10 +18,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = "../../authentification.html";
     });
 
+
+
+
+
     const selectSeance = document.getElementById("seanceId");
     const selectEtudiant = document.getElementById("etudiantId");
     const listePresences = document.getElementById("listePresences");
     const messagePresence = document.getElementById("messagePresence");
+
+    let etudiantsParSeance = {};
+
+
+
+
 
     async function chargerPresences() {
 
@@ -39,25 +49,46 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         listePresences.innerHTML = "";
 
+
+
+
+
         if (resultat.success) {
 
+            etudiantsParSeance =
+                resultat.etudiants_par_seance;
+
+
+
+
+
+            /* =========================
+               SÉANCES
+            ========================= */
+
             resultat.seances.forEach(seance => {
+
                 selectSeance.innerHTML += `
                     <option value="${seance.id_seance}">
-                        ${seance.date_seance} - ${seance.heure_debut} - ${seance.titre} (${seance.groupe}) - ${seance.salle}
+                        ${seance.date_seance}
+                        - ${seance.heure_debut}
+                        - ${seance.titre}
+                        (${seance.groupe})
+                        - ${seance.salle}
                     </option>
                 `;
             });
 
-            resultat.etudiants.forEach(etudiant => {
-                selectEtudiant.innerHTML += `
-                    <option value="${etudiant.id_etudiant}">
-                        ${etudiant.prenom} ${etudiant.nom} (${etudiant.groupe})
-                    </option>
-                `;
-            });
+
+
+
+
+            /* =========================
+               ABSENCES
+            ========================= */
 
             resultat.absences.forEach(absence => {
+
                 listePresences.innerHTML += `
                     <tr>
                         <td>${absence.date_seance}</td>
@@ -72,10 +103,49 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
         } else {
+
             messagePresence.style.color = "red";
             messagePresence.textContent = resultat.message;
         }
     }
+
+
+
+
+
+    /* =========================
+       CHANGEMENT DE SÉANCE
+    ========================= */
+
+    selectSeance.addEventListener("change", () => {
+
+        const idSeance = selectSeance.value;
+
+        selectEtudiant.innerHTML =
+            `<option value="">Choisir un étudiant</option>`;
+
+        if (!idSeance || !etudiantsParSeance[idSeance]) {
+            return;
+        }
+
+        etudiantsParSeance[idSeance].forEach(etudiant => {
+
+            selectEtudiant.innerHTML += `
+                <option value="${etudiant.id_etudiant}">
+                    ${etudiant.prenom} ${etudiant.nom}
+                    (${etudiant.groupe})
+                </option>
+            `;
+        });
+    });
+
+
+
+
+
+    /* =========================
+       ENREGISTREMENT
+    ========================= */
 
     document.getElementById("formPresence").addEventListener("submit", async (event) => {
 
@@ -100,16 +170,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         const resultat = await reponse.json();
 
         if (resultat.success) {
+
             messagePresence.style.color = "green";
-            messagePresence.textContent = "Présence enregistrée.";
+            messagePresence.textContent =
+                "Présence enregistrée.";
 
             event.target.reset();
+
             chargerPresences();
+
         } else {
+
             messagePresence.style.color = "red";
-            messagePresence.textContent = resultat.message;
+            messagePresence.textContent =
+                resultat.message;
         }
     });
+
+
+
+
 
     chargerPresences();
 });

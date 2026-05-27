@@ -25,6 +25,46 @@ if (!in_array($statut, ["present", "absent", "retard"])) {
     exit;
 }
 
+/* =========================
+   VÉRIFICATION GROUPE
+========================= */
+
+$verificationGroupe = $bdd->prepare("
+    SELECT seances.id_seance
+
+    FROM seances
+
+    INNER JOIN cours
+        ON seances.cours_id = cours.id_cours
+
+    INNER JOIN inscriptions
+        ON cours.id_cours = inscriptions.cours_id
+
+    INNER JOIN etudiants
+        ON inscriptions.etudiant_id = etudiants.id_etudiant
+
+    WHERE seances.id_seance = :seance_id
+    AND etudiants.id_etudiant = :etudiant_id
+    AND etudiants.groupe = seances.groupe
+");
+
+$verificationGroupe->execute([
+    "seance_id" => $seanceId,
+    "etudiant_id" => $etudiantId
+]);
+
+$autorise = $verificationGroupe->fetch(PDO::FETCH_ASSOC);
+
+if (!$autorise) {
+
+    echo json_encode([
+        "success" => false,
+        "message" => "Cet étudiant n'appartient pas au groupe de cette séance."
+    ]);
+
+    exit;
+}
+
 if ($statut === "present") {
     $requete = $bdd->prepare("
         DELETE FROM absences
