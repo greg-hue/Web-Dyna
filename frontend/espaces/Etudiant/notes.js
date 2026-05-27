@@ -51,11 +51,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <td>${note.type_evaluation}</td>
                         <td>${note.note}</td>
                         <td>${note.coefficient}</td>
-                        <td>
-                            ${note.validee == 1
-                                ? "Validée"
-                                : "En attente"}
-                        </td>
                     </tr>
                 `;
             });
