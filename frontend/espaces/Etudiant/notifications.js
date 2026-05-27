@@ -59,6 +59,25 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `;
             });
         }
+        const reponseNews = await fetch(
+            "../../../backend/getNews.php"
+        );
+
+        const resultatNews = await reponseNews.json();
+
+        if (resultatNews.success) {
+
+            resultatNews.news.forEach(news => {
+
+                listeMessages.innerHTML += `
+                    <tr>
+                        <td>Administration</td>
+                        <td>${news.titre}</td>
+                        <td>${news.date_publication}</td>
+                    </tr>
+               `;
+            });
+        }
 
     } catch (erreur) {
 
