@@ -92,6 +92,71 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // =========================
+    // Chargement destinataires
+    // =========================
+
+    try {
+
+        const reponseDestinataires = await fetch(
+            "../../../backend/getDestinataire.php"
+        );
+
+        const resultatDestinataires =
+            await reponseDestinataires.json();
+
+        const selectDestinataire =
+            document.getElementById(
+                "destinataireMessage"
+            );
+
+        if (resultatDestinataires.success) {
+
+            resultatDestinataires.utilisateurs
+                .forEach(utilisateurDest => {
+
+                    selectDestinataire.innerHTML += `
+                        <option value="${utilisateurDest.id_utilisateur}">
+                            ${utilisateurDest.prenom}
+                            ${utilisateurDest.nom}
+                            (${utilisateurDest.role})
+                        </option>
+                    `;
+                });
+        }
+
+    } catch (erreur) {
+
+        console.error(erreur);
+
+        alert(
+            "Erreur chargement destinataires"
+        );
+    }
+
+    // =========================
+    // Affichage formulaire
+    // =========================
+
+    document.getElementById(
+        "btnAfficherFormulaire"
+    ).addEventListener("click", () => {
+
+        const formulaire =
+            document.getElementById(
+                "formNouveauMessage"
+            );
+
+        if (formulaire.style.display === "none") {
+
+            formulaire.style.display = "block";
+
+        } else {
+
+            formulaire.style.display = "none";
+        }
+    });
+
+    // =========================
     // ENVOI D'UN MESSAGE
     // =========================
 
