@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const resultat = await reponse.json();
 
+    console.log(resultat);
+
     if (resultat.success) {
+
         document.getElementById("totalEtudiants").textContent =
             resultat.stats.total_etudiants;
 
@@ -35,6 +38,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             resultat.stats.total_groupes;
 
         const liste = document.getElementById("listeDerniersUtilisateurs");
+
+        liste.innerHTML = "";
 
         resultat.utilisateurs.forEach(utilisateur => {
             liste.innerHTML += `
