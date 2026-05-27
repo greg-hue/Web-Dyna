@@ -64,6 +64,18 @@ try {
     }
 
     $bdd->commit();
+    
+    $notification = $bdd->prepare("
+    INSERT INTO notifications
+    (utilisateur_id, titre, message, est_lue, date_creation)
+    VALUES
+    (1, :titre, :message, 0, NOW())
+    ");
+
+    $notification->execute([
+        "titre" => "Nouvel utilisateur",
+         "message" => "Un nouvel utilisateur a été ajouté."
+    ]);
 
     echo json_encode(["success" => true, "message" => "Utilisateur ajouté."]);
 
