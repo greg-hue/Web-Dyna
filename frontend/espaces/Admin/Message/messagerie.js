@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!utilisateur || utilisateur.role !== "admin") {
 
         window.location.href =
-            "../../authentification.html";
+            "../../../authentification.html";
 
         return;
     }
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             );
 
             window.location.href =
-                "../../authentification.html";
+                "../../../authentification.html";
         });
 
     const reponse = await fetch(

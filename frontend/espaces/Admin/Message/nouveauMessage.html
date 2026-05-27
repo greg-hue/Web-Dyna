@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <title>Inscriptions - SmartCampus</title>
-  <link rel="stylesheet" href="../espaceEtudiant.css">
-  <script type="text/javascript" src="inscriptions.js"></script>
+  <title>Espace administration - SmartCampus</title>
+  <link rel="stylesheet" href="../../espaceEtudiant.css">
+  <script type="text/javascript" src="nouveauMessage.js"></script>
 </head>
 
 <body>
@@ -48,14 +48,9 @@
       Cours
     </a>
 
-    <a class="element-menu actif" href="#">
+    <a class="element-menu" href="inscriptions.html">
       <span>📝</span>
       Inscriptions
-    </a>
-
-    <a class="element-menu" href="news.html">
-      <span>📰</span>
-      News
     </a>
 
     <a class="element-menu" href="stat.html">
@@ -68,56 +63,49 @@
       Alertes
     </a>
 
-    <a class="element-menu" href="messagerie.html">
+    <a class="element-menu actif" href="#">
       <span>✉</span>
       Messagerie
     </a>
-
   </aside>
 
   <section class="contenu-principal">
 
     <section class="bloc-section">
+      <h2>NOUVEAU MESSAGE</h2>
 
-      <h2>AJOUTER UNE INSCRIPTION</h2>
+      <form id="formMessage">
 
-      <form id="formAjoutInscription">
+        <label for="destinataire">
+          Adresse mail destinataire
+        </label>
 
-        <select id="etudiantId" required>
-          <option value="">Choisir un étudiant</option>
-        </select>
+        <input
+          type="email"
+          id="destinataire"
+          placeholder="exemple@ifsi.fr"
+          required
+        >
 
-        <select id="coursId" required>
-          <option value="">Choisir un cours</option>
-        </select>
+        <label for="sujet">Sujet</label>
+        <input type="text" id="sujet" required>
 
-        <button type="submit">Inscrire</button>
+        <label for="contenu">Message</label>
+        <textarea id="contenu" rows="8" required></textarea>
+
+        <br>
+
+        <button type="submit">Envoyer</button>
 
       </form>
 
-      <p id="messageInscription"></p>
+      <p id="messageRetour"></p>
 
-    </section>
+      <br>
 
-    <section class="bloc-section">
-
-      <h2>INSCRIPTIONS</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Étudiant</th>
-            <th>Groupe</th>
-            <th>Cours</th>
-            <th>Date</th>
-            <th>Statut</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-
-        <tbody id="listeInscriptions">
-        </tbody>
-      </table>
+      <a href="messagerie.html" class="element-menu">
+        Retour à la messagerie
+      </a>
 
     </section>
 
