@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function chargerNotes() {
         const reponse = await fetch(
-            "../../../../backend/Prof/getProfNotes.php?id_utilisateur=" + utilisateur.id
+            "../../../../backend/Prof/note/getProfNotes.php?id_utilisateur=" + utilisateur.id
         );
 
         const resultat = await reponse.json();
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("note", document.getElementById("note").value);
         donnees.append("coefficient", document.getElementById("coefficient").value);
 
-        const reponse = await fetch("../../../../backend/Prof/addProfNote.php", {
+        const reponse = await fetch("../../../../backend/Prof/note/addProfNote.php", {
             method: "POST",
             body: donnees
         });
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("type_evaluation", nouveauType);
         donnees.append("coefficient", nouveauCoefficient);
 
-        const reponse = await fetch("../../../../backend/Prof/updateProfNote.php", {
+        const reponse = await fetch("../../../../backend/Prof/note/updateProfNote.php", {
             method: "POST",
             body: donnees
         });

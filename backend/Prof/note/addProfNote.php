@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json");
 
-require_once "../connexionBDD.php";
+require_once "../../connexionBDD.php";
 
 $etudiantId = $_POST["etudiant_id"] ?? null;
 $coursId = $_POST["cours_id"] ?? null;

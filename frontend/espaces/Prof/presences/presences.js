@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function chargerPresences() {
 
         const reponse = await fetch(
-            "../../../../backend/Prof/getProfPresences.php?id_utilisateur=" + utilisateur.id
+            "../../../../backend/Prof/presence/getProfPresences.php?id_utilisateur=" + utilisateur.id
         );
 
         const resultat = await reponse.json();
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("commentaire", document.getElementById("commentaire").value);
 
         const reponse = await fetch(
-            "../../../../backend/Prof/addProfPresence.php",
+            "../../../../backend/Prof/presence/addProfPresence.php",
             {
                 method: "POST",
                 body: donnees
