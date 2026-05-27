@@ -46,6 +46,18 @@ $requete->execute([
     "enseignant_id" => $enseignantId
 ]);
 
+$notification = $bdd->prepare("
+    INSERT INTO notifications
+    (utilisateur_id, titre, message, est_lue, date_creation)
+    VALUES
+    (1, :titre, :message, 0, NOW())
+");
+
+$notification->execute([
+    "titre" => "Nouveau cours",
+    "message" => "Le cours $titre a été ajouté."
+]);
+
 echo json_encode([
     "success" => true,
     "message" => "Cours ajouté avec succès."
