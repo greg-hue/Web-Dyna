@@ -1,62 +1,121 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const utilisateur = JSON.parse(
+    const utilisateurConnecte = JSON.parse(
         localStorage.getItem("utilisateurConnecte")
     );
 
-    if (!utilisateur || utilisateur.role !== "admin") {
+    if (!utilisateurConnecte || utilisateurConnecte.role !== "admin") {
         window.location.href = "../../authentification.html";
         return;
     }
 
     document.getElementById("nomUtilisateur").textContent =
-        utilisateur.prenom + " " + utilisateur.nom;
+        utilisateurConnecte.prenom + " " + utilisateurConnecte.nom;
 
     document.getElementById("roleUtilisateur").textContent =
         "Administrateur";
 
-    document.getElementById("btnDeconnexion")
-    .addEventListener("click", () => {
-
+    document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-
-        window.location.href =
-            "../../authentification.html";
+        window.location.href = "../../authentification.html";
     });
 
-    const reponse = await fetch(
-        "../../../backend/Admin/getAdminUtilisateurs.php"
-    );
+    const liste = document.getElementById("listeUtilisateurs");
+    const messageUtilisateur = document.getElementById("messageUtilisateur");
 
-    const resultat = await reponse.json();
+    async function chargerUtilisateurs() {
 
-    const liste =
-        document.getElementById("listeUtilisateurs");
+        const reponse = await fetch(
+            "../../../backend/Admin/getAdminUtilisateurs.php"
+        );
 
-    if (resultat.success) {
+        const resultat = await reponse.json();
 
-        resultat.utilisateurs.forEach(utilisateur => {
+        liste.innerHTML = "";
 
-            liste.innerHTML += `
-                <tr>
-                    <td>
-                        ${utilisateur.prenom}
-                        ${utilisateur.nom}
-                    </td>
+        if (resultat.success) {
 
-                    <td>
-                        ${utilisateur.email}
-                    </td>
+            resultat.utilisateurs.forEach(utilisateur => {
 
-                    <td>
-                        ${utilisateur.role}
-                    </td>
-
-                    <td>
-                        ${utilisateur.date_creation}
-                    </td>
-                </tr>
-            `;
-        });
+                liste.innerHTML += `
+                    <tr>
+                        <td>${utilisateur.prenom} ${utilisateur.nom}</td>
+                        <td>${utilisateur.email}</td>
+                        <td>${utilisateur.role}</td>
+                        <td>${utilisateur.date_creation}</td>
+                        <td>
+                            <button onclick="supprimerUtilisateur(${utilisateur.id_utilisateur})">
+                                Supprimer
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
     }
+
+    document.getElementById("formAjoutUtilisateur").addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const donnees = new FormData();
+
+        donnees.append("prenom", document.getElementById("prenom").value);
+        donnees.append("nom", document.getElementById("nom").value);
+        donnees.append("email", document.getElementById("email").value);
+        donnees.append("mot_de_passe", document.getElementById("motDePasse").value);
+        donnees.append("role", document.getElementById("role").value);
+
+        const reponse = await fetch(
+            "../../../backend/Admin/addAdminUtilisateur.php",
+            {
+                method: "POST",
+                body: donnees
+            }
+        );
+
+        const resultat = await reponse.json();
+
+        if (resultat.success) {
+            messageUtilisateur.style.color = "green";
+            messageUtilisateur.textContent = "Utilisateur ajouté.";
+
+            event.target.reset();
+            chargerUtilisateurs();
+        } else {
+            messageUtilisateur.style.color = "red";
+            messageUtilisateur.textContent = resultat.message;
+        }
+    });
+
+    window.supprimerUtilisateur = async function(idUtilisateur) {
+
+        if (!confirm("Supprimer cet utilisateur ?")) {
+            return;
+        }
+
+        const donnees = new FormData();
+        donnees.append("id_utilisateur", idUtilisateur);
+
+        const reponse = await fetch(
+            "../../../backend/Admin/deleteAdminUtilisateur.php",
+            {
+                method: "POST",
+                body: donnees
+            }
+        );
+
+        const resultat = await reponse.json();
+
+        if (resultat.success) {
+            messageUtilisateur.style.color = "green";
+            messageUtilisateur.textContent = "Utilisateur supprimé.";
+            chargerUtilisateurs();
+        } else {
+            messageUtilisateur.style.color = "red";
+            messageUtilisateur.textContent = resultat.message;
+        }
+    };
+
+    chargerUtilisateurs();
 });

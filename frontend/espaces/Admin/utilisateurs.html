@@ -4,82 +4,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <title>Espace administration - SmartCampus</title>
+  <title>Utilisateurs - SmartCampus</title>
   <link rel="stylesheet" href="../espaceEtudiant.css">
   <script type="text/javascript" src="utilisateurs.js"></script>
 </head>
 
 <body>
 
-  <header class="barre-haut">
-    <div class="bloc-logo">
-      <div class="logo">✚</div>
-      <h1>IFSI Florence Nightingale</h1>
-    </div>
+<header class="barre-haut">
+  <div class="bloc-logo">
+    <div class="logo">✚</div>
+    <h1>IFSI Florence Nightingale</h1>
+  </div>
 
-    <div class="bloc-utilisateur">
-      <span id="nomUtilisateur"></span>
-      <span class="statut" id="roleUtilisateur"></span>
-      <span class="deconnexion" id="btnDeconnexion">↪</span>
-    </div>
-  </header>
+  <div class="bloc-utilisateur">
+    <span id="nomUtilisateur"></span>
+    <span class="statut" id="roleUtilisateur"></span>
+    <span class="deconnexion" id="btnDeconnexion">↪</span>
+  </div>
+</header>
 
-  <main class="conteneur-admin">
+<main class="conteneur-admin">
 
-    <aside class="menu-lateral">
+  <aside class="menu-lateral">
 
-      <a class="element-menu" href="espaceAdmin.html">
-        <span>⚙</span>
-        Administration
-      </a>
+    <a class="element-menu" href="espaceAdmin.html">
+      <span>⚙</span>
+      Administration
+    </a>
 
-      <a class="element-menu actif" href="#">
-        <span>👥</span>
-        Utilisateurs
-      </a>
+    <a class="element-menu actif" href="#">
+      <span>👥</span>
+      Utilisateurs
+    </a>
 
-      <a class="element-menu" href="adClasse.html">
-        <span>🏫</span>
-        Classes
-      </a>
+    <a class="element-menu" href="adClasse.html">
+      <span>🏫</span>
+      Classes
+    </a>
 
-      <a class="element-menu" href="stat.html">
-        <span>📊</span>
-        Statistiques
-      </a>
+    <a class="element-menu" href="stat.html">
+      <span>📊</span>
+      Statistiques
+    </a>
 
-      <a class="element-menu" href="alertes.html">
-        <span>🔔</span>
-        Alertes
-      </a>
+    <a class="element-menu" href="alertes.html">
+      <span>🔔</span>
+      Alertes
+    </a>
 
-    </aside>
+  </aside>
 
-    <section class="contenu-principal">
+  <section class="contenu-principal">
 
-      <section class="bloc-section">
+    <section class="bloc-section">
 
-      <section class="bloc-section">
+      <h2>AJOUTER UN UTILISATEUR</h2>
 
-      <h2>UTILISATEURS</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Email</th>
-              <th>Rôle</th>
-              <th>Date création</th>
-            </tr>
-          </thead>
-          <tbody id="listeUtilisateurs">
+      <form id="formAjoutUtilisateur">
 
-          </tbody>
-        </table>
-      </section>
+        <input type="text" id="prenom" placeholder="Prénom" required>
+        <input type="text" id="nom" placeholder="Nom" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="motDePasse" placeholder="Mot de passe" required>
+
+        <select id="role" required>
+          <option value="">Choisir un rôle</option>
+          <option value="etudiant">Étudiant</option>
+          <option value="enseignant">Enseignant</option>
+          <option value="admin">Administrateur</option>
+        </select>
+
+        <button type="submit">
+          Ajouter
+        </button>
+
+      </form>
+
+      <p id="messageUtilisateur"></p>
 
     </section>
 
-  </main>
+    <section class="bloc-section">
+
+      <h2>UTILISATEURS</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Date création</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="listeUtilisateurs">
+        </tbody>
+      </table>
+
+    </section>
+
+  </section>
+
+</main>
 
 </body>
 </html>
