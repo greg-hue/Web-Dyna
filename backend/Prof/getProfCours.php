@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json");
 
-require_once "connexionBDD.php";
+require_once "../connexionBDD.php";
 
 $idUtilisateur = $_GET["id_utilisateur"] ?? null;
 
