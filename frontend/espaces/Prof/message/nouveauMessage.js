@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
     if (!utilisateur || utilisateur.role !== "enseignant") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
     });
 
     const formulaire = document.getElementById("formMessage");
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("contenu").value
         );
 
-        const reponse = await fetch("../../../backend/sendMessage.php", {
+        const reponse = await fetch("../../../../backend/sendMessage.php", {
             method: "POST",
             body: donnees
         });

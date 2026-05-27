@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
     if (!utilisateur || utilisateur.role !== "enseignant") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
     });
 
     const listeNotes = document.getElementById("listeNotes");
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function chargerNotes() {
         const reponse = await fetch(
-            "../../../backend/Prof/getProfNotes.php?id_utilisateur=" + utilisateur.id
+            "../../../../backend/Prof/getProfNotes.php?id_utilisateur=" + utilisateur.id
         );
 
         const resultat = await reponse.json();
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("note", document.getElementById("note").value);
         donnees.append("coefficient", document.getElementById("coefficient").value);
 
-        const reponse = await fetch("../../../backend/Prof/addProfNote.php", {
+        const reponse = await fetch("../../../../backend/Prof/addProfNote.php", {
             method: "POST",
             body: donnees
         });
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("type_evaluation", nouveauType);
         donnees.append("coefficient", nouveauCoefficient);
 
-        const reponse = await fetch("../../../backend/Prof/updateProfNote.php", {
+        const reponse = await fetch("../../../../backend/Prof/updateProfNote.php", {
             method: "POST",
             body: donnees
         });

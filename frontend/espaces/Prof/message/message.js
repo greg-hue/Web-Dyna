@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
     if (!utilisateur || utilisateur.role !== "enseignant") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.removeItem("utilisateurConnecte");
 
         window.location.href =
-            "../../authentification.html";
+            "../../../authentification.html";
     });
 
     const parametres =
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const reponse = await fetch(
-        "../../../backend/getMessage.php?id_message=" +
+        "../../../../backend/getMessage.php?id_message=" +
         idMessage +
         "&id_utilisateur=" +
         utilisateur.id
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
         const reponseEnvoi = await fetch(
-            "../../../backend/sendMessage.php",
+            "../../../../backend/sendMessage.php",
             {
                 method: "POST",
                 body: donnees
