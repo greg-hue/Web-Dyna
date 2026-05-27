@@ -63,17 +63,17 @@
       <section class="cartes-statistiques">
         <div class="carte-stat">
           <strong>&lt; semaine 3 &gt;</strong>
-          <p>[nombre de contrôle]</p>
+          <p id="nombreControles">0</p>
           <span>évaluations</span>
         </div>
 
         <div class="carte-stat">
-          <strong>[Moyenne]</strong>
+          <strong id="moyenneGenerale">0</strong>
           <span>moyenne / 20</span>
         </div>
 
         <div class="carte-stat">
-          <strong>[nombre d'absence]</strong>
+          <strong id="nombreAbsences">0</strong>
           <span>absences</span>
         </div>
       </section>
@@ -92,38 +92,8 @@
             </tr>
           </thead>
 
-          <tbody>
-            <tr>
-              <td>Lun 25/05</td>
-              <td>08:15 - 10:15</td>
-              <td>TP</td>
-              <td>Biologie</td>
-              <td>CA-307</td>
-            </tr>
-
-            <tr>
-              <td>Lun 25/05</td>
-              <td>10:30 - 12:30</td>
-              <td>CM</td>
-              <td>Hygiène</td>
-              <td>CA-104.5</td>
-            </tr>
-
-            <tr>
-              <td>Lun 25/05</td>
-              <td>14:00 - 18:15</td>
-              <td>Exam</td>
-              <td>Anatomie</td>
-              <td>CB-067</td>
-            </tr>
-
-            <tr>
-              <td>Mar 26/05</td>
-              <td>10:30 - 12:30</td>
-              <td>TD</td>
-              <td>Pharmacologie</td>
-              <td>CE-604</td>
-            </tr>
+          <tbody id="listeSeances">
+            
           </tbody>
         </table>
       </section>
@@ -142,24 +112,8 @@
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td>Soins</td>
-                <td>16.5</td>
-                <td>1</td>
-              </tr>
-
-              <tr>
-                <td>Anatomie</td>
-                <td>4.5</td>
-                <td>4</td>
-              </tr>
-
-              <tr>
-                <td>Hygiène</td>
-                <td>11.25</td>
-                <td>5</td>
-              </tr>
+            <tbody id="listeNotes">
+              
             </tbody>
           </table>
         </div>
@@ -175,21 +129,8 @@
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td>Anatomie - 10 mai</td>
-                <td>Absent</td>
-              </tr>
-
-              <tr>
-                <td>Soins - 6 mai</td>
-                <td>Justifiée</td>
-              </tr>
-
-              <tr>
-                <td>Éthique - 20 mars</td>
-                <td>Absent</td>
-              </tr>
+            <tbody id="listeAbsences">
+              
             </tbody>
           </table>
         </div>
