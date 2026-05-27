@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <title>Espace administration - SmartCampus</title>
+  <title>News - SmartCampus</title>
   <link rel="stylesheet" href="../espaceEtudiant.css">
-  <script type="text/javascript" src="espaceAdmin.js"></script>
+  <script type="text/javascript" src="news.js"></script>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
   <aside class="menu-lateral">
 
-    <a class="element-menu actif" href="#">
+    <a class="element-menu" href="espaceAdmin.html">
       <span>⚙</span>
       Administration
     </a>
@@ -53,7 +53,7 @@
       Inscriptions
     </a>
 
-    <a class="element-menu" href="news.html">
+    <a class="element-menu actif" href="#">
       <span>📰</span>
       News
     </a>
@@ -68,50 +68,43 @@
       Alertes
     </a>
 
-    <a class="element-menu" href="messagerie.html">
-      <span>✉</span>
-      Messagerie
-    </a>
-
   </aside>
 
   <section class="contenu-principal">
 
-    <section class="cartes-statistiques">
-
-      <div class="carte-stat">
-        <strong id="totalEtudiants">0</strong>
-        <span>étudiants</span>
-      </div>
-
-      <div class="carte-stat">
-        <strong id="totalProfs">0</strong>
-        <span>professeurs</span>
-      </div>
-
-      <div class="carte-stat">
-        <strong id="totalGroupes">0</strong>
-        <span>groupes TD</span>
-      </div>
-
-    </section>
-
     <section class="bloc-section">
 
-      <h2>DERNIERS UTILISATEURS CRÉÉS</h2>
+      <h2>PUBLIER UNE NEWS</h2>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Rôle</th>
-            <th>Date création</th>
-          </tr>
-        </thead>
+      <form id="formNews">
 
-        <tbody id="listeDerniersUtilisateurs">
-        </tbody>
-      </table>
+        <input type="text" id="titreNews" placeholder="Titre de la news" required>
+
+        <select id="categorieNews" required>
+          <option value="Annonce">Annonce</option>
+          <option value="Administration">Administration</option>
+          <option value="Cours">Cours</option>
+          <option value="Urgent">Urgent</option>
+          <option value="Événement">Événement</option>
+        </select>
+
+        <textarea
+          id="contenuNews"
+          rows="7"
+          placeholder="Contenu de la news..."
+          required
+          style="width:100%; padding:10px;">
+        </textarea>
+
+        <br><br>
+
+        <button type="submit">
+          Publier
+        </button>
+
+      </form>
+
+      <p id="messageNews"></p>
 
     </section>
 
