@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
     if (!utilisateur || utilisateur.role !== "enseignant") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
     });
 
 
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function chargerPresences() {
 
         const reponse = await fetch(
-            "../../../backend/Prof/getProfPresences.php?id_utilisateur=" + utilisateur.id
+            "../../../../backend/Prof/getProfPresences.php?id_utilisateur=" + utilisateur.id
         );
 
         const resultat = await reponse.json();
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("commentaire", document.getElementById("commentaire").value);
 
         const reponse = await fetch(
-            "../../../backend/Prof/addProfPresence.php",
+            "../../../../backend/Prof/addProfPresence.php",
             {
                 method: "POST",
                 body: donnees
