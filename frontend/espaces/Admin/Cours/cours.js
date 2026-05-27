@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
 
     if (!utilisateurConnecte || utilisateurConnecte.role !== "admin") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
     });
 
     const listeCours = document.getElementById("listeCours");
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function chargerCours() {
 
         const reponse = await fetch(
-            "../../../backend/Admin/getAdminCours.php"
+            "../../../../backend/Admin/getAdminCours.php"
         );
 
         const resultat = await reponse.json();
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("enseignant_id", document.getElementById("enseignantId").value);
 
         const reponse = await fetch(
-            "../../../backend/Admin/addAdminCours.php",
+            "../../../../backend/Admin/addAdminCours.php",
             {
                 method: "POST",
                 body: donnees
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     donnees.append("enseignant", nouvelEnseignant);
 
     const reponse = await fetch(
-        "../../../backend/Admin/updateAdminCours.php",
+        "../../../../backend/Admin/updateAdminCours.php",
         {
             method: "POST",
             body: donnees

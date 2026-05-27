@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
 
     if (!utilisateurConnecte || utilisateurConnecte.role !== "admin") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
     });
 
     const liste = document.getElementById("listeUtilisateurs");
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function chargerUtilisateurs() {
 
         const reponse = await fetch(
-            "../../../backend/Admin/getAdminUtilisateurs.php"
+            "../../../../backend/Admin/getAdminUtilisateurs.php"
         );
 
         const resultat = await reponse.json();
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("role", document.getElementById("role").value);
 
         const reponse = await fetch(
-            "../../../backend/Admin/addAdminUtilisateur.php",
+            "../../../../backend/Admin/addAdminUtilisateur.php",
             {
                 method: "POST",
                 body: donnees
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("id_utilisateur", idUtilisateur);
 
         const reponse = await fetch(
-            "../../../backend/Admin/deleteAdminUtilisateur.php",
+            "../../../../backend/Admin/deleteAdminUtilisateur.php",
             {
                 method: "POST",
                 body: donnees
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("role", nouveauRole);
 
         const reponse = await fetch(
-            "../../../backend/Admin/updateAdminUtilisateur.php",
+            "../../../../backend/Admin/updateAdminUtilisateur.php",
             {
                 method: "POST",
                 body: donnees

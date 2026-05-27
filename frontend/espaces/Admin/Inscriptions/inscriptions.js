@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
 
     if (!utilisateurConnecte || utilisateurConnecte.role !== "admin") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
     });
 
     const listeInscriptions =
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function chargerInscriptions() {
 
         const reponse = await fetch(
-            "../../../backend/Admin/getAdminInscriptions.php"
+            "../../../../backend/Admin/getAdminInscriptions.php"
         );
 
         const resultat = await reponse.json();
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("cours_id", selectCours.value);
 
         const reponse = await fetch(
-            "../../../backend/Admin/addAdminInscription.php",
+            "../../../../backend/Admin/addAdminInscription.php",
             {
                 method: "POST",
                 body: donnees
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("id_inscription", idInscription);
 
         const reponse = await fetch(
-            "../../../backend/Admin/deleteAdminInscription.php",
+            "../../../../backend/Admin/deleteAdminInscription.php",
             {
                 method: "POST",
                 body: donnees

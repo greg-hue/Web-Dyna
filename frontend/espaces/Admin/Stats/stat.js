@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
     if (!utilisateur || utilisateur.role !== "admin") {
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
         return;
     }
 
@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../authentification.html";
+        window.location.href = "../../../authentification.html";
     });
 
-    const reponse = await fetch("../../../backend/Admin/getAdminStats.php");
+    const reponse = await fetch("../../../../backend/Admin/getAdminStats.php");
     const resultat = await reponse.json();
 
     if (resultat.success) {

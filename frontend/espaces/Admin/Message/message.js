@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!utilisateur || utilisateur.role !== "admin") {
 
         window.location.href =
-            "../../authentification.html";
+            "../../../authentification.html";
 
         return;
     }
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             );
 
             window.location.href =
-                "../../authentification.html";
+                "../../../authentification.html";
         });
 
     const parametres =
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const reponse = await fetch(
-        "../../../backend/getMessage.php?id_message="
+        "../../../../backend/getMessage.php?id_message="
         + idMessage
         + "&id_utilisateur="
         + utilisateur.id
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
         const reponseEnvoi = await fetch(
-            "../../../backend/sendMessage.php",
+            "../../../../backend/sendMessage.php",
             {
                 method: "POST",
                 body: donnees
