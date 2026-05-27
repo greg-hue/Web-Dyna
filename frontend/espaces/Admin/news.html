@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <title>Cours - SmartCampus</title>
+  <title>News - SmartCampus</title>
   <link rel="stylesheet" href="../espaceEtudiant.css">
-  <script type="text/javascript" src="cours.js"></script>
+  <script type="text/javascript" src="news.js"></script>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
       Classes
     </a>
 
-    <a class="element-menu actif" href="#">
+    <a class="element-menu" href="cours.html">
       <span>📚</span>
       Cours
     </a>
@@ -53,7 +53,7 @@
       Inscriptions
     </a>
 
-    <a class="element-menu" href="news.html">
+    <a class="element-menu actif" href="#">
       <span>📰</span>
       News
     </a>
@@ -74,51 +74,37 @@
 
     <section class="bloc-section">
 
-      <h2>AJOUTER UN COURS</h2>
+      <h2>PUBLIER UNE NEWS</h2>
 
-      <form id="formAjoutCours">
+      <form id="formNews">
 
-        <input type="text" id="titre" placeholder="Titre du cours" required>
-        <input type="text" id="code" placeholder="Code" required>
-        <input type="text" id="description" placeholder="Description">
+        <input type="text" id="titreNews" placeholder="Titre de la news" required>
 
-        <input type="number" id="credits" placeholder="Crédits" required>
-        <input type="number" id="semestre" placeholder="Semestre" required>
-        <input type="number" id="niveau" placeholder="Niveau" required>
-        <input type="number" id="capaciteMax" placeholder="Capacité max" required>
-
-        <select id="enseignantId" required>
-          <option value="">Choisir un enseignant</option>
+        <select id="categorieNews" required>
+          <option value="Annonce">Annonce</option>
+          <option value="Administration">Administration</option>
+          <option value="Cours">Cours</option>
+          <option value="Urgent">Urgent</option>
+          <option value="Événement">Événement</option>
         </select>
 
-        <button type="submit">Ajouter</button>
+        <textarea
+          id="contenuNews"
+          rows="7"
+          placeholder="Contenu de la news..."
+          required
+          style="width:100%; padding:10px;">
+        </textarea>
+
+        <br><br>
+
+        <button type="submit">
+          Publier
+        </button>
 
       </form>
 
-      <p id="messageCours"></p>
-
-    </section>
-
-    <section class="bloc-section">
-
-      <h2>LISTE DES COURS</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Titre</th>
-            <th>Code</th>
-            <th>Crédits</th>
-            <th>Semestre</th>
-            <th>Niveau</th>
-            <th>Capacité</th>
-            <th>Enseignant</th>
-          </tr>
-        </thead>
-
-        <tbody id="listeCours">
-        </tbody>
-      </table>
+      <p id="messageNews"></p>
 
     </section>
 
