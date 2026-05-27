@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Présences - SmartCampus</title>
+
+  <link rel="stylesheet" href="../espaceEtudiant.css">
+  <script src="presences.js"></script>
+</head>
+
+<body>
+
+<header class="barre-haut">
+  <div class="bloc-logo">
+    <div class="logo">✚</div>
+    <h1>IFSI Florence Nightingale</h1>
+  </div>
+
+  <div class="bloc-utilisateur">
+    <span id="nomUtilisateur"></span>
+    <span class="statut" id="roleUtilisateur"></span>
+    <span class="deconnexion" id="btnDeconnexion">↪</span>
+  </div>
+</header>
+
+<main class="conteneur-professeur">
+
+  <aside class="menu-lateral">
+
+    <a class="element-menu" href="espaceProfesseur.html">
+      <span>▦</span>
+      Tableau de bord
+    </a>
+
+    <a class="element-menu" href="cours.html">
+      <span>📚</span>
+      Mes cours
+    </a>
+
+    <a class="element-menu" href="notes.html">
+      <span>/20</span>
+      Notes étudiants
+    </a>
+
+    <a class="element-menu actif" href="#">
+      <span>✅</span>
+      Présences
+    </a>
+
+    <a class="element-menu" href="eval.html">
+      <span>📝</span>
+      Évaluations
+    </a>
+
+    <a class="element-menu" href="messagerie.html">
+      <span>✉</span>
+      Messagerie
+    </a>
+
+  </aside>
+
+  <section class="contenu-principal">
+
+    <section class="bloc-section">
+
+      <h2>ENREGISTRER UNE PRÉSENCE</h2>
+
+      <form id="formPresence">
+
+        <select id="seanceId" required>
+          <option value="">Choisir une séance</option>
+        </select>
+
+        <select id="etudiantId" required>
+          <option value="">Choisir un étudiant</option>
+        </select>
+
+        <select id="statut" required>
+          <option value="">Statut</option>
+          <option value="present">Présent</option>
+          <option value="absent">Absent</option>
+          <option value="retard">Retard</option>
+        </select>
+
+        <select id="justifiee">
+          <option value="0">Non justifiée</option>
+          <option value="1">Justifiée</option>
+        </select>
+
+        <input type="text" id="commentaire" placeholder="Commentaire">
+
+        <button type="submit">Enregistrer</button>
+
+      </form>
+
+      <p id="messagePresence"></p>
+
+    </section>
+
+    <section class="bloc-section">
+
+      <h2>ABSENCES / RETARDS ENREGISTRÉS</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Étudiant</th>
+            <th>Groupe</th>
+            <th>Cours</th>
+            <th>Statut</th>
+            <th>Justifiée</th>
+            <th>Commentaire</th>
+          </tr>
+        </thead>
+
+        <tbody id="listePresences">
+        </tbody>
+      </table>
+
+    </section>
+
+  </section>
+
+</main>
+
+</body>
+</html>
