@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <title>Utilisateurs - SmartCampus</title>
+  <title>Inscriptions - SmartCampus</title>
   <link rel="stylesheet" href="../espaceEtudiant.css">
-  <script type="text/javascript" src="utilisateurs.js"></script>
+  <script type="text/javascript" src="inscriptions.js"></script>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
       Administration
     </a>
 
-    <a class="element-menu actif" href="#">
+    <a class="element-menu" href="utilisateurs.html">
       <span>👥</span>
       Utilisateurs
     </a>
@@ -48,7 +48,7 @@
       Cours
     </a>
 
-    <a class="element-menu" href="inscriptions.html">
+    <a class="element-menu actif" href="#">
       <span>📝</span>
       Inscriptions
     </a>
@@ -69,48 +69,43 @@
 
     <section class="bloc-section">
 
-      <h2>AJOUTER UN UTILISATEUR</h2>
+      <h2>AJOUTER UNE INSCRIPTION</h2>
 
-      <form id="formAjoutUtilisateur">
+      <form id="formAjoutInscription">
 
-        <input type="text" id="prenom" placeholder="Prénom" required>
-        <input type="text" id="nom" placeholder="Nom" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="text" id="motDePasse" placeholder="Mot de passe" required>
-
-        <select id="role" required>
-          <option value="">Choisir un rôle</option>
-          <option value="etudiant">Étudiant</option>
-          <option value="enseignant">Enseignant</option>
-          <option value="admin">Administrateur</option>
+        <select id="etudiantId" required>
+          <option value="">Choisir un étudiant</option>
         </select>
 
-        <button type="submit">
-          Ajouter
-        </button>
+        <select id="coursId" required>
+          <option value="">Choisir un cours</option>
+        </select>
+
+        <button type="submit">Inscrire</button>
 
       </form>
 
-      <p id="messageUtilisateur"></p>
+      <p id="messageInscription"></p>
 
     </section>
 
     <section class="bloc-section">
 
-      <h2>UTILISATEURS</h2>
+      <h2>INSCRIPTIONS</h2>
 
       <table>
         <thead>
           <tr>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Rôle</th>
-            <th>Date création</th>
+            <th>Étudiant</th>
+            <th>Groupe</th>
+            <th>Cours</th>
+            <th>Date</th>
+            <th>Statut</th>
             <th>Action</th>
           </tr>
         </thead>
 
-        <tbody id="listeUtilisateurs">
+        <tbody id="listeInscriptions">
         </tbody>
       </table>
 
