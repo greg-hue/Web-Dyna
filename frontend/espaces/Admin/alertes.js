@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <td>${alerte.date_creation}</td>
                     <td>${alerte.titre}</td>
                     <td>${alerte.message}</td>
-                    <td>${alerte.est_lue == 1 ? "Lue" : "Non lue"}</td>
                 </tr>
             `;
         });
