@@ -5,11 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
 
-  <title>Messagerie étudiant - SmartCampus</title>
+  <title>Dashboard étudiant</title>
 
   <link rel="stylesheet" href="../espaceEtudiant.css">
-
-  <!-- JS messagerie -->
   <script type="text/javascript" src="messagerie.js"></script>
 </head>
 
@@ -58,11 +56,11 @@
       <span>🔔</span>
       Notifications
     </a>
-
-    <a class="element-menu" href="cours.html">
-      <span>📚</span>
-      Cours
-    </a>
+    
+      <a class="element-menu" href="cours.html">
+        <span>📚</span>
+        Cours      
+      </a>
 
   </aside>
 
@@ -70,95 +68,27 @@
 
     <section class="bloc-section">
 
-      <h2>MESSAGERIE</h2>
+  <h2>MESSAGERIE</h2>
 
-      <!-- Bouton affichage formulaire -->
-      <button id="btnAfficherFormulaire">
-        Nouveau message
-      </button>
+  <table>
 
-      <br><br>
+    <thead>
+      <tr>
+        <th>Expéditeur</th>
+        <th>Sujet</th>
+        <th>Date</th>
+      </tr>
+    </thead>
 
-      <!-- Formulaire envoi message -->
-      <form id="formNouveauMessage" style="display:none;">
+    <tbody id="listeMessages">
 
-        <label for="emailDestinataire">
-          Email du destinataire
-        </label>
+    </tbody>
 
-        <br>
+  </table>
 
-          <input
-            type="email"
-            id="emailDestinataire"
-            required
-            placeholder="prenom.nom@ifsi.fr"
-            style="width:100%; padding:10px;"
-          >
+</section>
 
-        <br><br>
-
-        <label for="sujetMessage">
-          Sujet
-        </label>
-
-        <br>
-
-        <input
-          type="text"
-          id="sujetMessage"
-          required
-          placeholder="Sujet du message"
-          style="width:100%; padding:10px;"
-        >
-
-        <br><br>
-
-        <label for="contenuMessage">
-          Message
-        </label>
-
-        <br>
-
-        <textarea
-          id="contenuMessage"
-          rows="6"
-          required
-          placeholder="Votre message..."
-          style="width:100%; padding:10px;"
-        ></textarea>
-
-        <br><br>
-
-        <button type="submit">
-          Envoyer
-        </button>
-
-      </form>
-
-      <p id="messageConfirmation"></p>
-
-      <br>
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>Expéditeur</th>
-            <th>Sujet</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-
-        <tbody id="listeMessages">
-
-        </tbody>
-
-      </table>
-
-    </section>
-
-  </section>
+</section>
 
 </main>
 
