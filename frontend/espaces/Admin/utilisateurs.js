@@ -44,6 +44,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <td>${utilisateur.role}</td>
                         <td>${utilisateur.date_creation}</td>
                         <td>
+                            <button onclick="modifierUtilisateur(
+                                ${utilisateur.id_utilisateur},
+                                '${utilisateur.prenom}',
+                                '${utilisateur.nom}',
+                                '${utilisateur.email}',
+                                '${utilisateur.role}'
+                            )">
+                                Modifier
+                            </button>
+
                             <button onclick="supprimerUtilisateur(${utilisateur.id_utilisateur})">
                                 Supprimer
                             </button>
@@ -110,6 +120,57 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (resultat.success) {
             messageUtilisateur.style.color = "green";
             messageUtilisateur.textContent = "Utilisateur supprimé.";
+            chargerUtilisateurs();
+        } else {
+            messageUtilisateur.style.color = "red";
+            messageUtilisateur.textContent = resultat.message;
+        }
+    };
+
+    window.modifierUtilisateur = async function(
+        id,
+        prenom,
+        nom,
+        email,
+        role
+    ) {
+
+        const nouveauPrenom = prompt("Prénom :", prenom);
+        if (nouveauPrenom === null) return;
+
+        const nouveauNom = prompt("Nom :", nom);
+        if (nouveauNom === null) return;
+
+        const nouvelEmail = prompt("Email :", email);
+        if (nouvelEmail === null) return;
+
+        const nouveauRole = prompt(
+            "Rôle (etudiant / enseignant / admin) :",
+            role
+        );
+        if (nouveauRole === null) return;
+
+        const donnees = new FormData();
+
+        donnees.append("id", id);
+        donnees.append("prenom", nouveauPrenom);
+        donnees.append("nom", nouveauNom);
+        donnees.append("email", nouvelEmail);
+        donnees.append("role", nouveauRole);
+
+        const reponse = await fetch(
+            "../../../backend/Admin/updateAdminUtilisateur.php",
+            {
+                method: "POST",
+                body: donnees
+            }
+        );
+
+        const resultat = await reponse.json();
+
+        if (resultat.success) {
+            messageUtilisateur.style.color = "green";
+            messageUtilisateur.textContent = "Utilisateur modifié.";
             chargerUtilisateurs();
         } else {
             messageUtilisateur.style.color = "red";
