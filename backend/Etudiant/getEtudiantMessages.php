@@ -5,14 +5,27 @@ require_once "../connexionBDD.php";
 
 $idUtilisateur = $_GET["id_utilisateur"] ?? null;
 
+if (!$idUtilisateur) {
+
+    echo json_encode([
+        "success" => false,
+        "message" => "Utilisateur manquant"
+    ]);
+
+    exit;
+}
+
 $requete = $bdd->prepare("
     SELECT
-        u.prenom,
-        u.nom,
+        messages.id_message,
         messages.sujet,
         messages.contenu,
+        messages.lu,
         messages.date_envoi,
-        messages.lu
+
+        u.prenom,
+        u.nom
+
     FROM messages
 
     INNER JOIN utilisateurs u
@@ -27,10 +40,8 @@ $requete->execute([
     "id_utilisateur" => $idUtilisateur
 ]);
 
-$messages = $requete->fetchAll(PDO::FETCH_ASSOC);
-
 echo json_encode([
     "success" => true,
-    "messages" => $messages
+    "messages" => $requete->fetchAll(PDO::FETCH_ASSOC)
 ]);
 ?>

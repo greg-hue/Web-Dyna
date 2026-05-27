@@ -29,41 +29,41 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "../../authentification.html";
         });
 
-    try {
+    const reponse = await fetch(
+        "../../../backend/Etudiant/getEtudiantMessages.php?id_utilisateur="
+        + utilisateur.id
+    );
 
-        const reponse = await fetch(
-            "../../../backend/Etudiant/getEtudiantMessages.php?id_utilisateur="
-            + utilisateur.id
-        );
+    const resultat = await reponse.json();
 
-        const resultat = await reponse.json();
+    const listeMessages =
+        document.getElementById("listeMessages");
 
-        const listeMessages =
-            document.getElementById("listeMessages");
+    if (resultat.success) {
 
-        if (resultat.success) {
+        resultat.messages.forEach(message => {
 
-            resultat.messages.forEach(message => {
+            listeMessages.innerHTML += `
+                <tr
+                    onclick="window.location.href='message.html?id=${message.id_message}'"
+                    style="cursor:pointer;"
+                >
 
-                listeMessages.innerHTML += `
-                    <tr>
-                        <td>
-                            ${message.prenom}
-                            ${message.nom}
-                        </td>
-                        <td>${message.sujet}</td>
-                        <td>${message.contenu}</td>
-                        <td>${message.date_envoi}</td>
-                    </tr>
-                `;
-            });
-        }
+                    <td>
+                        ${message.prenom}
+                        ${message.nom}
+                    </td>
 
-    } catch (erreur) {
+                    <td>
+                        ${message.sujet}
+                    </td>
 
-        console.error(erreur);
+                    <td>
+                        ${message.date_envoi}
+                    </td>
 
-        alert("Erreur messagerie");
+                </tr>
+            `;
+        });
     }
-
 });
