@@ -49,11 +49,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <tr>
                         <td>${notification.titre}</td>
                         <td>${notification.message}</td>
-                        <td>
-                            ${notification.est_lue == 1
-                                ? "Lue"
-                                : "Non lue"}
-                        </td>
                         <td>${notification.date_creation}</td>
                     </tr>
                 `;
