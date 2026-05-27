@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     ); 
     
     if (!utilisateur || utilisateur.role !== "etudiant") { 
-        window.location.href = "../../authentification.html"; 
+        window.location.href = "../../../authentification.html"; 
         return; 
     } 
     
@@ -20,14 +20,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             localStorage.removeItem("utilisateurConnecte"); 
             
             window.location.href = 
-                "../../authentification.html"; 
+                "../../../authentification.html"; 
         
         }); 
     
     try { 
         
         const reponse = await fetch( 
-            "../../../backend/Etudiant/getEtudiantCours.php?id_utilisateur=" 
+            "../../../../backend/Etudiant/getEtudiantCours.php?id_utilisateur=" 
             + utilisateur.id 
         ); 
             

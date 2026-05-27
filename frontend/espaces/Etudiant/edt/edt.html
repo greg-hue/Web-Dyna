@@ -7,8 +7,8 @@
 
   <title>Dashboard étudiant</title>
 
-  <link rel="stylesheet" href="../espaceEtudiant.css">
-  <script type="text/javascript" src="notes.js"></script>
+  <link rel="stylesheet" href="../../espaceEtudiant.css">
+  <script type="text/javascript" src="edt.js"></script>
 </head>
 
 <body>
@@ -32,32 +32,32 @@
 
   <aside class="menu-lateral">
 
-    <a class="element-menu" href="espaceEtudiant.html">
+    <a class="element-menu" href="../espaceEtudiant.html">
       <span>▦</span>
       Tableau de bord
     </a>
 
-    <a class="element-menu" href="edt.html">
+    <a class="element-menu actif" href="#">
       <span>▣</span>
       Emploi du temps
     </a>
 
-    <a class="element-menu actif" href="#">
+    <a class="element-menu" href="../notes/notes.html">
       <span>/20</span>
       Mes notes
     </a>
 
-    <a class="element-menu" href="messagerie.html">
+    <a class="element-menu" href="../message/messagerie.html">
       <span>✉</span>
       Messagerie
     </a>
 
-    <a class="element-menu" href="notifications.html">
+    <a class="element-menu" href="../notifs/notifications.html">
       <span>🔔</span>
       Notifications
     </a>
     
-      <a class="element-menu" href="cours.html">
+      <a class="element-menu" href="../cours/cours.html">
         <span>📚</span>
         Cours      
       </a>
@@ -68,20 +68,21 @@
 
     <section class="bloc-section">
 
-  <h2>MES NOTES</h2>
+  <h2>EMPLOI DU TEMPS</h2>
 
   <table>
 
     <thead>
       <tr>
-        <th>Matière</th>
+        <th>Cours</th>
+        <th>Date</th>
+        <th>Horaire</th>
+        <th>Salle</th>
         <th>Type</th>
-        <th>Notes</th>
-        <th>Coef</th>
       </tr>
     </thead>
 
-    <tbody id="listeNotes">
+    <tbody id="listeSeances">
 
     </tbody>
 
@@ -89,7 +90,7 @@
 
 </section>
 
-</section>
+  </section>
 
 </main>
 

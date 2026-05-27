@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!utilisateur || utilisateur.role !== "etudiant") {
 
         window.location.href =
-            "../../authentification.html";
+            "../../../authentification.html";
 
         return;
     }
@@ -26,13 +26,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             );
 
             window.location.href =
-                "../../authentification.html";
+                "../../../authentification.html";
         });
 
     try {
 
         const reponse = await fetch(
-            "../../../backend/Etudiant/getEtudiantNotes.php?id_utilisateur="
+            "../../../../backend/Etudiant/getEtudiantNotes.php?id_utilisateur="
             + utilisateur.id
         );
 
