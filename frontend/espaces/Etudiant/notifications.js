@@ -69,13 +69,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             resultatNews.news.forEach(news => {
 
-                listeMessages.innerHTML += `
+                listeNotifications.innerHTML += `
                     <tr>
-                        <td>Administration</td>
-                        <td>${news.titre}</td>
                         <td>${news.date_publication}</td>
+                        <td>
+                        <strong>${news.titre}</strong><br>
+                        ${news.contenu}
+                        </td>
                     </tr>
-               `;
+                 `;
             });
         }
 
