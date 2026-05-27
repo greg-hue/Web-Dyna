@@ -25,9 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("moyenneGenerale").textContent =
             resultat.stats.moyenne_generale + "/20";
 
-        document.getElementById("totalAbsences").textContent =
-            resultat.stats.total_absences;
-
         document.getElementById("tauxAbsence").textContent =
             resultat.stats.taux_absence + "%";
 
