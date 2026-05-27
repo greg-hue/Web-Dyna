@@ -92,46 +92,122 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // =========================
-    // Chargement destinataires
-    // =========================
+// ENVOI D'UN MESSAGE
+// =========================
 
-    try {
+const formMessage =
+    document.getElementById("formNouveauMessage");
 
-        const reponseDestinataires = await fetch(
-            "../../../backend/getDestinataire.php"
-        );
+if (formMessage) {
 
-        const resultatDestinataires =
-            await reponseDestinataires.json();
+    formMessage.addEventListener("submit", async (event) => {
 
-        const selectDestinataire =
-            document.getElementById(
-                "destinataireMessage"
+        event.preventDefault();
+
+        const email =
+            document.getElementById("emailDestinataire").value;
+
+        const sujet =
+            document.getElementById("sujetMessage").value;
+
+        const contenu =
+            document.getElementById("contenuMessage").value;
+
+        const confirmation =
+            document.getElementById("messageConfirmation");
+
+        try {
+
+            // =========================
+            // Recherche utilisateur
+            // =========================
+
+            const reponseUtilisateur = await fetch(
+                "../../../backend/getUtilisateurByEmail.php?email="
+                + encodeURIComponent(email)
             );
 
-        if (resultatDestinataires.success) {
+            const resultatUtilisateur =
+                await reponseUtilisateur.json();
 
-            resultatDestinataires.utilisateurs
-                .forEach(utilisateurDest => {
+            if (!resultatUtilisateur.success) {
 
-                    selectDestinataire.innerHTML += `
-                        <option value="${utilisateurDest.id_utilisateur}">
-                            ${utilisateurDest.prenom}
-                            ${utilisateurDest.nom}
-                            (${utilisateurDest.role})
-                        </option>
-                    `;
-                });
+                confirmation.style.color = "red";
+
+                confirmation.textContent =
+                    "Destinataire introuvable.";
+
+                return;
+            }
+
+            const destinataireId =
+                resultatUtilisateur.utilisateur.id_utilisateur;
+
+            // =========================
+            // Envoi message
+            // =========================
+
+            const donnees = new FormData();
+
+            donnees.append(
+                "expediteur_id",
+                utilisateur.id
+            );
+
+            donnees.append(
+                "destinataire_id",
+                destinataireId
+            );
+
+            donnees.append(
+                "sujet",
+                sujet
+            );
+
+            donnees.append(
+                "contenu",
+                contenu
+            );
+
+            const reponseEnvoi = await fetch(
+                "../../../backend/sendMessage.php",
+                {
+                    method: "POST",
+                    body: donnees
+                }
+            );
+
+            const resultatEnvoi =
+                await reponseEnvoi.json();
+
+            if (resultatEnvoi.success) {
+
+                confirmation.style.color = "green";
+
+                confirmation.textContent =
+                    "Message envoyé avec succès.";
+
+                formMessage.reset();
+
+            } else {
+
+                confirmation.style.color = "red";
+
+                confirmation.textContent =
+                    resultatEnvoi.message;
+            }
+
+        } catch (erreur) {
+
+            console.error(erreur);
+
+            confirmation.style.color = "red";
+
+            confirmation.textContent =
+                "Erreur lors de l'envoi.";
         }
-
-    } catch (erreur) {
-
-        console.error(erreur);
-
-        alert(
-            "Erreur chargement destinataires"
-        );
-    }
+    });
+}
 
     // =========================
     // Affichage formulaire

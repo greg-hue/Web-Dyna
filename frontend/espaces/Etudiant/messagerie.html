@@ -82,23 +82,19 @@
       <!-- Formulaire envoi message -->
       <form id="formNouveauMessage" style="display:none;">
 
-        <label for="destinataireMessage">
-          Destinataire
+        <label for="emailDestinataire">
+          Email du destinataire
         </label>
 
         <br>
 
-        <select
-          id="destinataireMessage"
-          required
-          style="width:100%; padding:10px;"
-        >
-
-          <option value="">
-            Choisir un destinataire
-          </option>
-
-        </select>
+          <input
+            type="email"
+            id="emailDestinataire"
+            required
+            placeholder="prenom.nom@ifsi.fr"
+            style="width:100%; padding:10px;"
+          >
 
         <br><br>
 
