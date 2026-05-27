@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Espace administration - SmartCampus</title>
   <link rel="stylesheet" href="../espaceEtudiant.css">
-  <script type="text/javascript" src="espaceAdmin.js"></script>
+  <script type="text/javascript" src="stat.js"></script>
 </head>
 
 <body>
@@ -71,22 +71,25 @@
     </thead>
 
     <tbody>
-
       <tr>
-        <td>Taux présence</td>
-        <td>92%</td>
+        <td>Moyenne générale</td>
+        <td id="moyenneGenerale">0</td>
       </tr>
 
       <tr>
-        <td>Moyenne générale</td>
-        <td>13.8</td>
+        <td>Total absences</td>
+        <td id="totalAbsences">0</td>
+      </tr>
+
+      <tr>
+        <td>Taux d’absence</td>
+        <td id="tauxAbsence">0%</td>
       </tr>
 
       <tr>
         <td>Utilisateurs actifs</td>
-        <td>571</td>
+        <td id="totalUtilisateurs">0</td>
       </tr>
-
     </tbody>
 
   </table>
