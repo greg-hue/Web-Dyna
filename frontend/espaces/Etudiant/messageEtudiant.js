@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert("Message introuvable");
 
         window.location.href =
-            "messagerieEtudiant.html";
+            "messagerie.html";
 
         return;
     }
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             alert("Message introuvable");
 
             window.location.href =
-                "messagerieEtudiant.html";
+                "messagerie.html";
 
             return;
         }
