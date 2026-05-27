@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.getItem("utilisateurConnecte")
     );
 
+    // Sécurité
     if (!utilisateur || utilisateur.role !== "etudiant") {
 
         window.location.href =
@@ -12,12 +13,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
+    // Informations utilisateur
     document.getElementById("nomUtilisateur").textContent =
         utilisateur.prenom + " " + utilisateur.nom;
 
     document.getElementById("roleUtilisateur").textContent =
         "Étudiant";
 
+    // Déconnexion
     document.getElementById("btnDeconnexion")
         .addEventListener("click", () => {
 
@@ -41,19 +44,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         const listeMessages =
             document.getElementById("listeMessages");
 
+        listeMessages.innerHTML = "";
+
         if (resultat.success) {
 
             resultat.messages.forEach(message => {
 
                 listeMessages.innerHTML += `
                     <tr>
+
                         <td>
                             ${message.prenom}
                             ${message.nom}
                         </td>
-                        <td>${message.sujet}</td>
-                        <td>${message.contenu}</td>
+
+                        <td>
+                            <a href="messageEtudiant.html?id=${message.id_message}">
+                                ${message.sujet}
+                            </a>
+                        </td>
+
                         <td>${message.date_envoi}</td>
+
                     </tr>
                 `;
             });

@@ -7,12 +7,16 @@ $idUtilisateur = $_GET["id_utilisateur"] ?? null;
 
 $requete = $bdd->prepare("
     SELECT
-        u.prenom,
-        u.nom,
+        messages.id_message,
         messages.sujet,
         messages.contenu,
         messages.date_envoi,
-        messages.lu
+        messages.lu,
+
+        u.prenom,
+        u.nom,
+        u.role
+
     FROM messages
 
     INNER JOIN utilisateurs u
