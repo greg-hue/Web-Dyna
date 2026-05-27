@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!utilisateur || utilisateur.role !== "etudiant") {
 
         window.location.href =
-            "../../authentification.html";
+            "../../../authentification.html";
 
         return;
     }
@@ -26,13 +26,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             );
 
             window.location.href =
-                "../../authentification.html";
+                "../../../authentification.html";
         });
 
     try {
 
         const reponse = await fetch(
-            "../../../backend/Etudiant/getEtudiantNotifications.php?id_utilisateur="
+            "../../../../backend/Etudiant/getEtudiantNotifications.php?id_utilisateur="
             + utilisateur.id
         );
 
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         }
         const reponseNews = await fetch(
-            "../../../backend/getNews.php"
+            "../../../../backend/getNews.php"
         );
 
         const resultatNews = await reponseNews.json();

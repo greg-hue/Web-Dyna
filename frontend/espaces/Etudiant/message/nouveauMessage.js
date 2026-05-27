@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!utilisateur || utilisateur.role !== "etudiant") {
 
         window.location.href =
-            "../../authentification.html";
+            "../../../authentification.html";
 
         return;
     }
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             window.location.href =
-                "../../authentification.html";
+                "../../../authentification.html";
         });
 
     const formulaire =
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         const reponse = await fetch(
-            "../../../backend/sendMessage.php",
+            "../../../../backend/sendMessage.php",
             {
                 method: "POST",
                 body: donnees

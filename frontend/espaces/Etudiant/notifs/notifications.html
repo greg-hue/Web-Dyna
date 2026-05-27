@@ -5,11 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
 
-  <title>Messagerie - SmartCampus</title>
+  <title>Dashboard étudiant</title>
 
-  <link rel="stylesheet" href="../espaceEtudiant.css">
-
-  <script src="messagerie.js"></script>
+  <link rel="stylesheet" href="../../espaceEtudiant.css">
+  <script type="text/javascript" src="notifications.js"></script>
 </head>
 
 <body>
@@ -33,35 +32,35 @@
 
   <aside class="menu-lateral">
 
-    <a class="element-menu" href="espaceEtudiant.html">
+    <a class="element-menu" href="../espaceEtudiant.html">
       <span>▦</span>
       Tableau de bord
     </a>
 
-    <a class="element-menu" href="edt.html">
+    <a class="element-menu" href="../edt/edt.html">
       <span>▣</span>
       Emploi du temps
     </a>
 
-    <a class="element-menu" href="notes.html">
+    <a class="element-menu" href="../notes/notes.html">
       <span>/20</span>
       Mes notes
     </a>
 
-    <a class="element-menu actif" href="#">
+    <a class="element-menu" href="../message/messagerie.html">
       <span>✉</span>
       Messagerie
     </a>
 
-    <a class="element-menu" href="notifications.html">
+    <a class="element-menu actif" href="#">
       <span>🔔</span>
       Notifications
     </a>
-
-    <a class="element-menu" href="cours.html">
-      <span>📚</span>
-      Cours
-    </a>
+    
+      <a class="element-menu" href="../cours/cours.html">
+        <span>📚</span>
+        Cours      
+      </a>
 
   </aside>
 
@@ -69,33 +68,26 @@
 
     <section class="bloc-section">
 
-      <h2>MESSAGERIE</h2>
+  <h2>NOTIFICATIONS</h2>
 
-      <a href="nouveauMessage.html" class="element-menu">
-        Nouveau message
-      </a>
+  <table>
 
-      <br><br>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Notification</th>
+      </tr>
+    </thead>
 
-      <table>
+    <tbody id="listeNotifications">
+      
+    </tbody>
 
-        <thead>
-          <tr>
-            <th>Expéditeur</th>
-            <th>Sujet</th>
-            <th>Date</th>
-          </tr>
-        </thead>
+  </table>
 
-        <tbody id="listeMessages">
+</section>
 
-        </tbody>
-
-      </table>
-
-    </section>
-
-  </section>
+</section>
 
 </main>
 
