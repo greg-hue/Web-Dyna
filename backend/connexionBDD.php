@@ -1,7 +1,7 @@
 <?php
 
 $host = "localhost";
-$dbname = "ifsi_smartcampus";
+$dbname = "smartcampus";
 $username = "root";
 $password = "root";
 $port = "3306";
