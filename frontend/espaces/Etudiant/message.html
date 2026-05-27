@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
 
-  <title>Messagerie - SmartCampus</title>
+  <title>Message - SmartCampus</title>
 
   <link rel="stylesheet" href="../espaceEtudiant.css">
 
-  <script src="messagerie.js"></script>
+  <script src="message.js"></script>
 </head>
 
 <body>
@@ -38,29 +38,9 @@
       Tableau de bord
     </a>
 
-    <a class="element-menu" href="edt.html">
-      <span>▣</span>
-      Emploi du temps
-    </a>
-
-    <a class="element-menu" href="notes.html">
-      <span>/20</span>
-      Mes notes
-    </a>
-
-    <a class="element-menu actif" href="#">
+    <a class="element-menu actif" href="messagerie.html">
       <span>✉</span>
       Messagerie
-    </a>
-
-    <a class="element-menu" href="notifications.html">
-      <span>🔔</span>
-      Notifications
-    </a>
-
-    <a class="element-menu" href="cours.html">
-      <span>📚</span>
-      Cours
     </a>
 
   </aside>
@@ -69,29 +49,65 @@
 
     <section class="bloc-section">
 
-      <h2>MESSAGERIE</h2>
-
-      <a href="nouveauMessage.html" class="element-menu">
-        Nouveau message
-      </a>
-
-      <br><br>
+      <h2>MESSAGE</h2>
 
       <table>
 
-        <thead>
+        <tbody>
+
           <tr>
             <th>Expéditeur</th>
-            <th>Sujet</th>
-            <th>Date</th>
+            <td id="expediteurMessage"></td>
           </tr>
-        </thead>
 
-        <tbody id="listeMessages">
+          <tr>
+            <th>Sujet</th>
+            <td id="sujetMessage"></td>
+          </tr>
+
+          <tr>
+            <th>Date</th>
+            <td id="dateMessage"></td>
+          </tr>
+
+          <tr>
+            <th>Contenu</th>
+            <td id="contenuMessage"></td>
+          </tr>
 
         </tbody>
 
       </table>
+
+      <br>
+
+      <h3>Répondre</h3>
+
+      <form id="formReponse">
+
+        <textarea
+          id="reponseMessage"
+          rows="6"
+          placeholder="Votre réponse..."
+          required
+          style="width:100%; padding:10px;">
+        </textarea>
+
+        <br><br>
+
+        <button type="submit">
+          Envoyer la réponse
+        </button>
+
+      </form>
+
+      <p id="messageConfirmation"></p>
+
+      <br>
+
+      <a href="messagerie.html" class="element-menu">
+        Retour à la messagerie
+      </a>
 
     </section>
 
