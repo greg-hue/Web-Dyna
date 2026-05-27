@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const reponse = await fetch(
-        "../../../backend/getProfCours.php?id_utilisateur=" + utilisateur.id
+        "../../../backend/Prof/getProfCours.php?id_utilisateur=" + utilisateur.id
     );
 
     const resultat = await reponse.json();
