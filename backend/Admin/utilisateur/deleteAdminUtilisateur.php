@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json");
-require_once "../connexionBDD.php";
+require_once "../../connexionBDD.php";
 
 $idUtilisateur = $_POST["id_utilisateur"] ?? null;
 

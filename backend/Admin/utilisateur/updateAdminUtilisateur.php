@@ -2,18 +2,20 @@
 
 header("Content-Type: application/json");
 
-require_once("../connexionBDD.php");
+require_once("../../connexionBDD.php");
 
 $id = $_POST["id"] ?? null;
+$prenom = $_POST["prenom"] ?? "";
 $nom = $_POST["nom"] ?? "";
-$description = $_POST["description"] ?? "";
-$enseignant = $_POST["enseignant"] ?? "";
+$email = $_POST["email"] ?? "";
+$role = $_POST["role"] ?? "";
 
 if (
     !$id ||
+    empty($prenom) ||
     empty($nom) ||
-    empty($description) ||
-    empty($enseignant)
+    empty($email) ||
+    empty($role)
 ) {
     echo json_encode([
         "success" => false,
@@ -23,26 +25,28 @@ if (
 }
 
 $sql = "
-UPDATE cours
+UPDATE utilisateurs
 SET
+    prenom = ?,
     nom = ?,
-    description = ?,
-    enseignant = ?
+    email = ?,
+    role = ?
 WHERE id = ?
 ";
 
 $requete = $pdo->prepare($sql);
 
 $success = $requete->execute([
+    $prenom,
     $nom,
-    $description,
-    $enseignant,
+    $email,
+    $role,
     $id
 ]);
 
 echo json_encode([
     "success" => $success,
     "message" => $success
-        ? "Cours modifié."
+        ? "Utilisateur modifié."
         : "Erreur modification."
 ]);
