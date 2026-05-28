@@ -1,24 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    //Recup utilisateur
+    //Recup les données de la session
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
-    //verif utilisateur
+    
+    //securite pour la connexion de l'utilisateur
     if (!utilisateur || utilisateur.role !== "enseignant") {
         window.location.href = "../../../authentification.html";
         return;
     }
-    //Affichage utilisateur
+    
+    //maj des infos de l'utilisateur
     document.getElementById("nomUtilisateur").textContent = utilisateur.prenom + " " + utilisateur.nom;
     document.getElementById("roleUtilisateur").textContent = "Professeur";
-    //Déconnexion
+    
+    //gere la deconnexion avec le bouton
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
         window.location.href = "../../../authentification.html";
     });
-    //Formulaire message
+    
+    //Formulaire pour les messages
     const formulaire = document.getElementById("formMessage");
     formulaire.addEventListener("submit", async (event) => {
-        //empêche rechargement
+        
+        //commande qui empêche le rechargement
         event.preventDefault();
         //Création données formulaire
         const donnees = new FormData();
@@ -30,20 +35,23 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("sujet").value);
         donnees.append("contenu", document.getElementById("contenu").value);
 
-        //Envoi message
+        //Envoi le message
         const reponse = await fetch("../../../../backend/sendMessage.php", {
             method: "POST",
             body: donnees
         });
-        //Conversion json
+
+        //recuperation de la donnée et conversion json pour l'utiliser
         const resultat = await reponse.json();
         const messageRetour = document.getElementById("messageRetour");
-        //envoi réussi
+        
+        //on montre quy l'envoi est réussi
         if (resultat.success) {
             messageRetour.style.color = "green";
             messageRetour.textContent = "Message envoyé.";
             formulaire.reset();
-        //si erreur
+        
+        //et si il y a une erreur
         } else {
             messageRetour.style.color = "red";
             messageRetour.textContent = resultat.message;

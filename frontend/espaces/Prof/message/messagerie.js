@@ -1,27 +1,34 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    //recup utilisateur
+    //Recup les données de la session
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
-    //verif authentification
+    
+    //securite pour la connexion de l'utilisateur
     if (!utilisateur || utilisateur.role !== "enseignant") {
         window.location.href = "../../../authentification.html";
         return;
     }
-    //Affichage utilisateur
+
+    //maj des infos de l'utilisateur
     document.getElementById("nomUtilisateur").textContent = utilisateur.prenom + " " + utilisateur.nom;
     document.getElementById("roleUtilisateur").textContent = "Professeur";
-    //Déconnexion
+    
+    //gere la deconnexion avec le bouton
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
         window.location.href = "../../../authentification.html";
     });
-    //Requête messages
+    
+    //Recupere les messages du prof dans le serveur
     const reponse = await fetch("../../../../backend/Prof/getProfMessages.php?id_utilisateur=" + utilisateur.id);
-    //Conversion json
+    
+    //transforme la reponse du serveur en un objet json lisible
     const resultat = await reponse.json();
-    //Tableau html
+    
+    //cible l'html ou on doit inserer les lignes du tableau
     const listeMessages = document.getElementById("listeMessages");
-    //Affichage des messages
+    
+    //Affichage des messages un par un en les rendant cliquables
     if (resultat.success) {
         resultat.messages.forEach(message => {
             listeMessages.innerHTML += `

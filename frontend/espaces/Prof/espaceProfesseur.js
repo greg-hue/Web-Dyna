@@ -25,9 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (resultat.success) {
 
-        // =========================
-        // STATISTIQUES
-        // =========================
+        //stats globales
 
         if (resultat.stats) {
 
@@ -38,9 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 resultat.stats.total_etudiants;
         }
 
-        // =========================
-        // PLANNING
-        // =========================
+        //planning des cours
 
         const planningProf = document.getElementById("planningProf");
 
@@ -84,9 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-// =====================================
-// GÉNÉRATION QR CODE
-// =====================================
+//genration du qr code pour une seance
 
 window.genererQRCode = async function(idSeance) {
 
@@ -109,10 +103,10 @@ window.genererQRCode = async function(idSeance) {
         const zoneQrCode =
             document.getElementById("qrcode");
 
-        // Vider l'ancien QR Code
+        // Vider l ancien qr code
         zoneQrCode.innerHTML = "";
 
-        // Carte d'affichage
+        // Carte d affichage
         zoneQrCode.innerHTML = `
             <div class="carte-qrcode">
                 
@@ -132,7 +126,7 @@ window.genererQRCode = async function(idSeance) {
             </div>
         `;
 
-        // Génération du QR
+        // Generation du qr code
         new QRCode(document.getElementById("qr-image"), {
             text: resultat.token,
             width: 200,

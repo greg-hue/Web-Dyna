@@ -13,6 +13,7 @@
 
 <body>
 
+//interface utilisateur de base
 <header class="barre-haut">
   <div class="bloc-logo">
     <div class="logo">✚</div>
@@ -25,7 +26,7 @@
     <span class="deconnexion" id="btnDeconnexion">↪</span>
   </div>
 </header>
-
+//menu prof de base
 <main class="conteneur-professeur">
   <aside class="menu-lateral">
     <a class="element-menu" href="../espaceProfesseur.html"><span>▦</span> Tableau de bord</a>
@@ -47,6 +48,7 @@
             <option value="">Choisir une séance</option>
           </select>
         </div>
+        // bouton pour genere le QR code
         <button id="btnGenererQR" type="button" class="btn-action">Lancer l'appel QR</button>
       </div>
       
@@ -59,12 +61,14 @@
         <select id="etudiantId" required>
           <option value="">Choisir un étudiant</option>
         </select>
+        //choix de l'elev 
         <select id="statut" required>
           <option value="">Statut</option>
           <option value="present">Présent</option>
           <option value="absent">Absent</option>
           <option value="retard">Retard</option>
         </select>
+        //de la justification
         <select id="justifiee">
           <option value="0">Non justifiée</option>
           <option value="1">Justifiée</option>
@@ -72,6 +76,7 @@
         <input type="text" id="commentaire" placeholder="Commentaire">
         <button type="submit" class="btn-action">Enregistrer</button>
       </form>
+      //et d'un message
       <p id="messagePresence"></p>
     </section>
 

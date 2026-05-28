@@ -23,11 +23,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const zoneQrCode = document.getElementById("qrcode");
 
     let etudiantsParSeance = {};
-    let toutesLesAbsences = []; // NOUVEAU : On stocke tout en mémoire pour filtrer
+    let toutesLesAbsences = []; //On stocke tout en mémoire pour filtrer
 
-    /* =========================================
-       AFFICHAGE MESSAGE
-    ========================================= */
+   //affichage d'un message de succes ou d'erreur
     function afficherMessage(type, texte) {
         messagePresence.className = "";
         if (type === "success") {
@@ -40,10 +38,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         messagePresence.textContent = texte;
     }
 
-    /* =========================================
-       CHARGEMENT DES DONNÉES (TEMPS RÉEL)
-    ========================================= */
-    // L'argument "initial" évite de réinitialiser les menus quand on actualise en arrière-plan
+   //on chargge les donnees
+    // L'argument initial évite de reinitialiser les menus quand on actualise en arriere plan
     async function chargerPresences(initial = true) {
         try {
             const reponse = await fetch("../../../../backend/Prof/presence/getProfPresences.php?id_utilisateur=" + utilisateur.id);
@@ -53,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 etudiantsParSeance = resultat.etudiants_par_seance;
                 toutesLesAbsences = resultat.absences;
 
-                // On ne reconstruit la liste déroulante que la première fois
+                // On reconstruit la liste deroulante que la première fois
                 if (initial) {
                     selectSeance.innerHTML = `<option value="">Choisir une séance</option>`;
                     selectEtudiant.innerHTML = `<option value="">Choisir un étudiant</option>`;
@@ -68,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     });
                 }
 
-                // On met à jour le tableau visuel en fonction du menu sélectionné
+                // On met à jour le tableau visuel en fonction du menu selectionne
                 actualiserTableau(selectSeance.value);
 
             } else if (initial) {
@@ -79,15 +75,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    /* =========================================
-       ACTUALISATION DU TABLEAU (FILTRE)
-    ========================================= */
+    //on actualise le tableau des filtres de seance
     function actualiserTableau(idSeanceFiltre) {
         listePresences.innerHTML = "";
 
         let presencesAafficher = toutesLesAbsences;
 
-        // Si le prof a choisi une séance, on filtre pour ne montrer que cette séance
+        // Si le prof a choisi une seance, on filtre pour ne montrer que cette séance
         if (idSeanceFiltre) {
             presencesAafficher = toutesLesAbsences.filter(abs => abs.seance_id == idSeanceFiltre || abs.id_seance == idSeanceFiltre);
         }
@@ -98,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         presencesAafficher.forEach(absence => {
-            // Un peu de couleur pour que le jury voit bien la différence
+            // differente couleures pour les differentes statuts de presence
             let couleurStatut = "black";
             if (absence.statut.toLowerCase() === 'present') couleurStatut = 'green';
             if (absence.statut.toLowerCase() === 'absent') couleurStatut = 'red';
@@ -118,16 +112,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    /* =========================================
-       CHANGEMENT DE SÉANCE DANS LE MENU
-    ========================================= */
+    //on change la seance dans le menu
     selectSeance.addEventListener("change", () => {
         const idSeance = selectSeance.value;
 
-        // 1. On filtre le tableau en bas immédiatement !
+        //On filtre le tableau en bas 
         actualiserTableau(idSeance);
 
-        // 2. On met à jour la liste des étudiants pour l'ajustement manuel
+        //On met a jour la liste des etudiants pour l ajustement manuel
         selectEtudiant.innerHTML = `<option value="">Choisir un étudiant</option>`;
         zoneQrCode.innerHTML = "";
 
@@ -142,9 +134,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
-    /* =========================================
-       GÉNÉRATION QR CODE
-    ========================================= */
+    //generation d'un QR code pour la seance selectionnee
     btnGenererQR.addEventListener("click", async () => {
         const idSeance = selectSeance.value;
 
@@ -194,9 +184,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    /* =========================================
-       ENREGISTREMENT PRÉSENCE MANUELLE
-    ========================================= */
+   //enregistrement manuellement de la presencee
     document.getElementById("formPresence").addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -220,21 +208,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         const resultat = await reponse.json();
 
         if (resultat.success) {
-            afficherMessage("success", "✅ Ajustement enregistré avec succès.");
+            afficherMessage("success", " Ajustement enregistré avec succès.");
             event.target.reset();
             chargerPresences(true); // On recharge tout pour la sécurité
         } else {
-            afficherMessage("error", "❌ " + resultat.message);
+            afficherMessage("error", + resultat.message);
         }
     });
 
-    /* =========================================
-       INITIALISATION ET TEMPS RÉEL 🔥
-    ========================================= */
+    
     chargerPresences(true); // Au lancement de la page
 
     // Le tableau se rafraîchit discrètement toutes les 3 secondes.
-    // L'étudiant scanne -> Son nom apparaît en "Présent" comme par magie !
+    // L'étudiant scanne -> Son nom apparaît en present
     setInterval(() => {
         chargerPresences(false);
     }, 3000);
