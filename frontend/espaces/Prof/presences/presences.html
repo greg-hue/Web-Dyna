@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-
   <title>Présences - SmartCampus</title>
-
   <link rel="stylesheet" href="../../espaceEtudiant.css">
   <script src="presences.js"></script>
 </head>
 
 <body>
 
+<!-- header -->
 <header class="barre-haut">
   <div class="bloc-logo">
     <div class="logo">✚</div>
@@ -26,8 +26,10 @@
   </div>
 </header>
 
+<!-- contenu principal -->
 <main class="conteneur-professeur">
 
+  <!-- menu lat -->
   <aside class="menu-lateral">
 
     <a class="element-menu" href="../espaceProfesseur.html">
@@ -62,14 +64,13 @@
 
   </aside>
 
+  <!-- contenu page -->
   <section class="contenu-principal">
 
+    <!-- formulaire présence -->
     <section class="bloc-section">
-
       <h2>ENREGISTRER UNE PRÉSENCE</h2>
-
       <form id="formPresence">
-
         <select id="seanceId" required>
           <option value="">Choisir une séance</option>
         </select>
@@ -93,17 +94,15 @@
         <input type="text" id="commentaire" placeholder="Commentaire">
 
         <button type="submit">Enregistrer</button>
-
       </form>
 
       <p id="messagePresence"></p>
 
     </section>
 
+    <!-- liste des absences -->
     <section class="bloc-section">
-
       <h2>ABSENCES / RETARDS ENREGISTRÉS</h2>
-
       <table>
         <thead>
           <tr>
@@ -117,75 +116,13 @@
           </tr>
         </thead>
 
-        <tbody id="listePresences">
-        </tbody>
+        <!-- données dynamiques -->
+        <tbody id="listePresences"></tbody>
       </table>
-
-    </section>
-
-    <section class="bloc-section">
-
-      <h2>GESTION DES PRÉSENCES</h2>
-
-      <div class="bloc-formulaire">
-
-        <div class="champ-formulaire">
-
-          <label>📡 Sélection de la séance :</label>
-
-          <select id="seanceId" required>
-            <option value="">Choisir une séance</option>
-          </select>
-
-        </div>
-
-        <button id="btnGenererQR" type="button" class="btn-action">
-          Lancer l'appel QR
-        </button>
-
-      </div>
-
-      <div id="qrcode" class="qrcode-centre"></div>
-
-      <div class="bloc-ajustement">
-
-        <h3 class="titre-ajustement">📝 Ajustement manuel</h3>
-
-        <form id="formPresence">
-
-          <select id="etudiantId" required>
-            <option value="">Choisir un étudiant</option>
-          </select>
-
-          <select id="statut" required>
-            <option value="">Statut</option>
-            <option value="present">Présent</option>
-            <option value="absent">Absent</option>
-            <option value="retard">Retard</option>
-          </select>
-
-          <select id="justifiee">
-            <option value="0">Non justifiée</option>
-            <option value="1">Justifiée</option>
-          </select>
-
-          <input type="text" id="commentaire" placeholder="Commentaire">
-
-          <button type="submit" class="btn-action">
-            Enregistrer
-          </button>
-
-        </form>
-
-      </div>
-
-      <p id="messagePresence" class="message-presence"></p>
-
     </section>
 
   </section>
 
 </main>
-
 </body>
 </html>
