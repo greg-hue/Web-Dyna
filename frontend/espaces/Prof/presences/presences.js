@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
+    const utilisateur = JSON.parse(
+        localStorage.getItem("utilisateurConnecte")
+    );
 
     if (!utilisateur || utilisateur.role !== "enseignant") {
+
         window.location.href = "../../../authentification.html";
+
         return;
     }
 
@@ -13,20 +17,38 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("roleUtilisateur").textContent =
         "Professeur";
 
-    document.getElementById("btnDeconnexion").addEventListener("click", () => {
-        localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../../authentification.html";
+    document.getElementById("btnDeconnexion")
+        .addEventListener("click", () => {
+
+            localStorage.removeItem("utilisateurConnecte");
+
+            window.location.href =
+                "../../../authentification.html";
     });
 
-    const selectSeance = document.getElementById("seanceId");
-    const selectEtudiant = document.getElementById("etudiantId");
-    const listePresences = document.getElementById("listePresences");
-    const messagePresence = document.getElementById("messagePresence");
+    const selectSeance =
+        document.getElementById("seanceId");
 
-    const btnGenererQR = document.getElementById("btnGenererQR");
-    const zoneQrCode = document.getElementById("qrcode");
+    const selectEtudiant =
+        document.getElementById("etudiantId");
+
+    const listePresences =
+        document.getElementById("listePresences");
+
+    const messagePresence =
+        document.getElementById("messagePresence");
+
+    const btnGenererQR =
+        document.getElementById("btnGenererQR");
+
+    const zoneQrCode =
+        document.getElementById("qrcode");
 
     let etudiantsParSeance = {};
+
+    /* =========================================
+       AFFICHAGE MESSAGE
+    ========================================= */
 
     function afficherMessage(type, texte) {
 
@@ -38,21 +60,29 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "message-success"
             );
 
+            messagePresence.style.color = "green";
+
         } else {
 
             messagePresence.classList.add(
                 "message-error"
             );
+
+            messagePresence.style.color = "red";
         }
 
         messagePresence.textContent = texte;
     }
 
+    /* =========================================
+       CHARGEMENT DES DONNÉES
+    ========================================= */
 
     async function chargerPresences() {
 
         const reponse = await fetch(
-            "../../../../backend/Prof/presence/getProfPresences.php?id_utilisateur=" + utilisateur.id
+            "../../../../backend/Prof/presence/getProfPresences.php?id_utilisateur="
+            + utilisateur.id
         );
 
         const resultat = await reponse.json();
@@ -72,6 +102,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             etudiantsParSeance =
                 resultat.etudiants_par_seance;
 
+            /* =========================================
+               SÉANCES
+            ========================================= */
+
             resultat.seances.forEach(seance => {
 
                 selectSeance.innerHTML += `
@@ -85,17 +119,33 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `;
             });
 
+            /* =========================================
+               ABSENCES
+            ========================================= */
 
             resultat.absences.forEach(absence => {
 
                 listePresences.innerHTML += `
                     <tr>
                         <td>${absence.date_seance}</td>
-                        <td>${absence.prenom} ${absence.nom}</td>
+
+                        <td>
+                            ${absence.prenom}
+                            ${absence.nom}
+                        </td>
+
                         <td>${absence.groupe}</td>
+
                         <td>${absence.titre}</td>
+
                         <td>${absence.statut}</td>
-                        <td>${absence.justifiee == 1 ? "Oui" : "Non"}</td>
+
+                        <td>
+                            ${absence.justifiee == 1
+                                ? "Oui"
+                                : "Non"}
+                        </td>
+
                         <td>${absence.commentaire}</td>
                     </tr>
                 `;
@@ -103,34 +153,51 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         } else {
 
-            messagePresence.style.color = "red";
-            messagePresence.textContent = resultat.message;
+            afficherMessage(
+                "error",
+                "❌ " + resultat.message
+            );
         }
     }
+
+    /* =========================================
+       CHANGEMENT DE SÉANCE
+    ========================================= */
 
     selectSeance.addEventListener("change", () => {
 
         const idSeance = selectSeance.value;
 
         selectEtudiant.innerHTML =
-            `<option value="">Choisir un étudiant</option>`;
+            `<option value="">
+                Choisir un étudiant
+            </option>`;
 
         zoneQrCode.innerHTML = "";
 
-        if (!idSeance || !etudiantsParSeance[idSeance]) {
+        if (
+            !idSeance
+            || !etudiantsParSeance[idSeance]
+        ) {
             return;
         }
 
-        etudiantsParSeance[idSeance].forEach(etudiant => {
+        etudiantsParSeance[idSeance]
+            .forEach(etudiant => {
 
             selectEtudiant.innerHTML += `
                 <option value="${etudiant.id_etudiant}">
-                    ${etudiant.prenom} ${etudiant.nom}
+                    ${etudiant.prenom}
+                    ${etudiant.nom}
                     (${etudiant.groupe})
                 </option>
             `;
         });
     });
+
+    /* =========================================
+       GÉNÉRATION QR CODE
+    ========================================= */
 
     btnGenererQR.addEventListener(
         "click",
@@ -234,14 +301,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    document.getElementById("formPresence").addEventListener("submit", async (event) => {
+    /* =========================================
+       ENREGISTREMENT PRÉSENCE
+    ========================================= */
+
+    document.getElementById("formPresence")
+        .addEventListener(
+            "submit",
+            async (event) => {
 
         event.preventDefault();
 
         if (!selectSeance.value) {
 
             alert(
-                "Veuillez sélectionner une séance."
+                "⚠️ Veuillez sélectionner une séance."
             );
 
             return;
@@ -249,11 +323,30 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const donnees = new FormData();
 
-        donnees.append("seance_id", selectSeance.value);
-        donnees.append("etudiant_id", selectEtudiant.value);
-        donnees.append("statut", document.getElementById("statut").value);
-        donnees.append("justifiee", document.getElementById("justifiee").value);
-        donnees.append("commentaire", document.getElementById("commentaire").value);
+        donnees.append(
+            "seance_id",
+            selectSeance.value
+        );
+
+        donnees.append(
+            "etudiant_id",
+            selectEtudiant.value
+        );
+
+        donnees.append(
+            "statut",
+            document.getElementById("statut").value
+        );
+
+        donnees.append(
+            "justifiee",
+            document.getElementById("justifiee").value
+        );
+
+        donnees.append(
+            "commentaire",
+            document.getElementById("commentaire").value
+        );
 
         const reponse = await fetch(
             "../../../../backend/Prof/presence/addProfPresence.php",
@@ -276,10 +369,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "commentaire"
             ).value = "";
 
-            messagePresence.style.color = "green";
-            messagePresence.textContent =
-                "Présence enregistrée.";
-
             event.target.reset();
 
             chargerPresences();
@@ -290,12 +379,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "error",
                 "❌ " + resultat.message
             );
-
-            messagePresence.style.color = "red";
-            messagePresence.textContent =
-                resultat.message;
         }
     });
+
+    /* =========================================
+       INITIALISATION
+    ========================================= */
 
     chargerPresences();
 });

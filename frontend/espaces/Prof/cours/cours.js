@@ -1,46 +1,88 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
+    const utilisateur = JSON.parse(
+        localStorage.getItem("utilisateurConnecte")
+    );
 
     if (!utilisateur || utilisateur.role !== "enseignant") {
-        window.location.href = "../../../authentification.html";
+
+        window.location.href =
+            "../../../authentification.html";
+
         return;
     }
+
+    /* =========================================
+       INFORMATIONS UTILISATEUR
+    ========================================= */
 
     document.getElementById("nomUtilisateur").textContent =
         utilisateur.prenom + " " + utilisateur.nom;
 
-    document.getElementById("roleUtilisateur").textContent = "Professeur";
+    document.getElementById("roleUtilisateur").textContent =
+        "Professeur";
 
-    document.getElementById("btnDeconnexion").addEventListener("click", () => {
-        localStorage.removeItem("utilisateurConnecte");
-        window.location.href = "../../../authentification.html";
+    document.getElementById("btnDeconnexion")
+        .addEventListener("click", () => {
+
+            localStorage.removeItem(
+                "utilisateurConnecte"
+            );
+
+            window.location.href =
+                "../../../authentification.html";
     });
 
+    /* =========================================
+       CHARGEMENT DES COURS
+    ========================================= */
+
     try {
-    const reponse = await fetch(
-        "../../../../backend/Prof/getProfCours.php?id_utilisateur=" + utilisateur.id
-    );
 
-    const resultat = await reponse.json();
+        const reponse = await fetch(
+            "../../../../backend/Prof/getProfCours.php?id_utilisateur="
+            + utilisateur.id
+        );
 
-    const listeCours = document.getElementById("listeCours");
+        const resultat = await reponse.json();
 
-    if (resultat.success) {
-        listeCours.innerHTML = "";
-        resultat.cours.forEach(cours => {
-            listeCours.innerHTML += `
-                <tr>
-                    <td>${cours.titre}</td>
-                    <td>Niveau ${cours.niveau} - Semestre ${cours.semestre}</td>
-                    <td>${cours.salle}</td>
-                </tr>
-            `;
-        });
-    }else {
-            console.error("Erreur PHP :", resultat.message);
+        const listeCours =
+            document.getElementById("listeCours");
+
+        if (resultat.success) {
+
+            /* Sécurité */
+            listeCours.innerHTML = "";
+
+            resultat.cours.forEach(cours => {
+
+                listeCours.innerHTML += `
+                    <tr>
+                        <td>${cours.titre}</td>
+
+                        <td>
+                            Niveau ${cours.niveau}
+                            - Semestre ${cours.semestre}
+                        </td>
+
+                        <td>${cours.salle}</td>
+                    </tr>
+                `;
+            });
+
+        } else {
+
+            console.error(
+                "Erreur PHP :",
+                resultat.message
+            );
         }
+
     } catch (e) {
-        console.error("Erreur réseau :", e);
+
+        console.error(
+            "Erreur réseau :",
+            e
+        );
     }
 });
