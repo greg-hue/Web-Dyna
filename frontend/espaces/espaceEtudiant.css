@@ -1,21 +1,22 @@
+/*rest global du nav*/
 *{
    margin:0;
    padding:0;
    box-sizing:border-box;
 }
 
+/*base*/
 body{
    font-family:Arial, sans-serif;
    background:#dfe5ea;
    padding:20px;
    color:#44515f;
    min-height:100vh;
-   
-   min-height:100vh;
    display:flex;
    flex-direction:column;
 }
 
+/*header*/
 .barre-haut{
    display:flex;
    background:white;
@@ -26,6 +27,7 @@ body{
    align-items:center;
 }
 
+/*logo*/
 .bloc-logo{
    display:flex;
    align-items:center;
@@ -48,6 +50,7 @@ body{
    font-weight:500;
 }
 
+/*utilisateur connecté*/
 .bloc-utilisateur{
    display:flex;
    align-items:center;
@@ -69,6 +72,7 @@ body{
    cursor:pointer;
 }
 
+/*Layout principal*/
 .conteneur-etudiant{
    margin-top:15px;
    display:grid;
@@ -76,10 +80,10 @@ body{
    height:calc(100vh - 210px);
    border:8px solid #7b858c;
    background:#cbd8e2;
-
    flex:1;
 }
 
+/*menu latéral*/
 .menu-lateral{
    border-right:8px solid #7b858c;
    padding:25px 18px;
@@ -109,12 +113,14 @@ body{
    background:#dce5ec;
 }
 
+/*contenu principal*/
 .contenu-principal{
    padding:20px;
    background:#cbd8e2;
    overflow:auto;
 }
 
+/*cartes statistiques*/
 .cartes-statistiques{
    display:flex;
    justify-content:space-around;
@@ -143,6 +149,7 @@ body{
    font-size:16px;
 }
 
+/*bloc/section*/
 .bloc-section{
    margin-bottom:25px;
 }
@@ -156,6 +163,7 @@ body{
    font-weight:500;
 }
 
+/*tableaux*/
 table{
    width:100%;
    border-collapse:collapse;
@@ -176,12 +184,14 @@ td{
    border:3px dashed #d1dce4;
 }
 
+/*zone basse*/
 .zone-bas{
    display:grid;
    grid-template-columns:1.4fr 1fr;
    gap:25px;
 }
 
+/*barre d'actu*/
 .barre-actualites{
    display:flex;
    align-items:center;
@@ -202,6 +212,7 @@ td{
    padding:8px 25px;
 }
 
+/*formulaire*/
 form input,
 form select,
 form button {
@@ -216,6 +227,7 @@ button {
   cursor: pointer;
 }
 
+/*form d'ajout utilisateur*/
 #formAjoutUtilisateur {
   display: flex;
   gap: 8px;
