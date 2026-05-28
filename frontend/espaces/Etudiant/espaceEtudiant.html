@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width">
   <title>Espace étudiant - SmartCampus</title>
   <link rel="stylesheet" href="../espaceEtudiant.css">
+
+  <script src="https://unpkg.com/html5-qrcode"></script>
   <script type="text/javascript" src="espaceEtudiant.js"></script>
 </head>
 
@@ -60,19 +62,63 @@
 
     <section class="contenu-principal">
 
-      <section class="cartes-statistiques">
-        <div class="carte-stat">
-          <strong>&lt; semaine 3 &gt;</strong>
-          <p id="nombreControles">0</p>
-          <span>évaluations</span>
+    <div class="bloc-presence">
+
+      <div class="presence-gauche">
+        <span>📡</span>
+        <strong class="label-presence">Signaler ma présence :</strong>
+      </div>
+
+      <div class="presence-droite">
+
+        <button id="btnScanner" class="btn-action">
+          📷 Scanner QR
+        </button>
+
+        <span class="separateur">OU</span>
+
+        <div class="groupe-code">
+          <input type="text" id="codePresence" class="input-code" placeholder="Ex: 8a4b...">
+
+          <button id="btnValiderPresence" class="btn-action">
+            Valider
+          </button>
         </div>
 
-        <div class="carte-stat">
+        <span id="messageAppel" class="message-appel"></span>
+
+      </div>
+
+    </div>
+
+    <div id="lecteur-qr" class="lecteur-qr"></div>
+
+    <section class="cartes-statistiques">
+
+      <div class="carte-stat carte-centree">
+
+        <div class="navigation-semaine">
+          <span id="semainePrecedente" class="bouton-semaine">&lt;</span>
+
+          <strong id="labelSemaine" class="label-semaine">
+            Chargement...
+          </strong>
+
+          <span id="semaineSuivante" class="bouton-semaine">&gt;</span>
+        </div>
+
+        <p id="nombreControles" class="valeur-stat">0</p>
+
+        <span class="libelle-stat">évaluations</span>
+
+      </div>
+
+        <div class="carte-stat carte-centree">
           <strong id="moyenneGenerale">0</strong>
           <span>moyenne / 20</span>
         </div>
 
-        <div class="carte-stat">
+        <div class="carte-stat carte-centree">
           <strong id="nombreAbsences">0</strong>
           <span>absences</span>
         </div>

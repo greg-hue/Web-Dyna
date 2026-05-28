@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = "../../../authentification.html";
     });
 
+    try {
     const reponse = await fetch(
         "../../../../backend/Prof/getProfCours.php?id_utilisateur=" + utilisateur.id
     );
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const listeCours = document.getElementById("listeCours");
 
     if (resultat.success) {
+        listeCours.innerHTML = "";
         resultat.cours.forEach(cours => {
             listeCours.innerHTML += `
                 <tr>
@@ -35,5 +37,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </tr>
             `;
         });
+    }else {
+            console.error("Erreur PHP :", resultat.message);
+        }
+    } catch (e) {
+        console.error("Erreur réseau :", e);
     }
 });

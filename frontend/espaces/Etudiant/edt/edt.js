@@ -42,8 +42,23 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("listeSeances");
 
         if (resultat.success) {
+            let dateActuelle = null;
+            listeSeances.innerHTML = "";
 
             resultat.seances.forEach(seance => {
+
+                if (seance.date_seance !== dateActuelle) {
+                    dateActuelle = seance.date_seance;
+                    
+                    listeSeances.innerHTML += `
+                       <tr>
+                            <td>
+                                Journée du ${dateActuelle}
+                            </td>
+                        </tr>
+                    `;
+                }
+
 
                 listeSeances.innerHTML += `
                     <tr>
