@@ -1,9 +1,11 @@
+/*reset des styles du navigateur*/
 *{
    margin:0;
    padding:0;
    box-sizing:border-box;
 }
 
+/*Base*/
 body{
    font-family:Arial, sans-serif;
    background:#dfe5ea;
@@ -12,6 +14,7 @@ body{
    min-height:100vh;
 }
 
+/*header*/
 .barre-haut{
    display:flex;
    background:white;
@@ -49,6 +52,7 @@ body{
    font-weight:bold;
 }
 
+/*Layout principal*/
 .conteneur-principal{
    margin-top:15px;
    display:grid;
@@ -57,6 +61,7 @@ body{
    border:8px solid #7b858c;
 }
 
+/*partie gauche*/
 .partie-gauche{
    background:#d3dae1;
    border-right:8px solid #7b858c;
@@ -70,6 +75,7 @@ body{
    opacity:0.4;
 }
 
+/*partie droite*/
 .partie-droite{
    background:#f4f4f4;
    padding:30px;
@@ -78,6 +84,7 @@ body{
    align-items:center;
 }
 
+/*Bloc école*/
 .bloc-ecole{
    border:2px dashed #cad4dc;
    padding:20px 80px;
@@ -99,6 +106,7 @@ body{
    font-size:15px;
 }
 
+/*Bloc authentification*/
 .bloc-authentification{
    width:85%;
    background:#cbd8e2;
@@ -112,6 +120,7 @@ body{
    font-size:50px;
 }
 
+/*formulaire*/
 form{
    display:flex;
    flex-direction:column;
@@ -138,6 +147,7 @@ form a{
    font-size:14px;
 }
 
+/*rôle utilisateur*/
 .roles-utilisateur{
    display:flex;
    justify-content:space-between;
@@ -151,6 +161,7 @@ form a{
    cursor:pointer;
 }
 
+/*bouton*/
 button{
    width:270px;
    margin:auto;
@@ -169,6 +180,7 @@ button:hover{
    background:#627587;
 }
 
+/*texte et footer*/
 .texte-securite{
    margin-top:35px;
    font-size:16px;

@@ -1,30 +1,27 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
+    //recup utilisateur
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
-
+    //verif authentification
     if (!utilisateur || utilisateur.role !== "enseignant") {
         window.location.href = "../../../authentification.html";
         return;
     }
-
-    document.getElementById("nomUtilisateur").textContent =
-        utilisateur.prenom + " " + utilisateur.nom;
-
+    //Affichage utilisateur
+    document.getElementById("nomUtilisateur").textContent = utilisateur.prenom + " " + utilisateur.nom;
     document.getElementById("roleUtilisateur").textContent = "Professeur";
-
+    //Déconnexion
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
         window.location.href = "../../../authentification.html";
     });
-
-    const reponse = await fetch(
-        "../../../../backend/Prof/getProfMessages.php?id_utilisateur=" + utilisateur.id
-    );
-
+    //Requête messages
+    const reponse = await fetch("../../../../backend/Prof/getProfMessages.php?id_utilisateur=" + utilisateur.id);
+    //Conversion json
     const resultat = await reponse.json();
-
+    //Tableau html
     const listeMessages = document.getElementById("listeMessages");
-
+    //Affichage des messages
     if (resultat.success) {
         resultat.messages.forEach(message => {
             listeMessages.innerHTML += `

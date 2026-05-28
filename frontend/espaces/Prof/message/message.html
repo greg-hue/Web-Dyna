@@ -4,18 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-
   <title>Message - SmartCampus</title>
-
   <link rel="stylesheet" href="../../espaceEtudiant.css">
-
   <script src="message.js"></script>
 </head>
 
 <body>
-
+ <!-- header -->
 <header class="barre-haut">
-
   <div class="bloc-logo">
     <div class="logo">✚</div>
     <h1>IFSI Florence Nightingale</h1>
@@ -26,11 +22,12 @@
     <span class="statut" id="roleUtilisateur"></span>
     <span class="deconnexion" id="btnDeconnexion">↪</span>
   </div>
-
 </header>
 
+ <!-- contenu principal -->
 <main class="conteneur-professeur">
 
+   <!-- menu latéral -->
   <aside class="menu-lateral">
 
     <a class="element-menu" href="../espaceProfesseur.html">
@@ -65,15 +62,12 @@
 
   </aside>
 
+   <!-- contenue page -->
   <section class="contenu-principal">
-
     <section class="bloc-section">
-
       <h2>MESSAGE</h2>
-
       <table>
         <tbody>
-
           <tr>
             <th>Expéditeur</th>
             <td id="expediteurMessage"></td>
@@ -93,16 +87,13 @@
             <th>Contenu</th>
             <td id="contenuMessage"></td>
           </tr>
-
         </tbody>
       </table>
-
       <br>
-
+       <!-- formulaire de réponse -->
       <h3>Répondre</h3>
 
       <form id="formReponse">
-
         <textarea
           id="reponseMessage"
           rows="6"
@@ -110,28 +101,21 @@
           required
           style="width:100%; padding:10px;">
         </textarea>
-
         <br><br>
-
         <button type="submit">
           Envoyer la réponse
         </button>
-
       </form>
 
       <p id="messageConfirmation"></p>
-
       <br>
 
       <a href="messagerie.html" class="element-menu">
         Retour à la messagerie
       </a>
-
     </section>
-
   </section>
 
 </main>
-
 </body>
 </html>

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
+
+  <!-- Titre de la page -->
   <title>Authentification - SmartCampus</title>
   <link rel="stylesheet" href="authentification.css">
   <script type="text/javascript" src="auth.js"></script>
 </head>
 
 <body>
+  <!-- header -->
   <header class="barre-haut">
     <div class="bloc-logo">
       <div class="logo">
@@ -22,16 +24,20 @@
     </div>
   </header>
 
+
   <main class="conteneur-principal">
 
+    <!-- Partie gauvche -->
     <section class="partie-gauche">
       <div class="image-temporaire">
         🖼️
       </div>
     </section>
 
+    <!-- Partie droite -->
     <section class="partie-droite">
 
+      <!-- Bloc école -->
       <div class="bloc-ecole">
         <div class="icone-ecole">
           🏫
@@ -44,63 +50,52 @@
           rigueur | engagement | humanité
         </p>
       </div>
-
+      
+      <!-- Bloac authentification -->
       <div class="bloc-authentification">
         <h2>Service d'Authentification</h2>
 
+        <!-- Formulaire de connexion -->
         <form id="loginForm">
 
-      <label for="identifiant">Identifiant</label>
-        <input
-          type="text"
-          id="identifiant"
-          placeholder="Identifiant"
-          required
-        >
+          <!-- Identifiant -->
+          <label for="identifiant">Identifiant</label>
+            <input
+              type="text"
+              id="identifiant"
+              placeholder="Identifiant"
+              required
+            >
+            <a href="#">Identifiant oublié ?</a>
 
-      <a href="#">
-        Identifiant oublié ?
-      </a>
+            <!-- Mot de passe -->
+          <label for="motdepasse">Mot de passe</label>
+            <input
+              type="password"
+              id="motdepasse"
+              placeholder="Mot de passe"
+              required
+            >
+            <a href="#">Mot de passe oublié ?</a>
 
-      <label for="motdepasse">Mot de passe</label>
-      <input
-        type="password"
-        id="motdepasse"
-        placeholder="Mot de passe"
-        required
-      >
+          <!-- Sélection du rôle -->
+          <div class="roles-utilisateur">
+            <label>
+              <input type="radio" name="role" value="etudiant" required>Etudiant(e)</label>
+            <label>
+              <input type="radio" name="role" value="enseignant">Professeur(e)</label>
+            <label>
+              <input type="radio" name="role" value="admin">Admin</label>
+          </div>
+        
+          <!-- Bouton de connexion -->
+          <button type="submit">Se connecter</button>
+        </form>
 
-      <a href="#">
-        Mot de passe oublié ?
-      </a>
+         <!-- Message d'erreur -->
+        <p id="messageErreur"></p>
 
-      <div class="roles-utilisateur">
-
-      <label>
-        <input type="radio" name="role" value="etudiant" required>
-          Etudiant(e)
-      </label>
-
-      <label>
-        <input type="radio" name="role" value="enseignant">
-          Professeur(e)
-      </label>
-
-      <label>
-        <input type="radio" name="role" value="admin">
-          Admin
-        </label>
-
-  </div>
-
-    <button type="submit">
-      Se connecter
-    </button>
-
-</form>
-
-<p id="messageErreur"></p>
-
+        <!-- Message sécurité -->
         <p class="texte-securite">
           Pour des raisons de sécurité,
           veuillez vous déconnecter et fermer
@@ -109,6 +104,7 @@
         </p>
       </div>
 
+      <!-- Footer -->
       <footer class="pied-page">
         <p>Mentions légales</p>
         <p>Aide & Support</p>
