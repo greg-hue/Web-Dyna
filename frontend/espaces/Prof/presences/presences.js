@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
 
             const reponse = await fetch(
-                "../../../backend/Prof/presence/genererQRSeance.php",
+                "../../../../backend/Prof/presence/genererQRSeance.php",
                 {
                     method: "POST",
                     body: formData
