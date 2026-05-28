@@ -1,19 +1,19 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    //Recup utilisateur
+    //Recup les données de la session
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
-    //Verif authentification
+    //securite pour la connexion de l'utilisateur
     if (!utilisateur || utilisateur.role !== "enseignant") {
         window.location.href = "../../../authentification.html";
         return;
     }
 
-    //Affichage utilisateur
+    //maj des infos de l'utilisateur
     document.getElementById("nomUtilisateur").textContent = utilisateur.prenom + " " + utilisateur.nom;
     document.getElementById("roleUtilisateur").textContent = "Professeur";
 
-    //Déconnexion
+    //gere la deconnexion avec le bouton
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
         window.location.href = "../../../authentification.html";
@@ -28,16 +28,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     //Chargement des notes
     async function chargerNotes() {
         const reponse = await fetch("../../../../backend/Prof/note/getProfNotes.php?id_utilisateur=" + utilisateur.id);
-        //Converison json
+        
+        //en recupere des données et on convertit en json pour l utiliser
         const resultat = await reponse.json();
-        //Réinitialisation contenu
+
+        //on reinisialise le tout
         listeNotes.innerHTML = "";
         selectEtudiant.innerHTML = `<option value="">Choisir un étudiant</option>`;
         selectCours.innerHTML = `<option value="">Choisir un cours</option>`;
 
-        //Données dispo
+        //Donnees dispo
         if (resultat.success) {
-            //Liste étudiants
+            
+            //Liste des etudiants
             resultat.etudiants.forEach(etudiant => {
                 selectEtudiant.innerHTML += `
                     <option value="${etudiant.id_etudiant}">
@@ -45,7 +48,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     </option>
                 `;
             });
-            //Liste cours
+            
+            //Liste des cours
             resultat.cours.forEach(cours => {
                 selectCours.innerHTML += `
                     <option value="${cours.id_cours}">
@@ -53,7 +57,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     </option>
                 `;
             });
-            //Liste notes
+
+            //Liste des notes
             resultat.notes.forEach(note => {
                 listeNotes.innerHTML += `
                     <tr>
@@ -63,6 +68,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <td>${note.note}/20</td>
                         <td>${note.coefficient}</td>
                         <td>
+
+                        //bouton pour mofieir la note 
                             <button onclick="modifierNote(
                                 ${note.id_note},
                                 '${note.note}',
@@ -78,7 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    //Ajout note
+    //Ajouter une note
     document.getElementById("formAjoutNote").addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -89,12 +96,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         donnees.append("note", document.getElementById("note").value);
         donnees.append("coefficient", document.getElementById("coefficient").value);
 
-        //Requête ajout note
+        //Requete pour ajouter une note
         const reponse = await fetch("../../../../backend/Prof/note/addProfNote.php", {
             method: "POST",
             body: donnees
         });
-        //converison json
+        
+        //en recupere des données et on convertit en json pour l utiliser
         const resultat = await reponse.json();
 
         //Ajout réussi
@@ -110,7 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    //Modification note
+    //Modification de la note
     window.modifierNote = async function(idNote, noteActuelle, typeActuel, coefficientActuel) {
         const nouvelleNote = prompt("Nouvelle note :", noteActuelle);
         if (nouvelleNote === null) return;
@@ -120,19 +128,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const nouveauCoefficient = prompt("Coefficient :", coefficientActuel);
         if (nouveauCoefficient === null) return;
-        //Création données formulaire
+        
+        //Creation des donnees du formulaire
         const donnees = new FormData();
         donnees.append("id_note", idNote);
         donnees.append("note", nouvelleNote);
         donnees.append("type_evaluation", nouveauType);
         donnees.append("coefficient", nouveauCoefficient);
 
-        //Requête modification
+        //Requete pour lamodification
         const reponse = await fetch("../../../../backend/Prof/note/updateProfNote.php", {
             method: "POST",
             body: donnees
         });
-        //Conversion json
+        
+        //en recupere des données et on convertit en json pour l utiliser
         const resultat = await reponse.json();
 
         //Modif reussi
