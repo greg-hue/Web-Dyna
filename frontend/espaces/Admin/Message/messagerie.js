@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
     const reponse = await fetch(
-        "../../../backend/Admin/getAdminMessage.php?id_utilisateur="
+        "../../../../backend/Admin/getAdminMessage.php?id_utilisateur="
         + utilisateur.id
     );
 

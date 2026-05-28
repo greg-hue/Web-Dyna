@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         const reponse = await fetch(
-            "../../../backend/sendMessage.php",
+            "../../../../backend/sendMessage.php",
             {
                 method: "POST",
                 body: donnees
