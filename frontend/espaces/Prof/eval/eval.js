@@ -1,29 +1,34 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    //Recup utilisateur
+    //Recup les données de la session 
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
-    //verif utilisateur
+    
+    //securite pour la connexiond e l'utilisateur
     if (!utilisateur || utilisateur.role !== "enseignant") {
         window.location.href = "../../../authentification.html";
         return;
     }
-    //Affichage utilisateur
+    
+    //maj des infos de l'utilisateur
     document.getElementById("nomUtilisateur").textContent = utilisateur.prenom + " " + utilisateur.nom;
     document.getElementById("roleUtilisateur").textContent = "Professeur";
-    //Déconnexion
+    
+    //gere la deconnexion avec le bouton 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
         window.location.href = "../../../authentification.html";
     });
     
-    //Requête évaluations
+    //Recupere les eval crées par le prof dans le serveur
     const reponse = await fetch("../../../../backend/Prof/getProfEvaluations.php?id_utilisateur=" + utilisateur.id);
-    //conversion json
+    
+    //transforme la reponse du serveur en un objet json lisible
     const resultat = await reponse.json();
-    //tableau html
+    
+    //cible l'html ou on doit inserer les lignes du tableau
     const listeEvaluations = document.getElementById("listeEvaluations");
 
-    //Affichage évaluations
+    //Affichage des evaluations une par une
     if (resultat.success) {
         resultat.evaluations.forEach(evaluation => {
             listeEvaluations.innerHTML += `

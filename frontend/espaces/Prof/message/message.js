@@ -1,78 +1,90 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    //Recup utilisateur
+    //Recup les données de la session
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
-    //Verif authentification
+    //securite pour la connexion de l'utilisateur
     if (!utilisateur || utilisateur.role !== "enseignant") {
         window.location.href = "../../../authentification.html";
         return;
     }
 
-    //Affichage utilisateur
+    //maj des infos de l'utilisateur
     document.getElementById("nomUtilisateur").textContent = utilisateur.prenom + " " + utilisateur.nom;
     document.getElementById("roleUtilisateur").textContent = "Professeur";
 
-    //Déconnexion
+    //gere la deconnexion avec le bouton
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
         window.location.href = "../../../authentification.html";
     });
 
-    //Recup id message
+    //Recupere l'id du message dans l'url
     const parametres = new URLSearchParams(window.location.search);
     const idMessage = parametres.get("id");
-    //Si aucun message séléctionné
+    
+    //securite si aucun message n'est selectionne
     if (!idMessage) {
         alert("Aucun message sélectionné.");
         window.location.href = "messagerie.html";
         return;
     }
-    //Requête message
+    
+    //Recupere le message dans le serveur
     const reponse = await fetch("../../../../backend/getMessage.php?id_message=" + idMessage + "&id_utilisateur=" + utilisateur.id);
-    //conversion json
+    
+    //transforme la reponse du serveur en un objet json lisible
     const resultat = await reponse.json();
-    //si erreur
+    
+    //erreur si la requete echoue
     if (!resultat.success) {
         alert(resultat.message);
         window.location.href = "messagerie.html";
         return;
     }
-    //Affichage message
+    
+    //Affichage des infos du message
     const message = resultat.message;
     document.getElementById("expediteurMessage").textContent = message.expediteur_prenom + " " + message.expediteur_nom + " (" + message.expediteur_role + ")";
     document.getElementById("sujetMessage").textContent = message.sujet;
     document.getElementById("dateMessage").textContent = message.date_envoi;
     document.getElementById("contenuMessage").textContent = message.contenu;
 
-    //Reponse message
+    //gere l'envoi de la reponse
     const formReponse = document.getElementById("formReponse");
     formReponse.addEventListener("submit", async (event) => {
-        //empêche rechargement
+        
+        //empeche le rechargement de la page
         event.preventDefault();
         const contenu = document.getElementById("reponseMessage").value;
-        //Création des données
+
+        //Creation des donnees a envoyer
         const donnees = new FormData();
         donnees.append("expediteur_id", utilisateur.id);
         donnees.append("destinataire_email", message.expediteur_email);
         donnees.append("sujet", "Re: " + message.sujet);
         donnees.append("contenu", contenu);
-        //envoi de la réponse
+        
+        //Envoi de la reponse au serveur
         const reponseEnvoi = await fetch("../../../../backend/sendMessage.php",
             {
                 method: "POST",
                 body: donnees
             }
         );
+
+        //transforme la reponse du serveur en un objet json lisible
         const resultatEnvoi = await reponseEnvoi.json();
         const confirmation = document.getElementById("messageConfirmation");
-        //si réussi
+        
+        //Affichage si c'est reussi
         if (resultatEnvoi.success) {
             confirmation.style.color = "green";
             confirmation.textContent =
                 "Réponse envoyée.";
             formReponse.reset();
-        //erreur d"envoi
+       
+        //Affichage si l'envoi echoue
         } else {
             confirmation.style.color = "red";
             confirmation.textContent =
