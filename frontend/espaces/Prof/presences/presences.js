@@ -18,10 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = "../../../authentification.html";
     });
 
-
-
-
-
     const selectSeance = document.getElementById("seanceId");
     const selectEtudiant = document.getElementById("etudiantId");
     const listePresences = document.getElementById("listePresences");

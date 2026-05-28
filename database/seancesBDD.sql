@@ -115,3 +115,14 @@ VALUES
 (1,'2026-09-12','08:00:00','10:00:00','A303','CM','TD3'),
 (2,'2026-09-12','10:15:00','12:15:00','Laboratoire 3','TP','TD3'),
 (3,'2026-09-12','12:30:00','14:30:00','B304','TD','TD3');
+
+UPDATE seances SET type_seance = 'TD' WHERE id_seance IN (3, 4, 5);
+
+UPDATE seances SET type_seance = 'Evaluation' WHERE id_seance = 2;
+UPDATE seances SET type_seance = 'Evaluation', date_seance = '2026-09-10' WHERE id_seance = 10;
+UPDATE seances SET type_seance = 'Evaluation', date_seance = '2026-09-17' WHERE id_seance = 14;
+UPDATE seances SET type_seance = 'Evaluation', date_seance = '2026-09-24' WHERE id_seance = 20;
+
+ALTER TABLE seances 
+ADD token VARCHAR(50) NULL, 
+ADD token_expiration DATETIME NULL;
