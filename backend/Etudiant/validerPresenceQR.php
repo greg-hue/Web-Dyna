@@ -21,20 +21,27 @@ if (!$etudiant) {
 }
 $idEtudiant = $etudiant["id_etudiant"];
 
-// 2. Vérifier si le token correspond à une séance (j'ai enlevé l'expiration pour le test)
+// 2. Vérifier le token et récupérer l'heure d'expiration
 $reqSeance = $bdd->prepare("
-    SELECT id_seance FROM seances 
-    WHERE qr_token = :token
+    SELECT id_seance, token_expiration 
+    FROM seances 
+    WHERE token = :token
 ");
 $reqSeance->execute(["token" => $tokenScanne]);
 $seance = $reqSeance->fetch(PDO::FETCH_ASSOC);
 
 if (!$seance) {
-    echo json_encode(["success" => false, "message" => "QR Code invalide."]);
+    echo json_encode(["success" => false, "message" => "QR Code invalide ou non reconnu."]);
     exit;
 }
 
-// 3. Vérifier si l'étudiant a DÉJÀ été noté présent pour éviter les doublons qui font planter la base
+// 3. Vérification du temps : Le QR Code est-il expiré ?
+if (strtotime($seance["token_expiration"]) < time()) {
+    echo json_encode(["success" => false, "message" => "Délai dépassé : Ce QR Code a expiré !"]);
+    exit;
+}
+
+// 4. Vérifier si l'étudiant a DÉJÀ été noté présent pour éviter les doublons
 $reqCheck = $bdd->prepare("SELECT id_absence FROM absences WHERE etudiant_id = :etudiant_id AND seance_id = :seance_id");
 $reqCheck->execute([
     "etudiant_id" => $idEtudiant,
@@ -46,7 +53,7 @@ if ($reqCheck->fetch()) {
     exit;
 }
 
-// 4. Enregistrer la présence
+// 5. Enregistrer la présence
 $reqPresence = $bdd->prepare("
     INSERT INTO absences (etudiant_id, seance_id, statut, justifiee, commentaire) 
     VALUES (:etudiant_id, :seance_id, 'present', 0, 'Présence par QR Code')
