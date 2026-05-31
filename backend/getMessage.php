@@ -1,11 +1,16 @@
 <?php
+
+//Configure la reponse pour renvoyer du json au frontend
 header("Content-Type: application/json");
 
+//Inclusion du fichier pour se connecter a la BDD
 require_once "connexionBDD.php";
 
+//Recup de l'id du message et de l'id de l'utilisateur passés dans l'url
 $idMessage = $_GET["id_message"] ?? null;
 $idUtilisateur = $_GET["id_utilisateur"] ?? null;
 
+//securite : verif si l'un des deux parametres est manquant
 if (!$idMessage || !$idUtilisateur) {
     echo json_encode([
         "success" => false,
@@ -14,6 +19,7 @@ if (!$idMessage || !$idUtilisateur) {
     exit;
 }
 
+//Preparation de la requete avec un INNER JOIN pour recup le message et les infos de l'expediteur d'un coup
 $requete = $bdd->prepare("
     SELECT
     messages.id_message,
@@ -38,13 +44,16 @@ $requete = $bdd->prepare("
     AND messages.destinataire_id = :id_utilisateur
 ");
 
+//Execution de la requete avec les parametres recuperes
 $requete->execute([
     "id_message" => $idMessage,
     "id_utilisateur" => $idUtilisateur
 ]);
 
+//Recup du resultat de la requete
 $message = $requete->fetch(PDO::FETCH_ASSOC);
 
+//securite : si le message n'existe pas ou n'appartient pas a cet utilisateur
 if (!$message) {
     echo json_encode([
         "success" => false,
@@ -53,18 +62,22 @@ if (!$message) {
     exit;
 }
 
+//Preparation de la requete pour maj le statut du message et le passer en lu
 $requeteLu = $bdd->prepare("
     UPDATE messages
     SET lu = 1
     WHERE id_message = :id_message
 ");
 
+//Execution de la requete de maj
 $requeteLu->execute([
     "id_message" => $idMessage
 ]);
 
+//maj de la variable locale pour renvoyer le bon statut au frontend
 $message["lu"] = 1;
 
+//Envoi du message en json au frontend
 echo json_encode([
     "success" => true,
     "message" => $message
