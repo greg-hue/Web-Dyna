@@ -80,15 +80,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         //Affichage si c'est reussi
         if (resultatEnvoi.success) {
             confirmation.style.color = "green";
-            confirmation.textContent =
-                "Réponse envoyée.";
+            confirmation.textContent = "Réponse envoyée.";
             formReponse.reset();
        
         //Affichage si l'envoi echoue
         } else {
             confirmation.style.color = "red";
-            confirmation.textContent =
-                "Erreur lors de l'envoi.";
+            confirmation.textContent = "Erreur lors de l'envoi.";
         }
     });
 });
