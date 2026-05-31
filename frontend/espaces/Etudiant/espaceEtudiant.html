@@ -5,20 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <title>Espace étudiant - SmartCampus</title>
-  <link rel="stylesheet" href="../espaceEtudiant.css">
 
+  <link rel="stylesheet" href="../espaceEtudiant.css">
   <script src="https://unpkg.com/html5-qrcode"></script>
   <script type="text/javascript" src="espaceEtudiant.js"></script>
 </head>
 
 <body>
 
+  <!-- En-tête de la page -->
   <header class="barre-haut">
     <div class="bloc-logo">
       <div class="logo">✚</div>
       <h1>IFSI Florence Nightingale</h1>
     </div>
 
+    <!-- info de l'utilisateur connecté -->
     <div class="bloc-utilisateur">
       <span id="nomUtilisateur"></span>
       <span class="statut" id="roleUtilisateur"></span>
@@ -26,8 +28,10 @@
     </div>
   </header>
 
+  <!-- Contenu principal de l'espace étudiant -->
   <main class="conteneur-etudiant">
 
+    <!-- menu latéral -->
     <aside class="menu-lateral">
       <a class="element-menu actif" href="#">
         <span>▦</span>
@@ -56,74 +60,77 @@
 
       <a class="element-menu" href="cours/cours.html">
         <span>📚</span>
-        Cours      
+        Cours
       </a>
     </aside>
 
+    <!-- affichage info étudiant -->
     <section class="contenu-principal">
+      <div class="bloc-presence">
+        <div class="presence-gauche">
+          <span>📡</span>
+          <strong class="label-presence">Signaler ma présence :</strong>
+        </div>
 
-    <div class="bloc-presence">
+        <div class="presence-droite">
 
-      <div class="presence-gauche">
-        <span>📡</span>
-        <strong class="label-presence">Signaler ma présence :</strong>
-      </div>
-
-      <div class="presence-droite">
-
-        <button id="btnScanner" class="btn-action">
-          📷 Scanner QR
-        </button>
-
-        <span class="separateur">OU</span>
-
-        <div class="groupe-code">
-          <input type="text" id="codePresence" class="input-code" placeholder="Ex: 8a4b...">
-
-          <button id="btnValiderPresence" class="btn-action">
-            Valider
+          <!-- scanner le QR code -->
+          <button id="btnScanner" class="btn-action">
+            📷 Scanner QR
           </button>
+
+          <span class="separateur">OU</span>
+
+          <!-- Zone de saisie manuelle du code de présence -->
+          <div class="groupe-code">
+            <input type="text" id="codePresence" class="input-code" placeholder="Ex: 8a4b...">
+
+            <button id="btnValiderPresence" class="btn-action">
+              Valider
+            </button>
+          </div>
+
+          <!-- mess de retour après validation de la présence -->
+          <span id="messageAppel" class="message-appel"></span>
+
         </div>
-
-        <span id="messageAppel" class="message-appel"></span>
-
       </div>
 
-    </div>
+      <!-- zone d'affichage du lecteur QR code -->
+      <div id="lecteur-qr" class="lecteur-qr"></div>
+      <section class="cartes-statistiques">
+        <div class="carte-stat carte-centree">
 
-    <div id="lecteur-qr" class="lecteur-qr"></div>
+          <!-- navig entre les semaines -->
+          <div class="navigation-semaine">
+            <span id="semainePrecedente" class="bouton-semaine">&lt;</span>
 
-    <section class="cartes-statistiques">
+            <strong id="labelSemaine" class="label-semaine">
+              Chargement...
+            </strong>
 
-      <div class="carte-stat carte-centree">
+            <span id="semaineSuivante" class="bouton-semaine">&gt;</span>
+          </div>
 
-        <div class="navigation-semaine">
-          <span id="semainePrecedente" class="bouton-semaine">&lt;</span>
+          <!-- Nb contrôles -->
+          <p id="nombreControles" class="valeur-stat">0</p>
 
-          <strong id="labelSemaine" class="label-semaine">
-            Chargement...
-          </strong>
-
-          <span id="semaineSuivante" class="bouton-semaine">&gt;</span>
+          <span class="libelle-stat">évaluations</span>
         </div>
-
-        <p id="nombreControles" class="valeur-stat">0</p>
-
-        <span class="libelle-stat">évaluations</span>
-
-      </div>
 
         <div class="carte-stat carte-centree">
           <strong id="moyenneGenerale">0</strong>
           <span>moyenne / 20</span>
         </div>
 
+        <!-- Carte du nombre d'absences -->
         <div class="carte-stat carte-centree">
           <strong id="nombreAbsences">0</strong>
           <span>absences</span>
         </div>
       </section>
 
+      <!-- affichage emploi du temps -->
       <section class="bloc-section">
         <h2>EMPLOI DU TEMPS - SEMAINE</h2>
 
@@ -138,14 +145,16 @@
             </tr>
           </thead>
 
+          <!-- liste des séances -->
           <tbody id="listeSeances">
-            
           </tbody>
         </table>
       </section>
 
+      <!-- zone contenant les notes et les absences -->
       <section class="zone-bas">
 
+        <!-- Bloc des dernières notes -->
         <div class="bloc-section notes">
           <h2>MES DERNIÈRES NOTES</h2>
 
@@ -158,12 +167,13 @@
               </tr>
             </thead>
 
+            <!-- Liste des notes -->
             <tbody id="listeNotes">
-              
             </tbody>
           </table>
         </div>
 
+        <!-- Bloc des absences -->
         <div class="bloc-section absences">
           <h2>MES ABSENCES</h2>
 
@@ -175,18 +185,17 @@
               </tr>
             </thead>
 
+            <!-- Liste des absences -->
             <tbody id="listeAbsences">
-              
             </tbody>
           </table>
         </div>
 
       </section>
-
     </section>
-
   </main>
 
+  <!-- Barre d'actu -->
   <footer class="barre-actualites">
     <div class="icone-actualites">▰</div>
     <strong>Actualités :</strong>
