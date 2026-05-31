@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
     const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
-
+// Vérification de l'authentification et du rôle
     if (!utilisateur || utilisateur.role !== "admin") {
         window.location.href = "../../authentification.html";
         return;
@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resultat = await reponse.json();
 
     console.log(resultat);
-
+    // Affichage du nombre total d'étudiants, de professeurs et de groupes de TD 
+    // ainsi que les derniers utilisateurs créés
     if (resultat.success) {
 
         document.getElementById("totalEtudiants").textContent =

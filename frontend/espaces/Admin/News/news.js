@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         const donnees = new FormData();
-
+        //entrer les données de la news
         donnees.append("auteur_id", utilisateur.id);
         donnees.append("titre", document.getElementById("titreNews").value);
         donnees.append("categorie", document.getElementById("categorieNews").value);

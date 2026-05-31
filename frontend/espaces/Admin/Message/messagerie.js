@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("listeMessages");
 
     if (resultat.success) {
-
+//chargement et affichage des messages
         resultat.messages.forEach(message => {
 
             listeMessages.innerHTML += `

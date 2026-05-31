@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resultat = await reponse.json();
 
     const liste = document.getElementById("listeClasses");
-
+//affichage des classes
     if (resultat.success) {
         resultat.classes.forEach(classe => {
             liste.innerHTML += `

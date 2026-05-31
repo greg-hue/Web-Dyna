@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const messageCours = document.getElementById("messageCours");
 
     async function chargerCours() {
-
+//récupération des cours et enseignants
         const reponse = await fetch(
             "../../../../backend/Admin/cours/getAdminCours.php"
         );
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     document.getElementById("formAjoutCours").addEventListener("submit", async (event) => {
-
+//ajout d'un cours
         event.preventDefault();
 
         const donnees = new FormData();
@@ -98,17 +98,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const resultat = await reponse.json();
 
-        if (resultat.success) {
+        if (resultat.success) {//affichage du message de succès et rechargement de la liste des cours
             messageCours.style.color = "green";
             messageCours.textContent = "Cours ajouté.";
 
             event.target.reset();
             chargerCours();
-        } else {
+        } else {//envoie d'une erreur
             messageCours.style.color = "red";
             messageCours.textContent = resultat.message;
         }
     });
+
     window.modifierCours = async function(
     id,
     nom,
@@ -136,7 +137,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     donnees.append("nom", nouveauNom);
     donnees.append("description", nouvelleDescription);
     donnees.append("enseignant", nouvelEnseignant);
-
+//envoie des données modifiées au backend
     const reponse = await fetch(
         "../../../../backend/Admin/cours/updateAdminCours.php",
         {

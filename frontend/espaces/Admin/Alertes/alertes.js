@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resultat = await reponse.json();
 
     const liste = document.getElementById("listeAlertes");
-
+ //affichage des alertes
     if (resultat.success) {
         resultat.alertes.forEach(alerte => {
             liste.innerHTML += `

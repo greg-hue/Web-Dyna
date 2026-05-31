@@ -29,11 +29,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "../../../authentification.html";
         });
 
-    const parametres =
-        new URLSearchParams(window.location.search);
-
-    const idMessage =
-        parametres.get("id");
+    const parametres = new URLSearchParams(window.location.search);
+    const idMessage = parametres.get("id");
 
     if (!idMessage) {
 
@@ -65,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const message = resultat.message;
-
+//récu^ération et affichage du message
     document.getElementById("expediteurMessage").textContent =
         message.expediteur_prenom
         + " "
@@ -74,14 +71,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         + message.expediteur_role
         + ")";
 
-    document.getElementById("sujetMessage").textContent =
-        message.sujet;
-
-    document.getElementById("dateMessage").textContent =
-        message.date_envoi;
-
-    document.getElementById("contenuMessage").textContent =
-        message.contenu;
+    document.getElementById("sujetMessage").textContent = message.sujet;
+    document.getElementById("dateMessage").textContent = message.date_envoi;
+    document.getElementById("contenuMessage").textContent = message.contenu;
 
     const formReponse =
         document.getElementById("formReponse");
@@ -92,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const contenu =
             document.getElementById("reponseMessage").value;
-
+//réponse au message
         const donnees = new FormData();
 
         donnees.append(
@@ -130,20 +122,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("messageConfirmation");
 
         if (resultatEnvoi.success) {
-
             confirmation.style.color = "green";
-
-            confirmation.textContent =
-                "Réponse envoyée.";
+            confirmation.textContent = "Réponse envoyée.";
 
             formReponse.reset();
-
         } else {
 
             confirmation.style.color = "red";
-
-            confirmation.textContent =
-                "Erreur lors de l'envoi.";
+            confirmation.textContent = "Erreur lors de l'envoi.";
         }
     });
 });

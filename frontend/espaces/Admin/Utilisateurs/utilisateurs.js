@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const liste = document.getElementById("listeUtilisateurs");
     const messageUtilisateur = document.getElementById("messageUtilisateur");
-
+// Charger les utilisateurs depuis le backend
     async function chargerUtilisateurs() {
 
         const reponse = await fetch(
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         }
     }
-
+// Gérer l'ajout d'un nouvel utilisateur
     document.getElementById("formAjoutUtilisateur").addEventListener("submit", async (event) => {
 
         event.preventDefault();
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             messageUtilisateur.textContent = resultat.message;
         }
     });
-
+// Gérer la suppression d'un utilisateur
     window.supprimerUtilisateur = async function(idUtilisateur) {
 
         if (!confirm("Supprimer cet utilisateur ?")) {
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             messageUtilisateur.textContent = resultat.message;
         }
     };
-
+// Gérer la modification d'un utilisateur
     window.modifierUtilisateur = async function(
         id,
         prenom,
@@ -168,11 +168,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const resultat = await reponse.json();
 
-        if (resultat.success) {
+        if (resultat.success) { //confirmation de la modification
             messageUtilisateur.style.color = "green";
             messageUtilisateur.textContent = "Utilisateur modifié.";
             chargerUtilisateurs();
-        } else {
+        } else {//errreur lors de la modification
             messageUtilisateur.style.color = "red";
             messageUtilisateur.textContent = resultat.message;
         }

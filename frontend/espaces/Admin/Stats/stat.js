@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.removeItem("utilisateurConnecte");
         window.location.href = "../../../authentification.html";
     });
-
+    // Charger les statistiques depuis le backend
     const reponse = await fetch("../../../../backend/Admin/getAdminStats.php");
     const resultat = await reponse.json();
 

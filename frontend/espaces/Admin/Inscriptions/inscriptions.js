@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("btnDeconnexion").addEventListener("click", () => {
         localStorage.removeItem("utilisateurConnecte");
+
         window.location.href = "../../../authentification.html";
     });
 
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const messageInscription =
         document.getElementById("messageInscription");
 
+    //fonction permettant de charger toutes les inscriptions existantes
     async function chargerInscriptions() {
 
         const reponse = await fetch(
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (resultat.success) {
 
+            //Ajouter tous les étudiants dans la liste déroulante
             resultat.etudiants.forEach(etudiant => {
                 selectEtudiant.innerHTML += `
                     <option value="${etudiant.id_etudiant}">
@@ -58,6 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `;
             });
 
+            //Ajouter tous les cours dans la liste déroulante
             resultat.cours.forEach(cours => {
                 selectCours.innerHTML += `
                     <option value="${cours.id_cours}">
@@ -66,6 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `;
             });
 
+            //Afficher les inscriptions dans le tableau
             resultat.inscriptions.forEach(inscription => {
                 listeInscriptions.innerHTML += `
                     <tr>
@@ -89,6 +94,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         event.preventDefault();
 
+        //Créer un objet FormData pour envoyer les données au serveur
         const donnees = new FormData();
 
         donnees.append("etudiant_id", selectEtudiant.value);
@@ -105,17 +111,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         const resultat = await reponse.json();
 
         if (resultat.success) {
+            //Afficher un message de confirmation
             messageInscription.style.color = "green";
             messageInscription.textContent = "Inscription ajoutée.";
 
             event.target.reset();
+
+            //Recharger la liste des inscriptions
             chargerInscriptions();
         } else {
+            //Afficher le message d'erreur
             messageInscription.style.color = "red";
             messageInscription.textContent = resultat.message;
         }
     });
 
+    //Fonction globale permettant de supprimer une inscription
     window.supprimerInscription = async function(idInscription) {
 
         if (!confirm("Supprimer cette inscription ?")) {
@@ -138,6 +149,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (resultat.success) {
             messageInscription.style.color = "green";
             messageInscription.textContent = "Inscription supprimée.";
+
             chargerInscriptions();
         } else {
             messageInscription.style.color = "red";
@@ -145,5 +157,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     };
 
+    //Charger les inscriptions dès l'ouverture de la page
     chargerInscriptions();
 });

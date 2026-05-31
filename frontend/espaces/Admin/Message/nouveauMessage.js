@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("formMessage");
 
     formulaire.addEventListener("submit", async (event) => {
-
+//création d'un nouveau message
         event.preventDefault();
 
         const donnees = new FormData();
@@ -64,31 +64,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 body: donnees
             }
-        );
+        ); //envoi du message au backend
 
-        const resultat =
-            await reponse.json();
-
-        const messageRetour =
-            document.getElementById("messageRetour");
+        const resultat = await reponse.json(); 
+        const messageRetour = document.getElementById("messageRetour");
 
         if (resultat.success) {
-
-            messageRetour.style.color =
-                "green";
-
-            messageRetour.textContent =
-                "Message envoyé.";
+            messageRetour.style.color = "green";
+            messageRetour.textContent = "Message envoyé.";
 
             formulaire.reset();
 
         } else {
 
-            messageRetour.style.color =
-                "red";
-
-            messageRetour.textContent =
-                resultat.message;
+            messageRetour.style.color = "red";
+            messageRetour.textContent = resultat.message;
         }
     });
 });
