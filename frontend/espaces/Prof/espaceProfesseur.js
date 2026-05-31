@@ -17,9 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = "../../authentification.html";
     });
 
-    const reponse = await fetch(
-        "../../../backend/Prof/getProfDashboard.php?id_utilisateur=" + utilisateur.id
-    );
+    const reponse = await fetch("../../../backend/Prof/getProfDashboard.php?id_utilisateur=" + utilisateur.id);
 
     const resultat = await reponse.json();
 
@@ -28,20 +26,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         //stats globales
 
         if (resultat.stats) {
-
-            document.getElementById("totalCoursSemaine").textContent =
-                resultat.stats.total_cours_semaine;
-
-            document.getElementById("totalEtudiants").textContent =
-                resultat.stats.total_etudiants;
+            document.getElementById("totalCoursSemaine").textContent = resultat.stats.total_cours_semaine;
+            document.getElementById("totalEtudiants").textContent = resultat.stats.total_etudiants;
         }
 
         //planning des cours
 
         const planningProf = document.getElementById("planningProf");
 
-        const planning =
-            resultat.planning || resultat.cours || [];
+        const planning = resultat.planning || resultat.cours || [];
 
         planningProf.innerHTML = "";
 
@@ -83,13 +76,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 //genration du qr code pour une seance
 
 window.genererQRCode = async function(idSeance) {
-
     const formData = new FormData();
-
     formData.append("id_seance", idSeance);
-
-    const reponse = await fetch(
-        "../../../backend/Prof/presence/genererQRSeance.php",
+    const reponse = await fetch("../../../backend/Prof/presence/genererQRSeance.php",
         {
             method: "POST",
             body: formData
