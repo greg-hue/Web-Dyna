@@ -19,9 +19,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     let toutesLesNotes = [];
     let datePivot = new Date(); 
 
-    /* =====================================
-       1. CHARGEMENT DES SÉANCES
-    ===================================== */
+    //chargement des séances
+
     try {
         const reponseSeances = await fetch("../../../backend/Etudiant/getEtudiantSeances.php?id_utilisateur=" + utilisateur.id);
         const resultatSeances = await reponseSeances.json();
@@ -33,9 +32,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
 
-        /* =====================================
-           2. CHARGEMENT DES NOTES & MOYENNE
-        ===================================== */
+    //chargement des notes et moyennes
+
         const reponseNotes = await fetch("../../../backend/Etudiant/getEtudiantNotes.php?id_utilisateur=" + utilisateur.id);
         const resultatNotes = await reponseNotes.json();
         const listeNotes = document.getElementById("listeNotes");
@@ -69,9 +67,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
 
-        /* =====================================
-           3. CHARGEMENT DES ABSENCES
-        ===================================== */
+    //chargement des absences
+
         const reponseAbsences = await fetch("../../../backend/Etudiant/getEtudiantAbsences.php?id_utilisateur=" + utilisateur.id);
         const resultatAbsences = await reponseAbsences.json();
         const listeAbsences = document.getElementById("listeAbsences");
@@ -95,9 +92,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
 
-        /* =====================================
-           4. DERNIÈRE NOTIFICATION (FOOTER DYNAMIQUE)
-        ===================================== */
+        //dernière notifs
+
         try {
             const reponseNotifs = await fetch("../../../backend/Etudiant/getEtudiantNotifications.php?id_utilisateur=" + utilisateur.id);
             const resultatNotifs = await reponseNotifs.json();
@@ -122,9 +118,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert("Erreur lors du chargement du tableau de bord");
     }
     
-    /* =====================================
-       OUTILS POUR LA SEMAINE DYNAMIQUE
-    ===================================== */
+    //outils pour la semaine
+
     function obtenirLimitesSemaine(date) {
         const jour = date.getDay();
         const distanceAuLundi = (jour === 0) ? -6 : 1 - jour;
@@ -214,9 +209,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         actualiserSemaineDynamique();
     });
 
-    /* =====================================
-       VALIDATION DU QR CODE
-    ===================================== */
+    //validation du Qr code
     const messageZone = document.getElementById("messageAppel");
     const inputToken = document.getElementById("codePresence");
     const lecteurQR = document.getElementById("lecteur-qr");

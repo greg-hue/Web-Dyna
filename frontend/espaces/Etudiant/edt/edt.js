@@ -1,45 +1,32 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const utilisateur = JSON.parse(
-        localStorage.getItem("utilisateurConnecte")
-    );
+    // Vérifie qu'un étudiant est connecté
+    const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
     if (!utilisateur || utilisateur.role !== "etudiant") {
-
-        window.location.href =
-            "../../../authentification.html";
-
+        window.location.href ="../../../authentification.html";
         return;
     }
 
-    document.getElementById("nomUtilisateur").textContent =
-        utilisateur.prenom + " " + utilisateur.nom;
+    //affichage des informations utilisateur
+    document.getElementById("nomUtilisateur").textContent = utilisateur.prenom + " " + utilisateur.nom;
+    document.getElementById("roleUtilisateur").textContent = "Étudiant";
 
-    document.getElementById("roleUtilisateur").textContent =
-        "Étudiant";
-
+    //Déconnexion
     document.getElementById("btnDeconnexion")
         .addEventListener("click", () => {
-
             localStorage.removeItem(
                 "utilisateurConnecte"
             );
-
-            window.location.href =
-                "../../../authentification.html";
+            window.location.href = "../../../authentification.html";
         });
 
     try {
 
-        const reponse = await fetch(
-            "../../../../backend/Etudiant/getEtudiantSeances.php?id_utilisateur="
-            + utilisateur.id
-        );
-
+        //recup des séances de l'étudiant
+        const reponse = await fetch("../../../../backend/Etudiant/getEtudiantSeances.php?id_utilisateur=" + utilisateur.id);
         const resultat = await reponse.json();
-
-        const listeSeances =
-            document.getElementById("listeSeances");
+        const listeSeances = document.getElementById("listeSeances");
 
         if (resultat.success) {
             let dateActuelle = null;
@@ -47,6 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             resultat.seances.forEach(seance => {
 
+                // affiche un séparateur lorsqu'une nouvelle journée commence
                 if (seance.date_seance !== dateActuelle) {
                     dateActuelle = seance.date_seance;
                     
@@ -59,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     `;
                 }
 
-
+                //ajout de la séance dans le tableau
                 listeSeances.innerHTML += `
                     <tr>
                         <td>${seance.titre}</td>
@@ -77,10 +65,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
     } catch (erreur) {
-
+        //gestion des erreurs de chargement
         console.error(erreur);
 
         alert("Erreur emploi du temps");
     }
-
 });

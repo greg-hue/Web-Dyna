@@ -1,41 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const utilisateur = JSON.parse(
-        localStorage.getItem("utilisateurConnecte")
-    );
+    // verif qu'un étudiant est connecté
+    const utilisateur = JSON.parse(localStorage.getItem("utilisateurConnecte"));
 
     if (!utilisateur || utilisateur.role !== "etudiant") {
-
-        window.location.href =
-            "../../../authentification.html";
-
+        window.location.href = "../../../authentification.html";
         return;
     }
 
-    document.getElementById("nomUtilisateur").textContent =
-        utilisateur.prenom + " " + utilisateur.nom;
+    //affichage des informations utilisateur
+    document.getElementById("nomUtilisateur").textContent = utilisateur.prenom + " " + utilisateur.nom;
 
-    document.getElementById("roleUtilisateur").textContent =
-        "Étudiant";
+    document.getElementById("roleUtilisateur").textContent = "Étudiant";
 
+    // Déconnexion
     document.getElementById("btnDeconnexion")
         .addEventListener("click", () => {
-
-            localStorage.removeItem(
-                "utilisateurConnecte"
-            );
-
-            window.location.href =
-                "../../../authentification.html";
+            localStorage.removeItem("utilisateurConnecte");
+            window.location.href = "../../../authentification.html";
         });
 
-    const formulaire =
-        document.getElementById("formMessage");
-
+    //gestion de l'envoi du formulaire
+    const formulaire = document.getElementById("formMessage");
     formulaire.addEventListener("submit", async (event) => {
 
         event.preventDefault();
-
         const donnees = new FormData();
 
         donnees.append(
@@ -45,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         donnees.append(
             "destinataire_email",
-        document.getElementById("destinataire").value
+            document.getElementById("destinataire").value
         );
 
         donnees.append(
@@ -58,37 +47,26 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("contenu").value
         );
 
-        const reponse = await fetch(
-            "../../../../backend/sendMessage.php",
+        // Envoi du message au serveur
+        const reponse = await fetch("../../../../backend/sendMessage.php",
             {
                 method: "POST",
                 body: donnees
             }
         );
 
-        const resultat =
-            await reponse.json();
-
-        const messageRetour =
-            document.getElementById("messageRetour");
+        const resultat = await reponse.json();
+        const messageRetour = document.getElementById("messageRetour");
 
         if (resultat.success) {
-
-            messageRetour.style.color =
-                "green";
-
-            messageRetour.textContent =
-                "Message envoyé.";
-
+            messageRetour.style.color = "green";
+            messageRetour.textContent = "Message envoyé.";
             formulaire.reset();
 
         } else {
 
-            messageRetour.style.color =
-                "red";
-
-            messageRetour.textContent =
-                resultat.message;
+            messageRetour.style.color = "red";
+            messageRetour.textContent = resultat.message;
         }
     });
 });
