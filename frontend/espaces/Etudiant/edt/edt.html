@@ -15,6 +15,7 @@
 
 <header class="barre-haut">
 
+  <!-- info utilisateur -->
   <div class="bloc-logo">
     <div class="logo">✚</div>
     <h1>IFSI Florence Nightingale</h1>
@@ -30,6 +31,7 @@
 
 <main class="conteneur-etudiant">
 
+  <!--menu de navigation -->
   <aside class="menu-lateral">
 
     <a class="element-menu" href="../espaceEtudiant.html">
@@ -57,41 +59,36 @@
       Notifications
     </a>
     
-      <a class="element-menu" href="../cours/cours.html">
-        <span>📚</span>
-        Cours      
-      </a>
+    <a class="element-menu" href="../cours/cours.html">
+      <span>📚</span>
+      Cours      
+    </a>
 
   </aside>
 
   <section class="contenu-principal">
 
+    <!-- Tableau rempli dynamiquement avec les séances -->
     <section class="bloc-section">
 
-  <h2>EMPLOI DU TEMPS</h2>
+      <h2>EMPLOI DU TEMPS</h2>
+      <table>
 
-  <table>
+        <thead>
+          <tr>
+            <th>Cours</th>
+            <th>Date</th>
+            <th>Horaire</th>
+            <th>Salle</th>
+            <th>Type</th>
+          </tr>
+        </thead>
 
-    <thead>
-      <tr>
-        <th>Cours</th>
-        <th>Date</th>
-        <th>Horaire</th>
-        <th>Salle</th>
-        <th>Type</th>
-      </tr>
-    </thead>
+        <tbody id="listeSeances"></tbody>
+      </table>
 
-    <tbody id="listeSeances">
-
-    </tbody>
-
-  </table>
-
-</section>
-
+    </section>
   </section>
-
 </main>
 
 </body>

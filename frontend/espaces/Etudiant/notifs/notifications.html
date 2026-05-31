@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-
   <title>Dashboard étudiant</title>
 
   <link rel="stylesheet" href="../../espaceEtudiant.css">
@@ -15,6 +14,7 @@
 
 <header class="barre-haut">
 
+  <!--logo et utilisateur connecté -->
   <div class="bloc-logo">
     <div class="logo">✚</div>
     <h1>IFSI Florence Nightingale</h1>
@@ -30,6 +30,7 @@
 
 <main class="conteneur-etudiant">
 
+  <!-- menu de navigation étudiant -->
   <aside class="menu-lateral">
 
     <a class="element-menu" href="../espaceEtudiant.html">
@@ -57,37 +58,36 @@
       Notifications
     </a>
     
-      <a class="element-menu" href="../cours/cours.html">
-        <span>📚</span>
-        Cours      
-      </a>
+    <a class="element-menu" href="../cours/cours.html">
+      <span>📚</span>
+      Cours      
+    </a>
 
   </aside>
 
   <section class="contenu-principal">
 
+    <!-- Tableau rempli dynamiquement avec les notifs -->
     <section class="bloc-section">
 
-  <h2>NOTIFICATIONS</h2>
+      <h2>NOTIFICATIONS</h2>
 
-  <table>
+      <table>
 
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Notification</th>
-      </tr>
-    </thead>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Notification</th>
+          </tr>
+        </thead>
 
-    <tbody id="listeNotifications">
-      
-    </tbody>
+        <tbody id="listeNotifications">
+          
+        </tbody>
 
-  </table>
-
-</section>
-
-</section>
+      </table>
+    </section>
+  </section>
 
 </main>
 
