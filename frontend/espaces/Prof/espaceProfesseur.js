@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     <td>
                         <button
-                            onclick="genererQRCode(${seance.id_seance})"
+                            onclick="window.location.href='presences/presences.html'"
                             class="btn-action"
                             id_seance="${seance.id_seance}"
                         >
