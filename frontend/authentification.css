@@ -62,17 +62,29 @@ body{
 }
 
 /*partie gauche*/
-.partie-gauche{
-   background:#d3dae1;
-   border-right:8px solid #7b858c;
-   display:flex;
-   justify-content:center;
-   align-items:center;
+.partie-gauche {
+   background: #d3dae1;
+   border-right: 8px solid #7b858c;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 50%;
+   height: calc(100vh - 60px);
+   overflow: hidden;
 }
 
-.image-temporaire{
-   font-size:120px;
-   opacity:0.4;
+.image-temporaire {
+   opacity: 0.4;
+   width: 100%;
+   height: 100%;
+}
+
+.image-fond {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   object-position: center;
+   display: block;
 }
 
 /*partie droite*/
