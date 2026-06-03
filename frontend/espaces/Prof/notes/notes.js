@@ -68,8 +68,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <td>${note.note}/20</td>
                         <td>${note.coefficient}</td>
                         <td>
-
-                        //bouton pour mofieir la note 
                             <button onclick="modifierNote(
                                 ${note.id_note},
                                 '${note.note}',
